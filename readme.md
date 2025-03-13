@@ -2,6 +2,7 @@
 
 本项目是Google Sketchup的一个可选的平替软件，可以编辑修改模型文件，配合建模插件，在大部分领域可替代原软件
 
+![设备](https://github.com/lihang185/sketchup_viewer/blob/main/screenshot/view1.png)
 
 # 2、依赖
 ```
