@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="12.822mm" height="12.822mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 61.7 61.7"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str3 {stroke:black;stroke-width:0.96;stroke-miterlimit:22.9256}
+    .str2 {stroke:black;stroke-width:0.96;stroke-miterlimit:22.9256}
+    .str1 {stroke:#E6E6E6;stroke-width:0.96;stroke-miterlimit:22.9256}
+    .str0 {stroke:black;stroke-width:0.85;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil0 {fill:#666666}
+    .fil2 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="图层_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2882182689376">
+   <rect class="fil0 str0" x="0.42" y="0.42" width="60.85" height="60.85" rx="6.89" ry="6.89"/>
+   <path class="fil1 str1" d="M4.28 49.22c0,-13.6 0,-27.2 0,-40.79 0.6,-3.51 2.22,-3.94 3.89,-4.25l39.87 0"/>
+   <path class="fil1 str2" d="M57.65 12.38c0,13.6 0,27.2 0,40.79 -0.6,3.51 -2.22,3.94 -3.89,4.25l-39.87 0"/>
+  </g>
+  <rect class="fil2 str3" x="18.89" y="14.5" width="23.92" height="33.39"/>
+ </g>
+</svg>
