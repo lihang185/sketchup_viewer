@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<typesystem package="suapi">
+	<custom-type name="PyObject"/>
+	<primitive-type name="bool"/>
+	<primitive-type name="char"/>
+	<primitive-type name="short"/>
+	<primitive-type name="unsigned short"/>
+	<primitive-type name="int"/>
+	<primitive-type name="float"/>
+	<primitive-type name="double"/>
+	<primitive-type name="std::string"/>
+  <primitive-type name="std::wstring">
+    <conversion-rule>
+      <native-to-target file="glue.cpp" snippet="return_pyunicode"/>
+      <target-to-native>
+        <add-conversion type="PyUnicode" file="glue.cpp" snippet="conversion_pyunicode"/>>
+        <add-conversion type="Py_None" file="glue.cpp" snippet="conversion_pynone"/>>
+      </target-to-native>
+    </conversion-rule>
+  </primitive-type>
+
+  <template name="repr_code">
+    char* strbuf = my_format_string("%s(%REPR_FORMAT)", Py_TYPE(%PYSELF)->tp_name, %REPR_ARGS);
+    %PYARG_0 = Shiboken::String::fromCString(strbuf);
+    free(strbuf);
+  </template>
+
+  <template name="to_tuple">
+    %PYARG_0 = Py_BuildValue("%TT_FORMAT", %TT_ARGS);
+  </template>
+
+  <template name="cpplist_to_pylist_conversion">
+    PyObject* %out = PyList_New((int) %in.size());
+    %INTYPE::const_iterator it = %in.begin();
+    for (int idx = 0; it != %in.end(); ++it, ++idx) {
+    %INTYPE_0 cppItem(*it);
+    PyList_SET_ITEM(%out, idx, %CONVERTTOPYTHON[%INTYPE_0](cppItem));
+    }
+    return %out;
+  </template>
+
+  <template name="pyseq_to_cpplist_conversion">
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(%in));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() &amp;&amp; PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    %OUTTYPE_0 cppItem = %CONVERTTOCPP[%OUTTYPE_0](pyItem);
+    %out.push_back(cppItem);
+    }
+  </template>
+
+  <container-type name="std::vector" type="list">
+    <include file-name="vector" location="global"/>
+    <conversion-rule>
+      <native-to-target>
+        <insert-template name="cpplist_to_pylist_conversion"/>
+      </native-to-target>
+      <target-to-native>
+        <add-conversion type="PySequence">
+          <insert-template name="pyseq_to_cpplist_conversion"/>
+        </add-conversion>
+      </target-to-native>
+    </conversion-rule>
+  </container-type>
+
+  <value-type name='CVector2D'>
+  </value-type>
+  <value-type name='CVector3D'>
+    <add-function signature="toTuple" return-type="PyObject*">
+      <inject-code class="target" position="beginning">
+        <insert-template name="to_tuple">
+          <replace from="%TT_FORMAT" to="ddd"/>
+          <replace from="%TT_ARGS" to="%CPPSELF.x, %CPPSELF.y, %CPPSELF.z"/>
+        </insert-template>
+      </inject-code>
+    </add-function>
+  </value-type>
+  <value-type name='CMatrix'>
+  </value-type>
+  <rejection class="CMatrix" field-name="m"/>
+
+  <object-type name='SUEntity'>
+  </object-type>
+  <object-type name='SUDrawingElement'>
+  </object-type>
+  <object-type name='SUVertex'>
+  </object-type>
+  <object-type name='SUEdge'>
+  </object-type>
+  <object-type name='SUFace'>
+  </object-type>
+  <object-type name='TriangleMesh'>
+  </object-type>
+  <object-type name='SUTexture'>
+    <add-function signature="GetData" return-type="PyObject*">
+      <inject-code class="target" position="beginning">
+        return PyByteArray_FromStringAndSize(%CPPSELF->GetImageData().data(), %CPPSELF->GetImageDataSize());
+      </inject-code>
+    </add-function>
+  </object-type>
+  <rejection class="SUTexture" function-name="GetImageData"/>
+  
+  <object-type name='SUMaterial'>
+  </object-type>
+
+
+  <object-type name='SUEntities'>
+  </object-type>
+  <object-type name="SUEntityIterator">
+    <add-function signature="__iter__()" return-type="SUEntityIterator">
+      <inject-code class="target" position="beginning">
+        Py_INCREF(%PYSELF);
+        %PYARG_0 = %PYSELF;
+      </inject-code>
+    </add-function>
+    <add-function signature="__next__()" return-type="SUEntity*">
+      <inject-code class="target" position="beginning">
+        SUEntity* entity;
+        if (%CPPSELF.next( &amp; entity )) {
+        if(entity->GetType() == 16)
+        %PYARG_0 = %CONVERTTOPYTHON[SUEdge*](entity);
+        else if (entity->GetType() == 18)
+        %PYARG_0 = %CONVERTTOPYTHON[SUFace*](entity);
+        else
+        %PYARG_0 = 0;
+        }
+      </inject-code>
+    </add-function>
+  </object-type>
+  <rejection class="SUEntityIterator" function-name="next"/>
+
+  <object-type name='SUComponentDefinition'>
+  </object-type>
+  <object-type name='SUComponentInstance'>
+  </object-type>
+
+  <object-type name='SUModel'>
+  </object-type>
+
+</typesystem>

@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="autogen">
+      <UniqueIdentifier>{412f6341-080d-497a-ac12-afb6b2861330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SketchUpAPI">
+      <UniqueIdentifier>{5945b5d4-2a30-43e9-addf-f5a267e5f6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SketchUpAPI\geometry">
+      <UniqueIdentifier>{158fc1c2-405c-410b-80d0-2659c61ae775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SketchUpAPI\model">
+      <UniqueIdentifier>{9b2dcf3e-2b5c-4045-a7bc-e2ae3e66d19f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suapi_module_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suentities_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sumodel_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suedge_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suvertex_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suentity_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suentityiterator_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suface_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\cvector3d_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\trianglemesh_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\cvector2d_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="glue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sutexture_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sumaterial_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\cmatrix_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sudrawingelement_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sucomponentdefinition_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\sucomponentinstance_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="model.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suapi_python.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\color.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\common.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\defs.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\extension_license.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\geometry.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\initialize.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\length_formatter.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\sketchup.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\sketchup_info.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\slapi.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\transformation.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\headers\unicodestring.h">
+      <Filter>SketchUpAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suentities_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sumodel_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suedge_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suvertex_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suentity_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suentityiterator_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suface_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\cvector3d_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\trianglemesh_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\cvector2d_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sutexture_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\bounding_box.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\plane3d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\point2d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\point3d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\ray3d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\transformation.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\vector2d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\vector3d.h">
+      <Filter>SketchUpAPI\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\arccurve.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\arrow_type.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\attribute_dictionary.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\axes.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\camera.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classification_attribute.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classification_info.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classifications.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\component_definition.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\component_instance.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\curve.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\defs.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_linear.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_radial.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_style.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\drawing_element.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dynamic_component_attribute.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dynamic_component_info.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\edge.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\edge_use.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entities.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity_list.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity_list_iterator.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\face.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\font.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\geometry.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\geometry_input.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\group.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\guide_line.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\guide_point.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\image.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\image_rep.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\instancepath.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\layer.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\location.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\loop.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\material.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\mesh_helper.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\model.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\opening.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\options_manager.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\options_provider.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\polyline3d.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\rendering_options.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\scene.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\schema.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\schema_type.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\section_plane.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\shadow_info.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\style.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\styles.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\text.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\texture.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\texture_writer.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\typed_value.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\uv_helper.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\vertex.h">
+      <Filter>SketchUpAPI\model</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sumaterial_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\cmatrix_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sudrawingelement_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sucomponentdefinition_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\sucomponentinstance_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="suapi.xml">
+      <Filter>源文件</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>

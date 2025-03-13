@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glue.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="model.cpp" />
+    <ClCompile Include="suapi\cmatrix_wrapper.cpp" />
+    <ClCompile Include="suapi\cvector2d_wrapper.cpp" />
+    <ClCompile Include="suapi\cvector3d_wrapper.cpp" />
+    <ClCompile Include="suapi\suapi_module_wrapper.cpp" />
+    <ClCompile Include="suapi\sucomponentdefinition_wrapper.cpp" />
+    <ClCompile Include="suapi\sucomponentinstance_wrapper.cpp" />
+    <ClCompile Include="suapi\sudrawingelement_wrapper.cpp" />
+    <ClCompile Include="suapi\suedge_wrapper.cpp" />
+    <ClCompile Include="suapi\suentities_wrapper.cpp" />
+    <ClCompile Include="suapi\suentityiterator_wrapper.cpp" />
+    <ClCompile Include="suapi\suentity_wrapper.cpp" />
+    <ClCompile Include="suapi\suface_wrapper.cpp" />
+    <ClCompile Include="suapi\sumaterial_wrapper.cpp" />
+    <ClCompile Include="suapi\sumodel_wrapper.cpp" />
+    <ClCompile Include="suapi\sutexture_wrapper.cpp" />
+    <ClCompile Include="suapi\suvertex_wrapper.cpp" />
+    <ClCompile Include="suapi\trianglemesh_wrapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="model.h" />
+    <ClInclude Include="SketchUpAPI\headers\color.h" />
+    <ClInclude Include="SketchUpAPI\headers\common.h" />
+    <ClInclude Include="SketchUpAPI\headers\defs.h" />
+    <ClInclude Include="SketchUpAPI\headers\extension_license.h" />
+    <ClInclude Include="SketchUpAPI\headers\geometry.h" />
+    <ClInclude Include="SketchUpAPI\headers\initialize.h" />
+    <ClInclude Include="SketchUpAPI\headers\length_formatter.h" />
+    <ClInclude Include="SketchUpAPI\headers\sketchup.h" />
+    <ClInclude Include="SketchUpAPI\headers\sketchup_info.h" />
+    <ClInclude Include="SketchUpAPI\headers\slapi.h" />
+    <ClInclude Include="SketchUpAPI\headers\transformation.h" />
+    <ClInclude Include="SketchUpAPI\headers\unicodestring.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\bounding_box.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\plane3d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\point2d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\point3d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\ray3d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\transformation.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\vector2d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\geometry\vector3d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\arccurve.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\arrow_type.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\attribute_dictionary.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\axes.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\camera.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classifications.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classification_attribute.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\classification_info.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\component_definition.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\component_instance.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\curve.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\defs.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_linear.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_radial.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dimension_style.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\drawing_element.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dynamic_component_attribute.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\dynamic_component_info.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\edge.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\edge_use.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entities.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity_list.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\entity_list_iterator.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\face.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\font.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\geometry.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\geometry_input.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\group.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\guide_line.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\guide_point.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\image.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\image_rep.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\instancepath.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\layer.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\location.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\loop.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\material.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\mesh_helper.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\model.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\opening.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\options_manager.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\options_provider.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\polyline3d.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\rendering_options.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\scene.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\schema.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\schema_type.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\section_plane.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\shadow_info.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\style.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\styles.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\text.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\texture.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\texture_writer.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\typed_value.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\uv_helper.h" />
+    <ClInclude Include="SketchUpAPI\SketchUpAPI\model\vertex.h" />
+    <ClInclude Include="suapi\cmatrix_wrapper.h" />
+    <ClInclude Include="suapi\cvector2d_wrapper.h" />
+    <ClInclude Include="suapi\cvector3d_wrapper.h" />
+    <ClInclude Include="suapi\suapi_python.h" />
+    <ClInclude Include="suapi\sucomponentdefinition_wrapper.h" />
+    <ClInclude Include="suapi\sucomponentinstance_wrapper.h" />
+    <ClInclude Include="suapi\sudrawingelement_wrapper.h" />
+    <ClInclude Include="suapi\suedge_wrapper.h" />
+    <ClInclude Include="suapi\suentities_wrapper.h" />
+    <ClInclude Include="suapi\suentityiterator_wrapper.h" />
+    <ClInclude Include="suapi\suentity_wrapper.h" />
+    <ClInclude Include="suapi\suface_wrapper.h" />
+    <ClInclude Include="suapi\sumaterial_wrapper.h" />
+    <ClInclude Include="suapi\sumodel_wrapper.h" />
+    <ClInclude Include="suapi\sutexture_wrapper.h" />
+    <ClInclude Include="suapi\suvertex_wrapper.h" />
+    <ClInclude Include="suapi\trianglemesh_wrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="suapi.xml" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{1f97272a-988f-4b2b-a6df-ee07ff807b3a}</ProjectGuid>
+    <RootNamespace>suapi</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir);C:\Python\Python38\include;$(ProjectDir)staticlibshiboken\dist\inc;$(ProjectDir)SketchUpAPI;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Python\Python38\libs;$(ProjectDir)SketchUpAPI\library;$(ProjectDir)staticlibshiboken\dist;$(LibraryPath)</LibraryPath>
+    <TargetExt>.pyd</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;SUAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;SUAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;SUAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;SUAPI_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>staticlibshiboken.lib;SketchUpAPI.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)\$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

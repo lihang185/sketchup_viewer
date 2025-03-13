@@ -1,0 +1,1 @@
+shiboken2\shiboken2 --generatorSet=shiboken  --include-paths=. --output-directory=. global.h suapi.xml --avoid-protected-hack
