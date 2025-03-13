@@ -1,0 +1,22 @@
+<RCC>
+  <qresource prefix="toolbar">
+    <file>icons/tb_followme.svg</file>
+    <file>icons/tb_offset.svg</file>
+    <file>icons/tb_brush.svg</file>
+    <file>icons/tb_move.svg</file>
+    <file>icons/tb_rotate.svg</file>
+    <file>icons/tb_polygon.svg</file>
+    <file>icons/tb_erase.svg</file>
+    <file>icons/tb_measure.svg</file>
+    <file>icons/tb_positioncamera.svg</file>
+    <file>icons/tb_line.svg</file>
+    <file>icons/tb_orbit.svg</file>
+    <file>icons/tb_pan.svg</file>
+    <file>icons/tb_pushpull.svg</file>
+    <file>icons/tb_rectangle.svg</file>
+    <file>icons/tb_select.svg</file>
+  </qresource>
+  <qresource prefix="app">
+    <file>icons/logo.png</file>
+  </qresource>
+</RCC>
