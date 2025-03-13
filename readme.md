@@ -6,18 +6,21 @@
 
 # 2、依赖
 项目用python和C++编写，需要：
+```
 Python3.8 64bit 环境
 SketchupAPI 2018 64bit SDK
 Pyside2（Qt5.0界面库）
 Shiboken2（C++绑定）
 PyOpenGL
+```
 
+# 3、安装
 ```
 pip install pyopengl
 pip install pyside2
 ```
 
-# 3、运行
+# 4、运行
 ```
 python sketchup_viewer.py
 ```
