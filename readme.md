@@ -5,7 +5,7 @@
 ![设备](https://github.com/lihang185/sketchup_viewer/blob/main/screenshot/view1.png?raw=true)
 
 # 2、依赖
-项目用python和C++编写，需要：
+软件用python和C++编写，需要：
 ```
 Python3.8 64bit 环境
 SketchupAPI 2018 64bit SDK
