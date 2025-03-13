@@ -366,7 +366,7 @@ bool TriangleMesh::Build(SUFace* face, SUComponentInstance* inst)
 	}
 
 	//=================
-	// ³õÊ¼»¯Êý×é
+	// Â³ÃµÃŠÂ¼Â»Â¯ÃŠÃ½Ã—Ã©
 	indices.resize(num_triangles * 3);
 	points.resize(num_vertices);
 	normals.resize(num_vertices);
@@ -1024,7 +1024,7 @@ SUEntities* SUModel::GetEntities()
 
 std::string SUModel::GetName()
 {
-	return std::string("haha");
+	return std::string("top_model");
 }
 
 std::vector<SUMaterial*> SUModel::GetMaterialList()
