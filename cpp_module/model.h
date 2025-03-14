@@ -21,6 +21,13 @@ struct CVector3D {
 	CVector3D() : x(0), y(0), z(0) {}
 	CVector3D(double ix, double iy, double iz) : x(ix), y(iy), z(iz) {}
 
+	CVector3D Add(CVector3D& R);
+	CVector3D operator+(CVector3D& R);
+	CVector3D Sub(CVector3D& R);
+	CVector3D operator-(CVector3D& R);
+	CVector3D operator*(double scale);
+	CVector3D operator-();
+
 	double x;
 	double y;
 	double z;
@@ -53,6 +60,7 @@ public:
 	virtual ~SUEntity() {}
 
 	int GetType();
+	int GetID();
 };
 
 class SUDrawingElement : public SUEntity

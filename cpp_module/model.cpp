@@ -13,7 +13,7 @@
 #include <SketchUpAPI/sketchup.h>
 
 //=====================
-//  CVector2D
+//  wstring
 //
 //=====================
 
@@ -33,6 +33,57 @@ std::wstring SUStringToSTLString(SUStringRef string)
 	}
 	return outstr;
 }
+
+//=====================
+//  CVector3D
+//
+//=====================
+CVector3D CVector3D::operator*(double scale)
+{
+	CVector3D out;
+	out.x = x * scale;
+	out.y = y * scale;
+	out.z = z * scale;
+	return out;
+}
+
+CVector3D CVector3D::Add(CVector3D& R)
+{
+	CVector3D out;
+	out.x = x + R.x;
+	out.y = y + R.y;
+	out.z = z + R.z;
+	return out;
+}
+
+CVector3D CVector3D::operator+(CVector3D& R)
+{
+	return Add(R);
+}
+
+CVector3D CVector3D::Sub(CVector3D& R)
+{
+	CVector3D out;
+	out.x = x - R.x;
+	out.y = y - R.y;
+	out.z = z - R.z;
+	return out;
+}
+
+CVector3D CVector3D::operator-(CVector3D& R)
+{
+	return Sub(R);
+}
+
+CVector3D CVector3D::operator-()
+{
+	CVector3D out;
+	out.x = -x;
+	out.y = -y;
+	out.z = -z;
+	return out;
+}
+
 
 //=====================
 //  CMatrix
@@ -144,6 +195,14 @@ int SUEntity::GetType()
 		return 18;
 	}
 	return 0;
+
+}
+
+int SUEntity::GetID()
+{
+	int id=0;
+	SUEntityGetID(SUAPI(this), &id);
+	return id;
 }
 
 
@@ -366,7 +425,7 @@ bool TriangleMesh::Build(SUFace* face, SUComponentInstance* inst)
 	}
 
 	//=================
-	// Â³ÃµÃŠÂ¼Â»Â¯ÃŠÃ½Ã—Ã©
+	// ³õÊ¼»¯Êý×é
 	indices.resize(num_triangles * 3);
 	points.resize(num_vertices);
 	normals.resize(num_vertices);
@@ -1024,7 +1083,7 @@ SUEntities* SUModel::GetEntities()
 
 std::string SUModel::GetName()
 {
-	return std::string("top_model");
+	return std::string("haha");
 }
 
 std::vector<SUMaterial*> SUModel::GetMaterialList()

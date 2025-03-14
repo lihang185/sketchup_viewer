@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project sketchup_viewer",
     "copyright": "Copyright (C) 2025 , ",
-    "saved": "2025-03-13, 14:41:43"
+    "saved": "2025-03-14, 16:33:06"
   },
   "project": {
     "AUTHOR": "",
@@ -55,7 +55,9 @@
       "MakeTestOnly": true
     },
     "MIXEDLANGUAGE": false,
-    "OTHERS": [],
+    "OTHERS": [
+      ".gitignore"
+    ],
     "OTHERTOOLSPARMS": {},
     "PACKAGERSPARMS": {},
     "PROGLANGUAGE": "Python3",
@@ -81,9 +83,10 @@
       "view3d.py",
       "su_model.py",
       "utils.py",
-      "test/test1.py",
-      "test/test2.py",
-      "model_cache.py"
+      "model_cache.py",
+      "pick_helper.py",
+      "su.py",
+      "tool_select.py"
     ],
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
@@ -97,8 +100,45 @@
       "PackagesRoot": "",
       "RcSuffix": ""
     },
-    "VCS": "None",
-    "VCSOPTIONS": {},
+    "VCS": "Git",
+    "VCSOPTIONS": {
+      "add": [
+        ""
+      ],
+      "checkout": [
+        ""
+      ],
+      "commit": [
+        ""
+      ],
+      "diff": [
+        ""
+      ],
+      "export": [
+        ""
+      ],
+      "global": [
+        ""
+      ],
+      "history": [
+        ""
+      ],
+      "log": [
+        ""
+      ],
+      "remove": [
+        ""
+      ],
+      "status": [
+        ""
+      ],
+      "tag": [
+        ""
+      ],
+      "update": [
+        ""
+      ]
+    },
     "VCSOTHERDATA": {},
     "VERSION": "0.1"
   }

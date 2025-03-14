@@ -1,14 +1,19 @@
 from PySide2.QtCore import Qt, QPoint, QRect, QTimer
 from PySide2.QtGui import QPainter, QMatrix4x4, QVector3D, QVector4D
 #from PySide2.QtGui import QOpenGLFramebufferObjectFormat, QOpenGLFramebufferObject
-from PySide2.QtGui import QPen
 from PySide2.QtWidgets import QOpenGLWidget
 import OpenGL.GL
 import OpenGL.GLU
 import numpy as np
+import math
 
 from perf_counter_view import PerformanceCounter
 from tool_camera import CameraTool
+from tool_select import SelectTool
+
+import su
+def q2c(d):
+    return su.CVector3D(*d.toTuple())
 
 class ModeEnum:
     default = 1
@@ -58,7 +63,8 @@ class View3D(QOpenGLWidget):
         self.camera_zoom = 1.0
 
         self.camera_tool = CameraTool(self)
-        self.current_tool = self.camera_tool
+        self.tool_select = SelectTool(self)
+        self.current_tool = self.tool_select
         
         self.model = None
         
@@ -294,6 +300,63 @@ class View3D(QOpenGLWidget):
         pm = QMatrix4x4()
         pm.perspective(fov_h,  aspectRatio,  2,  10000)
         return pm
+
+    ############
+    # Pick
+    # 
+    ############
+    def beginSelect(self, x, y, pick_width, pick_height):
+        self.makeCurrent()
+        
+        gl = self.gl
+
+        gl.glSelectBuffer(16384)
+        
+        gl.glInitNames()
+        gl.glRenderMode(gl.GL_SELECT)
+
+        # Step 2
+        self.SetupPickMatrix(x, y, pick_width, pick_height)
+        self.SetupCameraMatrix()
+    
+    def endSelect(self):
+        return self.gl.glRenderMode(self.gl.GL_RENDER)
+        
+    def SetupPickMatrix(self, pick_x, pick_y, pick_width, pick_height):
+        # ViewPort
+        h = self.height()
+        viewport = self.gl.glGetIntegerv(self.gl.GL_VIEWPORT)
+        
+        # Projection
+        self.gl.glMatrixMode(self.gl.GL_PROJECTION)
+        self.gl.glLoadIdentity()
+        self.glu.gluPickMatrix(pick_x, h-pick_y, pick_width, pick_height, viewport)
+        
+        pm = self.ComputeProjectMatrix()
+        self.gl.glMultMatrixf(pm.data())
+
+    def ComputeCameraRay(self, x, y):
+        view_width = self.width()
+        view_height = self.height()
+        imageAspectRatio = view_width / view_height
+        scale = math.tan(math.radians(35 * 0.5));
+        px = (2*((float(x)+0.5)/view_width)-1) * scale * imageAspectRatio
+        py = (1.0-2*(float(y)+0.5)/view_height) * scale
+        
+        ray_origin = QVector3D(0, 0, 0)
+        ray_dir = QVector3D(px, py, -1).normalized()
+        
+        inv_matrix = self.camera_matrix_inv
+        world_ray_origin = inv_matrix.map(ray_origin)
+        world_ray_dir = inv_matrix.map(ray_dir)
+        
+        a = (world_ray_dir - world_ray_origin).normalized()
+        ray_dir = q2c(a)
+        ray_start = q2c(world_ray_origin)
+        b = ray_start + ray_dir* 1000
+        ray_end = q2c(b)
+        return ray_start, ray_dir, ray_end
+
 
     ############
     # 调用Tool & 视角控制

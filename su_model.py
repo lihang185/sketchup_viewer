@@ -10,9 +10,7 @@ data_path = os.path.abspath(
 def abspath(localpath):
     return os.path.join(data_path, localpath)
 
-CPP_DIR = os.path.join(os.path.dirname(__file__), "cpp_module" )
-sys.path.append(CPP_DIR)
-import suapi
+import su
 
 from model_cache import VBOCache, DrawListCache
 
@@ -147,6 +145,17 @@ class Component:
     def mark(self):
         self.dirty = True
     
+    def update_entities(self):
+        self.edges = self.comp.GetEdges()
+        self.faces = self.comp.GetFaces()
+        self.entities = self.edges + self.faces
+        
+        self.entities_id_map = {}
+        for e in self.entities:
+           self.entities_id_map[e.GetID() ] = e
+        
+        self.update_children_instance()
+    
     def update_children_instance(self):
         all_list = []
         groups = self.comp.GetGroups()
@@ -154,6 +163,9 @@ class Component:
         all_list.extend(groups)
         all_list.extend(insts)
         self.instances = all_list
+        
+        for e in self.instances:
+           self.entities_id_map[e.GetID() ] = e
 
     def clear_geom(self):
         self.dict_mats_normal = {}
@@ -167,7 +179,7 @@ class Component:
     def classify_face(self, node, defaultMaterial):
         comp = node.comp
         
-        # 分类&过滤
+        # classify by material
         dict_mats = {}
         for e in comp.d.faces:
             #if e.GetHidden(): continue
@@ -197,7 +209,7 @@ class Component:
             if mtl and mtl.GetTexture():
                 pm_has_texture = True
         
-        triMesh = suapi.TriangleMesh()
+        triMesh = su.TriangleMesh()
         
         if face_has_mat or not pm_has_texture:
             ok = triMesh.Build(face, None)
@@ -257,7 +269,7 @@ class SketchupModel:
         self.comp_def_list = []
     
     def load(self, filename):
-        model = suapi.SUModel.LoadFromFile(filename)
+        model = su.SUModel.LoadFromFile(filename)
         if model:
             self.model = model
             self.init_model()
@@ -268,7 +280,7 @@ class SketchupModel:
 
     def init_model(self):
         # default material
-        self.defaultMaterial = suapi.SUMaterial.New()
+        self.defaultMaterial = su.SUMaterial.New()
         rm = Material()
         rm.LoadMaterial(None)
         self.defaultMaterial.d = rm
@@ -306,10 +318,19 @@ class SketchupModel:
     
     def init_comp(self, comp_def):
         data = Component(comp_def)
-        data.faces = comp_def.GetFaces()
-        data.update_children_instance()
+        data.update_entities()
         #data.defaultMaterial = self.defaultMaterial
         comp_def.d = data
+
+    ########################
+    # open comp
+    # 
+    ########################
+    def get_opend_comp(self):
+        return self.top_comp 
+    
+    def get_open_path(self):
+        return []
     
     ########################
     # Recursive
@@ -331,10 +352,14 @@ class SketchupModel:
             comp2 = inst2.GetDefinition()
             yield from self.recursive_enum_inst_tree_no_filter(inst_path2, comp2, m2, pm2)
 
+    ########################
+    # Draw
+    # 
+    ########################
     def draw(self, gl):
-        top_comp = self.model.GetEntities()
+        top_comp = self.top_comp
         
-        node = InstancePath([], top_comp, suapi.CMatrix(), None)
+        node = InstancePath([], top_comp, su.CMatrix(), None)
         if not self.built or self.built_dirty:
             self.build_activate_comp(node, gl)
 
@@ -387,7 +412,7 @@ class SketchupModel:
         if not comp.d.is_dirty():
             return
         
-        for node in self.recursive_enum_inst_tree_no_filter(inst_path, comp, suapi.CMatrix(), pm):
+        for node in self.recursive_enum_inst_tree_no_filter(inst_path, comp, su.CMatrix(), pm):
             comp.d.add_node(node, self.defaultMaterial)
         
         comp.d.build(gl)
@@ -420,3 +445,59 @@ class SketchupModel:
                 mc2.draw_opacity(gl)
             gl.glPopMatrix()
     
+    ########################
+    # Pick
+    # 
+    ########################
+    def update_selection(self, sel):
+        self.selection_set = sel
+    
+    def pick(self, gl):
+        comp = self.get_opend_comp()
+        
+        gl.glPushName(0)
+        for e in comp.d.entities:
+            if type(e) is su.SUEdge:
+                self.pick_draw_edge(e, gl)
+            elif type(e) is su.SUFace:
+                self.pick_draw_face(e, gl)
+        
+        gl.glPopName()
+    
+    def pick_draw_edge(self, e, gl):
+        if e.GetSoft():
+            return
+        id = e.GetID()
+        gl.glLoadName(id)
+        gl.glBegin(gl.GL_LINES)
+        p1 = e.GetStartVertex().GetPosition()
+        p2 = e.GetEndVertex().GetPosition()
+        gl.glVertex3d(p1.x, p1.y, p1.z)
+        gl.glVertex3d(p2.x, p2.y, p2.z)
+        gl.glEnd()
+        
+    def pick_draw_face(self, face, gl):
+        id = face.GetID()
+        gl.glLoadName(id)
+        
+        triMesh = face.triMesh
+            
+        gl.glBegin(gl.GL_TRIANGLES)
+        
+        num_indices = triMesh.GetNumVertexIndices()
+        num_triangles = int(num_indices/3)
+        for j in range(num_triangles):
+            v1 = triMesh.GetVertexIndex(j*3)
+            v2 = triMesh.GetVertexIndex(j*3+1)
+            v3 = triMesh.GetVertexIndex(j*3+2)
+            
+            p1 = triMesh.GetPoint(v1)
+            p2 = triMesh.GetPoint(v2)
+            p3 = triMesh.GetPoint(v3)
+            
+            gl.glVertex3d(p1.x, p1.y, p1.z)
+            gl.glVertex3d(p2.x, p2.y, p2.z)
+            gl.glVertex3d(p3.x, p3.y, p3.z)
+        
+        gl.glEnd()
+
