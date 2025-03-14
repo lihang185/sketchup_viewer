@@ -1,5 +1,52 @@
 DEBUG_INFO = False
 
+class AutoBuilder:
+    def __init__(self):
+        self.gl_list = None
+        self.dirty = True
+      
+    def __del__(self):
+        self.clear()
+    
+    def clear(self):
+        if self.gl_list:
+            gl = self.gl
+            if DEBUG_INFO:
+                print("set_empty gl_list:", self.gl_list)
+            gl.glDeleteLists(self.gl_list, 1)
+            self.gl_list = None
+            self.dirty = False
+    
+    def mark(self):
+        self.dirty = True
+    
+    def draw(self, gl):
+        if self.dirty:
+            self.gl = gl
+            return True
+        else:
+            if self.gl_list:
+                gl.glCallList(self.gl_list)
+            return False
+    
+    def __enter__(self):
+        self.clear()
+        gl = self.gl
+        #-----
+        self.gl_list = gl.glGenLists(1)        
+        gl.glNewList(self.gl_list, gl.GL_COMPILE)
+    
+    def __exit__(self, exc_type, exc_value, traceback):
+        gl = self.gl
+        #-----
+        gl.glEndList()
+        self.dirty = False
+        if DEBUG_INFO:
+            print("build gl_list:", self.gl_list)
+        #-----
+        gl.glCallList(self.gl_list)
+
+
 class DrawListBuilder:
     def __init__(self):
         self.gl_list = None
