@@ -11,3 +11,4 @@ cur/
 tmp/
 __pycache__/
 *.DS_Store
+/cpp_module/x64
