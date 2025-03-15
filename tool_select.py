@@ -86,8 +86,8 @@ class SelectTool(BaseTool):
             print("select rect < 2!!!")
             return
         
-        cx = (self.pos_x + self.start_pos_x)/2;
-        cy = (self.pos_y + self.start_pos_y)/2;
+        #cx = (self.pos_x + self.start_pos_x)/2;
+        #cy = (self.pos_y + self.start_pos_y)/2;
         
         pick = PickHelper(self.view)
         #pick.do_pick_rect(cx, cy, width, height, self.select_type)

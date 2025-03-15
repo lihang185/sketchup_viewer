@@ -95,17 +95,17 @@ class PickHelper:
                 print(f"<{i}> {r.names} z:{r.near}->{r.far}")
             print("ok")
         
-        open_path = model.get_open_path()
-        open_depth = len(open_path)
+        #open_path = model.get_open_path()
+        #open_depth = len(open_path)
         
         for r in hits:
             inst_path, e = self.parse_instance_path(r.names)
-            is_inst = True if len(inst_path) > open_depth else False
+            is_inst = type(e) is su.SUComponentInstance
             
             item = PickHelper.Item(inst_path, e, r.near, r.far, is_inst)
             self.all_picked.append(item)
                 
-            if type(e) is su.SUFace:
+            if type(e) is su.SUFace or type(e) is su.SUComponentInstance:
                 if r.far < self.clip_near:
                     self.clip_near = r.far
                     #self.clip_plane = e.GetPlane()
@@ -119,7 +119,7 @@ class PickHelper:
             if type(e) is su.SUEdge:
                 if item.near < self.clip_near:
                     self.picked.append(item)
-            elif type(e) is su.SUFace:
+            elif type(e) is su.SUFace or type(e) is su.SUComponentInstance:
                 if item.near <= self.clip_near:
                     self.add_to_best_face(item)
             #elif type(e) is su.CGuideLine:

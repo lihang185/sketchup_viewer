@@ -15,6 +15,7 @@ def abspath(localpath):
 import su
 
 from model_cache import VBOCache, DrawListCache
+from utils import AutoBuilder
 
 
 class Material:
@@ -140,6 +141,7 @@ class Component:
         self.clear_geom()
         self.model_cache = DrawListCache()
         self.model_cache_optional = DrawListCache, VBOCache
+        self.pick_cache = AutoBuilder()
     
     def is_dirty(self):
         return self.dirty
@@ -445,6 +447,10 @@ class SketchupModel:
             if ipass == 0:
                 mc2.draw_normal(gl)
             elif ipass == 1:
+                if inst in self.selection:
+                    gl.glColor3f(0, 1, 1)
+                else:
+                    gl.glColor3f(0, 0, 0)
                 mc2.draw_edge(gl)
             else:
                 mc2.draw_opacity(gl)
@@ -564,32 +570,70 @@ class SketchupModel:
         self.selection = sel
     
     def pick(self, gl):
-        comp = self.get_opend_comp()
+        top_comp = self.get_opend_comp()
         
         gl.glPushName(0)
-        for e in comp.d.entities:
+        for e in top_comp.d.entities:
+            id = e.GetID()
+            gl.glLoadName(id)
             if type(e) is su.SUEdge:
                 self.pick_draw_edge(e, gl)
             elif type(e) is su.SUFace:
-                id = e.GetID()
-                gl.glLoadName(id)
-                self.draw_flat_face(e, gl)
+                self.pick_draw_flat_face(e, gl)
+                
+        
+        for inst in top_comp.d.instances:
+            comp = inst.GetDefinition()
+            e_id = inst.GetID()
+            gl.glLoadName(e_id)
+            gl.glPushMatrix()
+            m = inst.GetTransform()
+            m.gl_multiply_matrix()
+            builder = comp.d.pick_cache
+            if builder.draw(gl):
+                with builder:
+                    self.pick_draw_comp(comp, gl)
+            gl.glPopMatrix()
         
         gl.glPopName()
+    
+    def pick_draw_comp(self, comp, gl):
+        for node in self.recursive_enum_inst_tree([], comp, su.CMatrix(), None):
+            if node.comp.d.has_entities:
+                gl.glPushMatrix()
+                node.m.gl_multiply_matrix()
+                for e in node.comp.d.faces:
+                    self.pick_draw_flat_face(e, gl)
+                gl.glPopMatrix()
     
     def pick_draw_edge(self, e, gl):
         if e.GetSoft():
             return
-        id = e.GetID()
-        gl.glLoadName(id)
         gl.glBegin(gl.GL_LINES)
         p1 = e.GetStartVertex().GetPosition()
         p2 = e.GetEndVertex().GetPosition()
         gl.glVertex3d(p1.x, p1.y, p1.z)
         gl.glVertex3d(p2.x, p2.y, p2.z)
         gl.glEnd()
-        
-    def draw_flat_face(self, face, gl):
+
+    def recursive_enum_inst_tree(self, inst_path, comp, m, filter):
+        node = InstancePath(inst_path, comp, m, None)
+        yield node
+        #
+        for inst in comp.d.instances:
+            # test boundingbox
+            m2 = m.multiply(inst.GetTransform())
+            comp2 = inst.GetDefinition()
+            #b = comp2.GetBoundingBox()
+            #bbox = m2.transform(b)
+            if True: #filter.TestBoundingBox(bbox):
+                if inst_path is None:
+                    inst_path2 = [inst]
+                else:
+                    inst_path2 = inst_path + [inst]
+                yield from self.recursive_enum_inst_tree(inst_path2, comp2, m2, filter)
+    
+    def pick_draw_flat_face(self, face, gl):
         triMesh = face.triMesh
             
         gl.glBegin(gl.GL_TRIANGLES)

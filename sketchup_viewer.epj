@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project sketchup_viewer",
     "copyright": "Copyright (C) 2025 , ",
-    "saved": "2025-03-14, 16:33:06"
+    "saved": "2025-03-16, 02:31:24"
   },
   "project": {
     "AUTHOR": "",
@@ -100,7 +100,7 @@
       "PackagesRoot": "",
       "RcSuffix": ""
     },
-    "VCS": "Git",
+    "VCS": "None",
     "VCSOPTIONS": {
       "add": [
         ""
