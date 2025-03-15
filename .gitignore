@@ -17,3 +17,8 @@ cpp_module/mjb_rejected_classes.log
 cpp_module/mjb_rejected_enums.log
 cpp_module/mjb_rejected_fields.log
 cpp_module/mjb_rejected_functions.log
+cpp_module/shiboken2/libclang.dll
+cpp_module/shiboken2/Qt5Core.dll
+cpp_module/shiboken2/Qt5Network.dll
+cpp_module/shiboken2/Qt5XmlPatterns.dll
+cpp_module/shiboken2/shiboken2.exe
