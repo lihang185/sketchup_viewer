@@ -6,7 +6,8 @@ import os
 
 from su_model import SketchupModel
 
-START_FILE = "ren"
+START_FILE = "test2_box"
+START_FILE_optional = "ren", "test1_triangle"
 START_FILE_NAME = START_FILE + ".skp"
 
 

@@ -90,7 +90,7 @@ class SelectTool(BaseTool):
         cy = (self.pos_y + self.start_pos_y)/2;
         
         pick = PickHelper(self.view)
-        pick.do_pick_rect(cx, cy, width, height, self.select_type)
+        #pick.do_pick_rect(cx, cy, width, height, self.select_type)
         
         selection = [item.e for item in pick.picked]
         model.update_selection(selection)
@@ -104,9 +104,11 @@ class SelectTool(BaseTool):
         else:
             e = self.do_single_select()
             if e:
-                self.view.model.update_selection([e])
+                sel = set()
+                sel.add(e)
+                self.view.model.update_selection(sel)
             else:
-                self.view.model.update_selection([])
+                self.view.model.update_selection(set())
         
         self.is_rect_select = False
 

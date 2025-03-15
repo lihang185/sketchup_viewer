@@ -262,6 +262,8 @@ class SketchupModel:
         self.model = None
         self.ok = False
         
+        self.selection = set()
+        
         self.built = False
         self.built_dirty = False
         
@@ -380,6 +382,9 @@ class SketchupModel:
         gl.glColor3f(0, 0, 0)
         self.draw_activate_comp(top_comp, None, 1, gl)
         
+        # selected
+        self.draw_selected(gl)
+        
         # 绘制半透明的面
         gl.glDisable(gl.GL_LIGHTING)
         gl.glEnable(gl.GL_BLEND)
@@ -418,15 +423,13 @@ class SketchupModel:
         comp.d.build(gl)
 
     def draw_activate_comp(self, comp, pm, ipass, gl):
-        model_cache = comp.d.model_cache
-
         # draw this
         if ipass == 0:
-            model_cache.draw_normal(gl)
+            self.draw_faces(comp, gl)
         elif ipass == 1:
-            model_cache.draw_edge(gl)
+            self.draw_edges(comp, gl)
         else:
-            model_cache.draw_opacity(gl)
+            pass
         
         #draw childrend
         for inst in comp.d.instances:
@@ -444,13 +447,119 @@ class SketchupModel:
             else:
                 mc2.draw_opacity(gl)
             gl.glPopMatrix()
+
+    ########################
+    # 绘制选择的
+    # 面/线/辅助线
+    ########################
+    def draw_selected(self, gl):
+        # Face
+        self.draw_faces_selected(gl)
+        
+        # Edge
+        self.draw_edges_selected(gl)
+        
+        # Guide
+        #self.draw_guide_line_selected(gl)
+    
+    def draw_inst_selected(self, gl):
+        gl.glDisable(gl.GL_TEXTURE_2D)
+        #gl.glLineWidth(2)
+        gl.glDepthFunc(gl.GL_LEQUAL)
+        gl.glColor3f(0.0, 1.0, 0.0);
+        
+        top_node = self.get_root_node()
+        for node in self.RecurEnumInstsFilterBySelect(top_node, False):
+            if node.is_selected:
+                gl.glPushMatrix()
+                #CEngine.multiply_matrix(node.inst)
+                #gl.glMultMatrixf(node.m.data())
+                #CEngine.draw_edges(node.comp)
+                gl.glPopMatrix()
+
+        gl.glDepthFunc(gl.GL_LESS)
+        gl.glLineWidth(1)
+    
+    def draw_edges(self, comp, gl):
+        gl.glBegin(gl.GL_LINES)
+        for e in filter(lambda e:e not in self.selection, comp.d.edges):
+            p1 = e.GetStartVertex().GetPosition()
+            p2 = e.GetEndVertex().GetPosition()
+            gl.glVertex3f(p1.x, p1.y, p1.z )
+            gl.glVertex3f(p2.x, p2.y, p2.z )
+        gl.glEnd()
+        
+    def draw_faces(self, comp, gl):
+        for face in filter(lambda e:e not in self.selection, comp.d.faces):
+            mtl = face.GetFrontMaterial()
+            if mtl:
+                mtl.d.Bind(gl)
+            else:
+                self.defaultMaterial.d.Bind(gl)
+            self.draw_single_face(face, gl)
+
+    def draw_single_face(self, face, gl):
+        triMesh = face.triMesh
+            
+        gl.glBegin(gl.GL_TRIANGLES)
+        
+        num_indices = triMesh.GetNumVertexIndices()
+        num_triangles = int(num_indices/3)
+        for j in range(num_triangles):
+            v1 = triMesh.GetVertexIndex(j*3)
+            v2 = triMesh.GetVertexIndex(j*3+1)
+            v3 = triMesh.GetVertexIndex(j*3+2)
+            
+            p1 = triMesh.GetPoint(v1)
+            p2 = triMesh.GetPoint(v2)
+            p3 = triMesh.GetPoint(v3)
+            
+            tv1 = triMesh.GetUV(v1)
+            tv2 = triMesh.GetUV(v2)
+            tv3 = triMesh.GetUV(v3)
+            
+            gl.glTexCoord2d(tv1.x, tv1.y)
+            gl.glVertex3d(p1.x, p1.y, p1.z)
+            gl.glTexCoord2d(tv2.x, tv2.y)
+            gl.glVertex3d(p2.x, p2.y, p2.z)
+            gl.glTexCoord2d(tv3.x, tv3.y)
+            gl.glVertex3d(p3.x, p3.y, p3.z)
+        
+        gl.glEnd()
+    
+    def draw_faces_selected(self, gl):
+        gl.glEnable(gl.GL_POLYGON_OFFSET_FILL)
+        gl.glPolygonOffset(1, 1)
+        
+        for face in filter(lambda e:type(e) is su.SUFace, self.selection):
+            mtl = face.GetFrontMaterial()
+            if mtl:
+                mtl.d.Bind(gl)
+            else:
+                self.defaultMaterial.d.Bind(gl)
+            gl.glColor4f(0.43, 0.57, 0.74, 0.65)
+            self.draw_single_face(face, gl)
+        
+        gl.glDisable(gl.GL_POLYGON_OFFSET_FILL)
+    
+    def draw_edges_selected(self, gl):
+        gl.glLineWidth(2)
+        gl.glColor3f(0, 0, 1)
+        gl.glBegin(gl.GL_LINES)
+        for e in filter(lambda e:type(e) is su.SUEdge, self.selection):
+            p1 = e.GetStartVertex().GetPosition()
+            p2 = e.GetEndVertex().GetPosition()
+            gl.glVertex3f(p1.x, p1.y, p1.z )
+            gl.glVertex3f(p2.x, p2.y, p2.z )
+        gl.glEnd()
+        gl.glLineWidth(1)
     
     ########################
     # Pick
     # 
     ########################
     def update_selection(self, sel):
-        self.selection_set = sel
+        self.selection = sel
     
     def pick(self, gl):
         comp = self.get_opend_comp()
@@ -460,7 +569,9 @@ class SketchupModel:
             if type(e) is su.SUEdge:
                 self.pick_draw_edge(e, gl)
             elif type(e) is su.SUFace:
-                self.pick_draw_face(e, gl)
+                id = e.GetID()
+                gl.glLoadName(id)
+                self.draw_flat_face(e, gl)
         
         gl.glPopName()
     
@@ -476,10 +587,7 @@ class SketchupModel:
         gl.glVertex3d(p2.x, p2.y, p2.z)
         gl.glEnd()
         
-    def pick_draw_face(self, face, gl):
-        id = face.GetID()
-        gl.glLoadName(id)
-        
+    def draw_flat_face(self, face, gl):
         triMesh = face.triMesh
             
         gl.glBegin(gl.GL_TRIANGLES)
