@@ -12,3 +12,8 @@ tmp/
 __pycache__/
 *.DS_Store
 /cpp_module/x64
+/cpp_module/.vs
+cpp_module/mjb_rejected_classes.log
+cpp_module/mjb_rejected_enums.log
+cpp_module/mjb_rejected_fields.log
+cpp_module/mjb_rejected_functions.log
