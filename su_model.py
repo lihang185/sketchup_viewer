@@ -2,11 +2,13 @@ DEBUG_INFO = False
 
 from PySide2.QtGui import QImage, QOpenGLTexture
 
-import os, sys
+import os
 workdir = os.path.abspath(os.path.dirname(__file__))
 data_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "data")
 )
+texture_path = os.path.join(data_path, "texture")
+
 def abspath(localpath):
     return os.path.join(data_path, localpath)
 
@@ -82,10 +84,11 @@ class Material:
             if texture:
                 texname = texture.GetFileName();
                 print(f"Load texture: {texname}")
-                ok = texture.WriteToFile(texname)
+                tex_path = os.path.join(data_path, "texture", texname )
+                ok = texture.WriteToFile(tex_path)
                 if ok:
-                    imgpath = abspath(texname)
-                    ok, self.gl_tex_obj = self.LoadImageFromFile(imgpath)
+                    #imgpath = abspath(texname)
+                    ok, self.gl_tex_obj = self.LoadImageFromFile(tex_path)
                     if ok:
                         self.type = self.TextureType
     
@@ -95,12 +98,11 @@ class Material:
     # 材质 & 灯光
     ############
     def LoadImageFromFile(self, filepath):
-        fix_path = os.path.join(data_path, os.path.basename(filepath))
         try:
-            with open(fix_path, 'rb') as hf:
+            with open(filepath, 'rb') as hf:
                 data = hf.read()
         except Exception as e:
-            print(f"load texture {fix_path} exception, {e}")
+            print(f"load texture {filepath} exception, {e}")
             return False, None
         
         image = QImage()
