@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project sketchup_viewer",
     "copyright": "Copyright (C) 2025 , ",
-    "saved": "2025-03-16, 02:31:24"
+    "saved": "2025-03-16, 14:58:16"
   },
   "project": {
     "AUTHOR": "",
@@ -86,7 +86,9 @@
       "model_cache.py",
       "pick_helper.py",
       "su.py",
-      "tool_select.py"
+      "tool_select.py",
+      "tool_move.py",
+      "input_point.py"
     ],
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
@@ -100,7 +102,7 @@
       "PackagesRoot": "",
       "RcSuffix": ""
     },
-    "VCS": "None",
+    "VCS": "Git",
     "VCSOPTIONS": {
       "add": [
         ""

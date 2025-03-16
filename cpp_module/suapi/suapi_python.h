@@ -15,22 +15,23 @@
 // Type indices
 enum : int {
     SBK_CMATRIX_IDX                                          = 0,
-    SBK_CVECTOR2D_IDX                                        = 1,
-    SBK_CVECTOR3D_IDX                                        = 2,
-    SBK_SUCOMPONENTDEFINITION_IDX                            = 3,
-    SBK_SUCOMPONENTINSTANCE_IDX                              = 4,
-    SBK_SUDRAWINGELEMENT_IDX                                 = 5,
-    SBK_SUEDGE_IDX                                           = 6,
-    SBK_SUENTITIES_IDX                                       = 7,
-    SBK_SUENTITY_IDX                                         = 8,
-    SBK_SUENTITYITERATOR_IDX                                 = 9,
-    SBK_SUFACE_IDX                                           = 10,
-    SBK_SUMATERIAL_IDX                                       = 11,
-    SBK_SUMODEL_IDX                                          = 12,
-    SBK_SUTEXTURE_IDX                                        = 13,
-    SBK_SUVERTEX_IDX                                         = 14,
-    SBK_TRIANGLEMESH_IDX                                     = 15,
-    SBK_suapi_IDX_COUNT                                      = 16
+    SBK_CPLANE_IDX                                           = 1,
+    SBK_CVECTOR2D_IDX                                        = 2,
+    SBK_CVECTOR3D_IDX                                        = 3,
+    SBK_SUCOMPONENTDEFINITION_IDX                            = 4,
+    SBK_SUCOMPONENTINSTANCE_IDX                              = 5,
+    SBK_SUDRAWINGELEMENT_IDX                                 = 6,
+    SBK_SUEDGE_IDX                                           = 7,
+    SBK_SUENTITIES_IDX                                       = 8,
+    SBK_SUENTITY_IDX                                         = 9,
+    SBK_SUENTITYITERATOR_IDX                                 = 10,
+    SBK_SUFACE_IDX                                           = 11,
+    SBK_SUMATERIAL_IDX                                       = 12,
+    SBK_SUMODEL_IDX                                          = 13,
+    SBK_SUTEXTURE_IDX                                        = 14,
+    SBK_SUVERTEX_IDX                                         = 15,
+    SBK_TRIANGLEMESH_IDX                                     = 16,
+    SBK_suapi_IDX_COUNT                                      = 17
 };
 // This variable stores all Python types exported by this module.
 extern PyTypeObject **SbksuapiTypes;
@@ -58,6 +59,7 @@ namespace Shiboken
 
 // PyType functions, to get the PyObjectType for a type T
 template<> inline PyTypeObject *SbkType< ::CMatrix >() { return reinterpret_cast<PyTypeObject *>(SbksuapiTypes[SBK_CMATRIX_IDX]); }
+template<> inline PyTypeObject *SbkType< ::CPlane >() { return reinterpret_cast<PyTypeObject *>(SbksuapiTypes[SBK_CPLANE_IDX]); }
 template<> inline PyTypeObject *SbkType< ::CVector2D >() { return reinterpret_cast<PyTypeObject *>(SbksuapiTypes[SBK_CVECTOR2D_IDX]); }
 template<> inline PyTypeObject *SbkType< ::CVector3D >() { return reinterpret_cast<PyTypeObject *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]); }
 template<> inline PyTypeObject *SbkType< ::SUComponentDefinition >() { return reinterpret_cast<PyTypeObject *>(SbksuapiTypes[SBK_SUCOMPONENTDEFINITION_IDX]); }

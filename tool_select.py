@@ -12,7 +12,6 @@ class SelectTool(BaseTool):
     def __init__(self, view):
         super().__init__()
         self.view = view
-        self.activate()
     
     def activate(self):
         self.is_rect_select = False

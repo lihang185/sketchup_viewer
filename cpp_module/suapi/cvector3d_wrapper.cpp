@@ -48,57 +48,6 @@ static const char *typeNameOf(const T &t)
 // Target ---------------------------------------------------------
 
 extern "C" {
-static PyObject *Sbk_CVector3DFunc_Add(PyObject *self, PyObject *pyArg)
-{
-    ::CVector3D *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CVector3D *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CVECTOR3D_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: CVector3D::Add(CVector3D&)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
-        overloadId = 0; // Add(CVector3D&)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CVector3DFunc_Add_TypeError;
-
-    // Call function/method
-    {
-        if (!Shiboken::Object::isValid(pyArg))
-            return {};
-        ::CVector3D cppArg0_local;
-        ::CVector3D *cppArg0 = &cppArg0_local;
-        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), pythonToCpp))
-            pythonToCpp(pyArg, &cppArg0_local);
-        else
-            pythonToCpp(pyArg, &cppArg0);
-
-
-        if (!PyErr_Occurred()) {
-            // Add(CVector3D&)
-            CVector3D cppResult = cppSelf->Add(*cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_CVector3DFunc_Add_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CVector3D.Add");
-        return {};
-}
-
 static int
 Sbk_CVector3D_Init(PyObject *self, PyObject *args, PyObject *kwds)
 {
@@ -207,7 +156,7 @@ Sbk_CVector3D_Init(PyObject *self, PyObject *args, PyObject *kwds)
         return -1;
 }
 
-static PyObject *Sbk_CVector3DFunc_Sub(PyObject *self, PyObject *pyArg)
+static PyObject *Sbk_CVector3DFunc_CrossProduct(PyObject *self, PyObject *pyArg)
 {
     ::CVector3D *cppSelf = nullptr;
     SBK_UNUSED(cppSelf)
@@ -220,13 +169,13 @@ static PyObject *Sbk_CVector3DFunc_Sub(PyObject *self, PyObject *pyArg)
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: CVector3D::Sub(CVector3D&)
+    // 0: CVector3D::CrossProduct(CVector3D&)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
-        overloadId = 0; // Sub(CVector3D&)
+        overloadId = 0; // CrossProduct(CVector3D&)
     }
 
     // Function signature not found.
-    if (overloadId == -1) goto Sbk_CVector3DFunc_Sub_TypeError;
+    if (overloadId == -1) goto Sbk_CVector3DFunc_CrossProduct_TypeError;
 
     // Call function/method
     {
@@ -241,8 +190,8 @@ static PyObject *Sbk_CVector3DFunc_Sub(PyObject *self, PyObject *pyArg)
 
 
         if (!PyErr_Occurred()) {
-            // Sub(CVector3D&)
-            CVector3D cppResult = cppSelf->Sub(*cppArg0);
+            // CrossProduct(CVector3D&)
+            CVector3D cppResult = cppSelf->CrossProduct(*cppArg0);
             pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
         }
     }
@@ -253,8 +202,59 @@ static PyObject *Sbk_CVector3DFunc_Sub(PyObject *self, PyObject *pyArg)
     }
     return pyResult;
 
-    Sbk_CVector3DFunc_Sub_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CVector3D.Sub");
+    Sbk_CVector3DFunc_CrossProduct_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CVector3D.CrossProduct");
+        return {};
+}
+
+static PyObject *Sbk_CVector3DFunc_DotProduct(PyObject *self, PyObject *pyArg)
+{
+    ::CVector3D *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::CVector3D *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CVECTOR3D_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: CVector3D::DotProduct(CVector3D&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
+        overloadId = 0; // DotProduct(CVector3D&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CVector3DFunc_DotProduct_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CVector3D cppArg0_local;
+        ::CVector3D *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
+
+        if (!PyErr_Occurred()) {
+            // DotProduct(CVector3D&)
+            double cppResult = cppSelf->DotProduct(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<double>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CVector3DFunc_DotProduct_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CVector3D.DotProduct");
         return {};
 }
 
@@ -305,8 +305,8 @@ static PyObject *Sbk_CVector3D___copy__(PyObject *self)
 }
 
 static PyMethodDef Sbk_CVector3D_methods[] = {
-    {"Add", reinterpret_cast<PyCFunction>(Sbk_CVector3DFunc_Add), METH_O},
-    {"Sub", reinterpret_cast<PyCFunction>(Sbk_CVector3DFunc_Sub), METH_O},
+    {"CrossProduct", reinterpret_cast<PyCFunction>(Sbk_CVector3DFunc_CrossProduct), METH_O},
+    {"DotProduct", reinterpret_cast<PyCFunction>(Sbk_CVector3DFunc_DotProduct), METH_O},
     {"toTuple", reinterpret_cast<PyCFunction>(Sbk_CVector3DFunc_toTuple), METH_NOARGS},
 
     {"__copy__", reinterpret_cast<PyCFunction>(Sbk_CVector3D___copy__), METH_NOARGS},
@@ -752,11 +752,11 @@ static PythonToCppFunc is_CVector3D_PythonToCpp_CVector3D_COPY_Convertible(PyObj
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *CVector3D_SignatureStrings[] = {
-    "suapi.CVector3D.Add(R:suapi.CVector3D)->suapi.CVector3D",
     "2:suapi.CVector3D()",
     "1:suapi.CVector3D(CVector3D:suapi.CVector3D)",
     "0:suapi.CVector3D(ix:double,iy:double,iz:double)",
-    "suapi.CVector3D.Sub(R:suapi.CVector3D)->suapi.CVector3D",
+    "suapi.CVector3D.CrossProduct(R:suapi.CVector3D)->suapi.CVector3D",
+    "suapi.CVector3D.DotProduct(R:suapi.CVector3D)->double",
     "suapi.CVector3D.toTuple()->PyObject",
     "suapi.CVector3D.__copy__()",
     "suapi.CVector3D.__mul__(scale:double)->suapi.CVector3D",

@@ -21,23 +21,45 @@ struct CVector3D {
 	CVector3D() : x(0), y(0), z(0) {}
 	CVector3D(double ix, double iy, double iz) : x(ix), y(iy), z(iz) {}
 
-	CVector3D Add(CVector3D& R);
 	CVector3D operator+(CVector3D& R);
-	CVector3D Sub(CVector3D& R);
 	CVector3D operator-(CVector3D& R);
 	CVector3D operator*(double scale);
 	CVector3D operator-();
+
+	double DotProduct(CVector3D& R);
+	CVector3D CrossProduct(CVector3D& R);
+
 
 	double x;
 	double y;
 	double z;
 };
 
+class CPlane {
+public:
+	CPlane() :x(0), y(0), z(0), w(1) {}
+	CPlane(double _x, double _y, double _z, double _w) :x(_x), y(_y), z(_z), w(_w) {}
+	CPlane(CVector3D& _p, double _w) :x(_p.x), y(_p.y), z(_p.z), w(_w) {}
+	CPlane(CVector3D& normal, CVector3D& orig);
+	~CPlane() {}
+	CVector3D GetNormal();
+
+	double IntersectWithRay(CVector3D& orig, CVector3D& dir);
+
+	double x;
+	double y;
+	double z;
+	double w;
+};
+
+
 struct CMatrix {
 	CMatrix();
 	~CMatrix() {}
 
+	CVector3D GetAxis(int axis);
 	void SetAxis(int axis, CVector3D v);
+	CVector3D GetRow(int row);
 	void SetRow(int row, CVector3D v);
 	void SetScale(double scale);
 	CVector3D ProjectPoint(CVector3D& point);
@@ -229,6 +251,7 @@ public:
 
 	SUComponentDefinition* GetDefinition();
 	CMatrix GetTransform();
+	void SetTransform(CMatrix& m);
 	SUMaterial* GetMaterial();
 };
 

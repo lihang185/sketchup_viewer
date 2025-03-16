@@ -47,7 +47,7 @@ CVector3D CVector3D::operator*(double scale)
 	return out;
 }
 
-CVector3D CVector3D::Add(CVector3D& R)
+CVector3D CVector3D::operator+(CVector3D& R)
 {
 	CVector3D out;
 	out.x = x + R.x;
@@ -56,23 +56,13 @@ CVector3D CVector3D::Add(CVector3D& R)
 	return out;
 }
 
-CVector3D CVector3D::operator+(CVector3D& R)
-{
-	return Add(R);
-}
-
-CVector3D CVector3D::Sub(CVector3D& R)
+CVector3D CVector3D::operator-(CVector3D& R)
 {
 	CVector3D out;
 	out.x = x - R.x;
 	out.y = y - R.y;
 	out.z = z - R.z;
 	return out;
-}
-
-CVector3D CVector3D::operator-(CVector3D& R)
-{
-	return Sub(R);
 }
 
 CVector3D CVector3D::operator-()
@@ -84,6 +74,48 @@ CVector3D CVector3D::operator-()
 	return out;
 }
 
+double CVector3D::DotProduct(CVector3D& R)
+{
+	return x * R.x + y * R.y + z * R.z;
+}
+
+CVector3D CVector3D::CrossProduct(CVector3D& R)
+{
+	CVector3D out;
+	out.x = y * R.z - z * R.y;
+	out.y = z * R.x - x * R.z;
+	out.z = x * R.y - y * R.x;
+	return out;
+}
+
+//=====================
+//  CVector4D
+//
+//=====================
+CPlane::CPlane(CVector3D& normal, CVector3D& orig)
+{
+	x = normal.x;
+	y = normal.y;
+	z = normal.z;
+	w = -orig.DotProduct(normal);
+}
+
+CVector3D CPlane::GetNormal()
+{
+	return CVector3D(x, y, z);
+}
+
+double CPlane::IntersectWithRay(CVector3D& orig, CVector3D& dir)
+{
+	double dot_dir, dot_orig, s;
+
+	dot_dir = x * dir.x + y * dir.y + z * dir.z;
+	dot_orig = x * orig.x + y * orig.y + z * orig.z;
+
+	s = (dot_orig + w) / -dot_dir;
+
+	return s;
+}
 
 //=====================
 //  CMatrix
@@ -113,12 +145,31 @@ CMatrix::CMatrix()
 }
 
 
+CVector3D CMatrix::GetAxis(int axis)
+{
+	CVector3D out;
+	out.x = m[0][axis];
+	out.y = m[1][axis];
+	out.z = m[2][axis];
+	return out;
+}
+
 void CMatrix::SetAxis(int axis, CVector3D v)
 {
 	m[0][axis] = v.x;
 	m[1][axis] = v.y;
 	m[2][axis] = v.z;
 }
+
+CVector3D CMatrix::GetRow(int row)
+{
+	CVector3D out;
+	out.x = m[row][0];
+	out.y = m[row][1];
+	out.z = m[row][2];
+	return out;
+}
+
 
 void CMatrix::SetRow(int row, CVector3D v)
 {
@@ -1004,29 +1055,51 @@ CMatrix SUComponentInstance::GetTransform()
 	instance.ptr = this;
 	result = SUComponentInstanceGetTransform(instance, &transform);
 	if (result == SU_ERROR_NONE) {
-		SUPoint3D orig;
-		SUVector3D x_axis;
-		SUVector3D y_axis;
-		SUVector3D z_axis;
-		double scale;
 		bool is_identity;
 		SUTransformationIsIdentity(&transform, &is_identity);
 		if(is_identity)
 			return CMatrix();
-		SUTransformationGetOrigin(&transform, &orig);
-		SUTransformationGetXAxis(&transform, &x_axis);
-		SUTransformationGetYAxis(&transform, &y_axis);
-		SUTransformationGetZAxis(&transform, &z_axis);
-		scale = transform.values[15];
 		CMatrix m;
 		m.SetAxis(0, CVector3D(transform.values[0], transform.values[1], transform.values[2]));
 		m.SetAxis(1, CVector3D(transform.values[4], transform.values[5], transform.values[6]));
 		m.SetAxis(2, CVector3D(transform.values[8], transform.values[9], transform.values[10]));
 		m.SetRow(3, CVector3D(transform.values[12], transform.values[13], transform.values[14]));
-		m.SetScale(scale);
+		m.SetScale(transform.values[15]);
 		return m;
 	}
 	return CMatrix();
+}
+
+void SUComponentInstance::SetTransform(CMatrix& m)
+{
+	SUResult result;
+
+	SUTransformation transform;
+
+	CVector3D xaxis, yaxis, zaxis, orig;
+	xaxis = m.GetAxis(0);
+	yaxis = m.GetAxis(1);
+	zaxis = m.GetAxis(2);
+	orig = m.GetRow(3);
+
+	transform.values[0] = xaxis.x;
+	transform.values[1] = xaxis.y;
+	transform.values[2] = xaxis.z;
+	transform.values[3] = 0;
+	transform.values[4] = yaxis.x;
+	transform.values[5] = yaxis.y;
+	transform.values[6] = yaxis.z;
+	transform.values[7] = 0;
+	transform.values[8] = zaxis.x;
+	transform.values[9] = zaxis.y;
+	transform.values[10] = zaxis.z;
+	transform.values[11] = 0;
+	transform.values[12] = orig.x;
+	transform.values[13] = orig.y;
+	transform.values[14] = orig.z;
+	transform.values[15] = m.scale;
+
+	result = SUComponentInstanceSetTransform(SUAPI(this), &transform);
 }
 
 SUMaterial* SUComponentInstance::GetMaterial()

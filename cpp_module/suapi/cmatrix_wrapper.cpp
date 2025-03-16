@@ -134,6 +134,94 @@ Sbk_CMatrix_Init(PyObject *self, PyObject *args, PyObject *kwds)
         return -1;
 }
 
+static PyObject *Sbk_CMatrixFunc_GetAxis(PyObject *self, PyObject *pyArg)
+{
+    ::CMatrix *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: CMatrix::GetAxis(int)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
+        overloadId = 0; // GetAxis(int)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_GetAxis_TypeError;
+
+    // Call function/method
+    {
+        int cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // GetAxis(int)
+            CVector3D cppResult = cppSelf->GetAxis(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_GetAxis_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.GetAxis");
+        return {};
+}
+
+static PyObject *Sbk_CMatrixFunc_GetRow(PyObject *self, PyObject *pyArg)
+{
+    ::CMatrix *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: CMatrix::GetRow(int)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
+        overloadId = 0; // GetRow(int)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_GetRow_TypeError;
+
+    // Call function/method
+    {
+        int cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // GetRow(int)
+            CVector3D cppResult = cppSelf->GetRow(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_GetRow_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.GetRow");
+        return {};
+}
+
 static PyObject *Sbk_CMatrixFunc_ProjectPoint(PyObject *self, PyObject *pyArg)
 {
     ::CMatrix *cppSelf = nullptr;
@@ -428,6 +516,8 @@ static PyObject *Sbk_CMatrix___copy__(PyObject *self)
 }
 
 static PyMethodDef Sbk_CMatrix_methods[] = {
+    {"GetAxis", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_GetAxis), METH_O},
+    {"GetRow", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_GetRow), METH_O},
     {"ProjectPoint", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_ProjectPoint), METH_O},
     {"SetAxis", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_SetAxis), METH_VARARGS},
     {"SetRow", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_SetRow), METH_VARARGS},
@@ -657,6 +747,8 @@ static PythonToCppFunc is_CMatrix_PythonToCpp_CMatrix_COPY_Convertible(PyObject 
 static const char *CMatrix_SignatureStrings[] = {
     "1:suapi.CMatrix()",
     "0:suapi.CMatrix(CMatrix:suapi.CMatrix)",
+    "suapi.CMatrix.GetAxis(axis:int)->suapi.CVector3D",
+    "suapi.CMatrix.GetRow(row:int)->suapi.CVector3D",
     "suapi.CMatrix.ProjectPoint(point:suapi.CVector3D)->suapi.CVector3D",
     "suapi.CMatrix.SetAxis(axis:int,v:suapi.CVector3D)",
     "suapi.CMatrix.SetRow(row:int,v:suapi.CVector3D)",

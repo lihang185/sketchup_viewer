@@ -37,6 +37,7 @@ void init_SUComponentInstance(PyObject *module);
 void init_SUComponentDefinition(PyObject *module);
 void init_CVector3D(PyObject *module);
 void init_CVector2D(PyObject *module);
+void init_CPlane(PyObject *module);
 void init_CMatrix(PyObject *module);
 
 
@@ -363,6 +364,7 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(suapi)
     init_SUComponentDefinition(module);
     init_CVector3D(module);
     init_CVector2D(module);
+    init_CPlane(module);
     init_CMatrix(module);
 
     // Register converter for type 'suapi.std::wstring'.

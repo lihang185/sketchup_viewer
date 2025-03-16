@@ -75,7 +75,18 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
     @Slot()
     def on_actionselect_triggered(self):
         print("use tool: Select")
+        tool = self.view.select_tool
+        self.view.use_tool(tool)
+        self.statusBar.showMessage("Use Select Tool")
 
+    @Slot()
+    def on_actionMove_triggered(self):
+        print("use tool: move")
+        ##
+        tool = self.load_tool("tool_move", "MoveTool")
+        self.view.use_tool(tool)
+        ##
+        self.statusBar.showMessage("Use Move Tool")
 
     def load_tool(self, file_name, class_name):
         if class_name in self.loaded_tools:

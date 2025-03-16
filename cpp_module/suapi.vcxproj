@@ -24,6 +24,7 @@
     </ClCompile>
     <ClCompile Include="model.cpp" />
     <ClCompile Include="suapi\cmatrix_wrapper.cpp" />
+    <ClCompile Include="suapi\cplane_wrapper.cpp" />
     <ClCompile Include="suapi\cvector2d_wrapper.cpp" />
     <ClCompile Include="suapi\cvector3d_wrapper.cpp" />
     <ClCompile Include="suapi\suapi_module_wrapper.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="SketchUpAPI\SketchUpAPI\model\uv_helper.h" />
     <ClInclude Include="SketchUpAPI\SketchUpAPI\model\vertex.h" />
     <ClInclude Include="suapi\cmatrix_wrapper.h" />
+    <ClInclude Include="suapi\cplane_wrapper.h" />
     <ClInclude Include="suapi\cvector2d_wrapper.h" />
     <ClInclude Include="suapi\cvector3d_wrapper.h" />
     <ClInclude Include="suapi\suapi_python.h" />

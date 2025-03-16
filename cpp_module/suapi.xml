@@ -81,6 +81,9 @@
       </inject-code>
     </add-function>
   </value-type>
+  <value-type name='CPlane'>
+  </value-type>
+
   <value-type name='CMatrix'>
   </value-type>
   <rejection class="CMatrix" field-name="m"/>

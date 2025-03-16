@@ -177,10 +177,59 @@ Sbk_SUComponentInstance_Init(PyObject *self, PyObject *args, PyObject *kwds)
     return 1;
 }
 
+static PyObject *Sbk_SUComponentInstanceFunc_SetTransform(PyObject *self, PyObject *pyArg)
+{
+    ::SUComponentInstance *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUComponentInstance *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUCOMPONENTINSTANCE_IDX], reinterpret_cast<SbkObject *>(self)));
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUComponentInstance::SetTransform(CMatrix&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), (pyArg)))) {
+        overloadId = 0; // SetTransform(CMatrix&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUComponentInstanceFunc_SetTransform_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CMatrix cppArg0_local;
+        ::CMatrix *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
+
+        if (!PyErr_Occurred()) {
+            // SetTransform(CMatrix&)
+            cppSelf->SetTransform(*cppArg0);
+        }
+    }
+
+    if (PyErr_Occurred()) {
+        return {};
+    }
+    Py_RETURN_NONE;
+
+    Sbk_SUComponentInstanceFunc_SetTransform_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUComponentInstance.SetTransform");
+        return {};
+}
+
 static PyMethodDef Sbk_SUComponentInstance_methods[] = {
     {"GetDefinition", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetDefinition), METH_NOARGS},
     {"GetMaterial", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetMaterial), METH_NOARGS},
     {"GetTransform", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetTransform), METH_NOARGS},
+    {"SetTransform", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_SetTransform), METH_O},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -294,6 +343,7 @@ static const char *SUComponentInstance_SignatureStrings[] = {
     "suapi.SUComponentInstance.GetMaterial()->suapi.SUMaterial",
     "suapi.SUComponentInstance.GetTransform()->suapi.CMatrix",
     "suapi.SUComponentInstance()",
+    "suapi.SUComponentInstance.SetTransform(m:suapi.CMatrix)",
     nullptr}; // Sentinel
 
 void init_SUComponentInstance(PyObject *module)

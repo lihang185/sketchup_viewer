@@ -2,6 +2,22 @@ DEBUG_INFO = False
 
 import time
 import su
+import math
+
+class EnumPickType:
+    none = 100
+    axis = 1
+    vertex = 2
+    intersection = 3
+    guide_line = 4
+    edge_center = 5
+    edge = 6
+    face = 7
+    other_point = 8
+    last_point_axis = 9
+    ref_point_intersect = 10
+    axis_plane = 11
+    model_entity = 12
 
 class SelectType:
     cross = 1
@@ -148,3 +164,65 @@ class PickHelper:
         elif item.near < self.best_inst.near:
             self.best_inst = item
     
+
+
+class InputPointFinder:
+    def __init__(self, view):
+        self.view = view
+        self.snap_type = EnumPickType.none
+        self.snap_point = su.CVector3D()
+    
+    def reset(self):
+        self.aperture = 8
+        self.snap_type = EnumPickType.none
+        self.snap_point = su.CVector3D()
+    
+    def position(self):
+        return self.snap_point
+    
+    def inference(self, x, y, filter=None):
+        
+        self.pick = PickHelper(self.view)
+        self.pick.do_single_pick(x, y, 9, filter)
+
+        if self.test_on_axis_plane(su.CVector3D()):
+            if DEBUG_INFO: print("return on_axis_plane")
+            assert self.snap_type != EnumPickType.none
+            return True
+        
+        return False
+
+    def test_on_axis_plane(self, last_point):
+        
+        if last_point is None:
+            last_point = su.CVector3D(0, 0, 0)
+        
+        axis_idx = self.find_best_axis_plane_by_camera_forward()
+        normal = self.get_axis_by_idx(axis_idx)
+        orig = last_point
+        plane = su.CVector4D(normal, orig)
+        
+        ray_start, ray_dir, ray_end = self.pick.ray
+        s = plane.IntersectWithRay(ray_start, ray_dir)
+        point = ray_start.MoveForward(ray_dir, s)
+        self.snap_type = EnumPickType.axis_plane
+        self.snap_point = point
+        
+        return True
+    
+    def find_best_axis_plane_by_camera_forward(self):
+        forward = self.view.GetCameraForward()
+        
+        max = 0.0
+        max_axis = 0
+        
+        for i in range(3):
+            axis = self.get_axis_by_idx(i)
+            dt = math.fabs(axis.DotProduct(forward))
+            if dt > max:
+                max = dt
+                max_axis = i
+        if max < 0.9848:
+            return 2
+        else:
+            return max_axis

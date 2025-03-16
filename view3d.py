@@ -63,8 +63,9 @@ class View3D(QOpenGLWidget):
         self.camera_zoom = 1.0
 
         self.camera_tool = CameraTool(self)
-        self.tool_select = SelectTool(self)
-        self.current_tool = self.tool_select
+        self.select_tool = SelectTool(self)
+        self.current_tool = self.select_tool
+        self.current_tool.activate()
         
         self.model = None
         
@@ -357,7 +358,10 @@ class View3D(QOpenGLWidget):
         ray_end = q2c(b)
         return ray_start, ray_dir, ray_end
 
-
+    def GetCameraForward(self):
+        forward = self.camera.forward
+        return q2c(forward)
+        
     ############
     # 调用Tool & 视角控制
     # 1. 旋转: 中键
