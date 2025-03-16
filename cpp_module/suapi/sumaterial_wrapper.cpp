@@ -66,6 +66,27 @@ SUMaterialWrapper::~SUMaterialWrapper()
 // Target ---------------------------------------------------------
 
 extern "C" {
+static PyObject *Sbk_SUMaterialFunc_Create(PyObject *self)
+{
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // Create()
+            SUMaterial * cppResult = ::SUMaterial::Create();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUMATERIAL_IDX]), cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static PyObject *Sbk_SUMaterialFunc_GetColor(PyObject *self)
 {
     ::SUMaterial *cppSelf = nullptr;
@@ -196,27 +217,6 @@ static PyObject *Sbk_SUMaterialFunc_GetUseOpacity(PyObject *self)
     return pyResult;
 }
 
-static PyObject *Sbk_SUMaterialFunc_New(PyObject *self)
-{
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // New()
-            SUMaterial * cppResult = ::SUMaterial::New();
-            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUMATERIAL_IDX]), cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
 static int
 Sbk_SUMaterial_Init(PyObject *self, PyObject *args, PyObject *kwds)
 {
@@ -251,12 +251,12 @@ Sbk_SUMaterial_Init(PyObject *self, PyObject *args, PyObject *kwds)
 }
 
 static PyMethodDef Sbk_SUMaterial_methods[] = {
+    {"Create", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_Create), METH_NOARGS|METH_STATIC},
     {"GetColor", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_GetColor), METH_NOARGS},
     {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_GetName), METH_NOARGS},
     {"GetOpacity", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_GetOpacity), METH_NOARGS},
     {"GetTexture", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_GetTexture), METH_NOARGS},
     {"GetUseOpacity", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_GetUseOpacity), METH_NOARGS},
-    {"New", reinterpret_cast<PyCFunction>(Sbk_SUMaterialFunc_New), METH_NOARGS|METH_STATIC},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -366,12 +366,12 @@ static PyObject *SUMaterial_PTR_CppToPython_SUMaterial(const void *cppIn) {
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *SUMaterial_SignatureStrings[] = {
+    "suapi.SUMaterial.Create()->suapi.SUMaterial",
     "suapi.SUMaterial.GetColor()->suapi.CVector3D",
     "suapi.SUMaterial.GetName()->std.wstring",
     "suapi.SUMaterial.GetOpacity()->double",
     "suapi.SUMaterial.GetTexture()->suapi.SUTexture",
     "suapi.SUMaterial.GetUseOpacity()->bool",
-    "suapi.SUMaterial.New()->suapi.SUMaterial",
     "suapi.SUMaterial()",
     nullptr}; // Sentinel
 

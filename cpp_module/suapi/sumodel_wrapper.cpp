@@ -49,6 +49,98 @@ static const char *typeNameOf(const T &t)
 // Target ---------------------------------------------------------
 
 extern "C" {
+static PyObject *Sbk_SUModelFunc_AddComponentDefinitions(PyObject *self, PyObject *pyArg)
+{
+    ::SUModel *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUModel *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUMODEL_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUModel::AddComponentDefinitions(SUComponentDefinition*)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUCOMPONENTDEFINITION_IDX]), (pyArg)))) {
+        overloadId = 0; // AddComponentDefinitions(SUComponentDefinition*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUModelFunc_AddComponentDefinitions_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::SUComponentDefinition *cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // AddComponentDefinitions(SUComponentDefinition*)
+            bool cppResult = cppSelf->AddComponentDefinitions(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUModelFunc_AddComponentDefinitions_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUModel.AddComponentDefinitions");
+        return {};
+}
+
+static PyObject *Sbk_SUModelFunc_AddMaterial(PyObject *self, PyObject *pyArg)
+{
+    ::SUModel *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUModel *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUMODEL_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUModel::AddMaterial(SUMaterial*)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUMATERIAL_IDX]), (pyArg)))) {
+        overloadId = 0; // AddMaterial(SUMaterial*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUModelFunc_AddMaterial_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::SUMaterial *cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // AddMaterial(SUMaterial*)
+            bool cppResult = cppSelf->AddMaterial(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUModelFunc_AddMaterial_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUModel.AddMaterial");
+        return {};
+}
+
 static PyObject *Sbk_SUModelFunc_GetComponentDefinitionList(PyObject *self)
 {
     ::SUModel *cppSelf = nullptr;
@@ -218,6 +310,29 @@ static PyObject *Sbk_SUModelFunc_LoadFromFile(PyObject *self, PyObject *pyArg)
         return {};
 }
 
+static PyObject *Sbk_SUModelFunc_Release(PyObject *self)
+{
+    ::SUModel *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUModel *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUMODEL_IDX], reinterpret_cast<SbkObject *>(self)));
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // Release()
+            cppSelf->Release();
+        }
+    }
+
+    if (PyErr_Occurred()) {
+        return {};
+    }
+    Py_RETURN_NONE;
+}
+
 static int
 Sbk_SUModel_Init(PyObject *self, PyObject *args, PyObject *kwds)
 {
@@ -250,13 +365,61 @@ Sbk_SUModel_Init(PyObject *self, PyObject *args, PyObject *kwds)
     return 1;
 }
 
+static PyObject *Sbk_SUModelFunc_SaveToFile(PyObject *self, PyObject *pyArg)
+{
+    ::SUModel *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUModel *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUMODEL_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUModel::SaveToFile(std::string&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<std::string>(), (pyArg)))) {
+        overloadId = 0; // SaveToFile(std::string&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUModelFunc_SaveToFile_TypeError;
+
+    // Call function/method
+    {
+        ::std::string cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // SaveToFile(std::string&)
+            bool cppResult = cppSelf->SaveToFile(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUModelFunc_SaveToFile_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUModel.SaveToFile");
+        return {};
+}
+
 static PyMethodDef Sbk_SUModel_methods[] = {
+    {"AddComponentDefinitions", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_AddComponentDefinitions), METH_O},
+    {"AddMaterial", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_AddMaterial), METH_O},
     {"GetComponentDefinitionList", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetComponentDefinitionList), METH_NOARGS},
     {"GetEntities", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetEntities), METH_NOARGS},
     {"GetGroupDefinitionList", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetGroupDefinitionList), METH_NOARGS},
     {"GetMaterialList", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetMaterialList), METH_NOARGS},
     {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetName), METH_NOARGS},
     {"LoadFromFile", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_LoadFromFile), METH_O|METH_STATIC},
+    {"Release", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_Release), METH_NOARGS},
+    {"SaveToFile", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_SaveToFile), METH_O},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -348,13 +511,17 @@ static PyObject *SUModel_PTR_CppToPython_SUModel(const void *cppIn) {
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *SUModel_SignatureStrings[] = {
+    "suapi.SUModel.AddComponentDefinitions(comp:suapi.SUComponentDefinition)->bool",
+    "suapi.SUModel.AddMaterial(mat:suapi.SUMaterial)->bool",
     "suapi.SUModel.GetComponentDefinitionList()->std.vector[suapi.SUComponentDefinition]",
     "suapi.SUModel.GetEntities()->suapi.SUEntities",
     "suapi.SUModel.GetGroupDefinitionList()->std.vector[suapi.SUComponentDefinition]",
     "suapi.SUModel.GetMaterialList()->std.vector[suapi.SUMaterial]",
     "suapi.SUModel.GetName()->std.string",
     "suapi.SUModel.LoadFromFile(file_path:std.string)->suapi.SUModel",
+    "suapi.SUModel.Release()",
     "suapi.SUModel()",
+    "suapi.SUModel.SaveToFile(filepath:std.string)->bool",
     nullptr}; // Sentinel
 
 void init_SUModel(PyObject *module)

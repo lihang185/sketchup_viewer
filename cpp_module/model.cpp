@@ -545,7 +545,7 @@ CVector3D TriangleMesh::GetUV(int idx)
 //
 //=====================
 
-SUMaterial* SUMaterial::New()
+SUMaterial* SUMaterial::Create()
 {
 	SUResult result;
 	SUMaterialRef material = SU_INVALID;
@@ -894,13 +894,50 @@ std::vector<SUComponentInstance*> SUEntities::GetInstances()
 	std::vector<SUComponentInstance*> list1;
 	list1.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetInstances(entities, number, (SUComponentInstanceRef*)list1.data(), &copy_number);
+	result = SUEntitiesGetInstances(SUAPI(this), number, (SUComponentInstanceRef*)list1.data(), &copy_number);
 	if (result == SU_ERROR_NONE) {
 		return list1;
 	}
 	return std::vector<SUComponentInstance*>();
+}
+
+bool SUEntities::AddEdge(SUEdge* edge)
+{
+	SUResult result;
+
+	SUEdgeRef edges[] = { SUAPI(edge) };
+
+	result = SUEntitiesAddEdges(SUAPI(this), 1, edges);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+
+bool SUEntities::AddFace(SUFace* face)
+{
+	SUResult result;
+
+	SUFaceRef faces[] = { SUAPI(face) };
+
+	result = SUEntitiesAddFaces(SUAPI(this), 1, faces);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+
+bool SUEntities::AddInstance(SUComponentInstance* inst)
+{
+	SUResult result;
+	SUStringRef name = SU_INVALID;
+
+	SUStringCreate(&name);
+	result = SUEntitiesAddInstance(SUAPI(this), SUAPI(inst), 0);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
 }
 
 SUEntityIterator* SUEntities::EnumEdges()
@@ -949,6 +986,16 @@ SUEntityIterator* SUEntities::EnumFaces()
 // SUComponentDefinition
 //
 //=====================
+SUComponentDefinition* SUComponentDefinition::Create()
+{
+	SUComponentDefinitionRef comp = SU_INVALID;
+	SUResult result = SUComponentDefinitionCreate(&comp);
+	if (result == SU_ERROR_NONE) {
+		return (SUComponentDefinition*)comp.ptr;
+	}
+	return 0;
+}
+
 SUEntities* SUComponentDefinition::GetEntities()
 {
 	SUResult result;
@@ -994,6 +1041,19 @@ std::wstring SUComponentDefinition::GetDescription()
 	return std::wstring();
 }
 
+SUComponentInstance* SUComponentDefinition::CreateInstance()
+{
+	SUResult result;
+	SUComponentInstanceRef inst = SU_INVALID;
+
+	result = SUComponentDefinitionCreateInstance(SUAPI(this), &inst);
+	if (result == SU_ERROR_NONE) {
+		return (SUComponentInstance*)inst.ptr;
+	}
+	return 0;
+}
+
+
 bool SUComponentDefinition::IsInternal()
 {
 	SUResult result;
@@ -1025,7 +1085,6 @@ std::wstring SUComponentDefinition::GetPath()
 }
 
 
-
 //=====================
 // SUComponentInstance
 //
@@ -1036,9 +1095,7 @@ SUComponentDefinition* SUComponentInstance::GetDefinition()
 
 	SUComponentDefinitionRef comp_def;
 
-	SUComponentInstanceRef instance;
-	instance.ptr = this;
-	result = SUComponentInstanceGetDefinition(instance, &comp_def);
+	result = SUComponentInstanceGetDefinition(SUAPI(this), &comp_def);
 	if (result == SU_ERROR_NONE) {
 		return (SUComponentDefinition*)comp_def.ptr;
 	}
@@ -1138,6 +1195,25 @@ SUModel* SUModel::LoadFromFile(std::string file_path)
 	return 0;
 }
 
+
+bool SUModel::SaveToFile(std::string& filepath)
+{
+	SUResult result;
+	result = SUModelSaveToFile(SUAPI(this), filepath.c_str());
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+
+void SUModel::Release()
+{
+	SUModelRef model = SUAPI(this);
+	SUModelRelease(&model);
+
+	
+}
+
 SUEntities* SUModel::GetEntities()
 {
 	SUResult result;
@@ -1222,3 +1298,28 @@ std::vector<SUComponentDefinition*> SUModel::GetGroupDefinitionList()
 	}
 	return std::vector<SUComponentDefinition*>();
 }
+
+bool SUModel::AddComponentDefinitions(SUComponentDefinition*comp_def)
+{
+	SUResult result;
+
+	SUComponentDefinitionRef comps[] = { SUAPI(comp_def) };
+
+	result = SUModelAddComponentDefinitions(SUAPI(this), 1, comps);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+
+bool SUModel::AddMaterial(SUMaterial* mat)
+{
+	SUResult result;
+	SUMaterialRef mats[] = { SUAPI(mat) };
+	result = SUModelAddMaterials(SUAPI(this), 1, mats);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+

@@ -4,9 +4,10 @@ from Ui_sketchup_viewer import Ui_MainWindow
 from importlib import import_module
 import os
 
+import su
 from su_model import SketchupModel
 
-START_FILE = "test2_box"
+START_FILE = "ren"
 START_FILE_optional = "ren", "test1_triangle"
 START_FILE_NAME = START_FILE + ".skp"
 
@@ -25,6 +26,8 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
         self.view.mainWindow = self
         
         self.model = None
+        self.insert_model = []
+
         self.loaded_tools = {}
         
         self.enable_input =False
@@ -67,6 +70,38 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
             print("no select file")
             
         self.view.repaint()
+
+    @Slot()
+    def on_actionSave_as_triggered(self):
+        print( "on_actionOpen_triggered" )
+        file_name, ext = QtWidgets.QFileDialog.getSaveFileName(caption="Save SketchUp File", filter="SketchUp Files (*.skp)")
+        if file_name:
+            print( "save: ", file_name)
+            self.model.save(file_name)
+
+        else:
+            print("no select file")
+    
+
+    @Slot()
+    def on_actionInsertComp_triggered(self):
+        print( "on_actionImport_triggered" )
+        file_name, ext = QtWidgets.QFileDialog.getOpenFileName(caption="Import SketchUp File", filter="SketchUp Files(2018) (*.skp)")
+        
+        if file_name:
+            print("import: ", file_name)
+            
+            comp_model = su.SUModel.LoadFromFile(file_name)
+            if comp_model:
+                self.model.insert_component(comp_model)
+                self.insert_model.append(comp_model)
+                # 插入的新模型不能删除
+                # 一直到程序退出
+                #comp_model.Release()
+        
+        print("insert ok")
+        self.view.repaint()
+        print("repaint ok")
 
     #################
     # Toolbar Action

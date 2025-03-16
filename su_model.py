@@ -246,9 +246,10 @@ class Component:
         self.edge_group_ls.append(item)
 
     def build(self, gl):
-        self.model_cache.build(self.dict_mats_normal, self.dict_mats_opacity, self.edge_group_ls, gl)
-        self.clear_geom()
-        self.dirty = False
+        if self.dirty:
+            self.model_cache.build(self.dict_mats_normal, self.dict_mats_opacity, self.edge_group_ls, gl)
+            self.clear_geom()
+            self.dirty = False
 
 class InstancePath:
     def __init__(self, inst_path, comp, m, pm):
@@ -283,10 +284,16 @@ class SketchupModel:
             return True
         else:
             return False
+    
+    def save(self, filepath):
+        ok = self.model.SaveToFile(filepath)
+        assert ok
+        
+        print("save ok")
 
     def init_model(self):
         # default material
-        self.defaultMaterial = su.SUMaterial.New()
+        self.defaultMaterial = su.SUMaterial.Create()
         rm = Material()
         rm.LoadMaterial(None)
         self.defaultMaterial.d = rm
@@ -327,6 +334,57 @@ class SketchupModel:
         data.update_entities()
         #data.defaultMaterial = self.defaultMaterial
         comp_def.d = data
+    
+    ########################
+    # Insert component
+    # 
+    ########################
+    def insert_component(self, comp_model):
+        for mtl in comp_model.GetMaterialList():
+            ok = self.model.AddMaterial(mtl)
+            assert ok
+            self.load_material(mtl)
+        
+        comp_list = []
+        for comp in comp_model.GetComponentDefinitionList():
+            comp_list.append(comp)
+        for comp in comp_model.GetGroupDefinitionList():
+            comp_list.append(comp)
+        
+        if comp_list:
+            src_comp = comp_list[0]
+            comp = self.copy_component(src_comp)
+
+            print("haha")
+            self.init_comp(comp)
+            self.comp_def_list.append(comp)
+            
+            inst = comp.CreateInstance()
+            ok = self.top_comp.AddInstance(inst)
+            assert ok
+            
+            self.init_comp(self.top_comp)
+            self.built_dirty = True
+            
+            print('ok')
+    
+    def copy_component(self, orig_comp):
+        
+        comp_def = su.SUComponentDefinition.Create()
+        ok = self.model.AddComponentDefinitions(comp_def)
+        assert(ok)
+
+        comp = comp_def.GetEntities()        
+        edges = orig_comp.GetEdges()
+        for e in edges:
+            comp.AddEdge(e)
+            
+        faces = orig_comp.GetFaces()
+        for e in faces:
+            comp.AddFace(e)
+            
+        return comp_def
+
 
     ########################
     # open comp

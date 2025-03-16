@@ -179,13 +179,13 @@ public:
 	SUMaterial() {}
 	~SUMaterial() {}
 
+	static SUMaterial* Create();
+
 	std::wstring GetName();
 	SUTexture* GetTexture();
 	CVector3D GetColor();
 	bool GetUseOpacity();
 	double GetOpacity();
-
-	static SUMaterial* New();
 };
 
 
@@ -227,6 +227,10 @@ public:
 	std::vector<SUComponentInstance*> GetInstances();
 	SUEntityIterator* EnumEdges();
 	SUEntityIterator* EnumFaces();
+
+	bool AddEdge(SUEdge* edge);
+	bool AddFace(SUFace* face);
+	bool AddInstance(SUComponentInstance* inst);
 };
 
 class SUComponentDefinition : public SUEntities
@@ -239,8 +243,12 @@ public:
 	std::wstring GetName();
 	std::wstring GetDescription();
 
+	SUComponentInstance* CreateInstance();
+
 	bool IsInternal();
 	std::wstring GetPath();
+
+	static SUComponentDefinition* Create();
 };
 
 class SUComponentInstance : public SUDrawingElement
@@ -253,6 +261,7 @@ public:
 	CMatrix GetTransform();
 	void SetTransform(CMatrix& m);
 	SUMaterial* GetMaterial();
+
 };
 
 class SUModel
@@ -261,6 +270,9 @@ public:
 	SUModel() {}
 	~SUModel() {}
 
+	bool SaveToFile(std::string& filepath);
+	void Release();
+
 	SUEntities* GetEntities();
 	std::string GetName();
 
@@ -268,7 +280,11 @@ public:
 	std::vector<SUComponentDefinition*> GetComponentDefinitionList();
 	std::vector<SUComponentDefinition*> GetGroupDefinitionList();
 
+	bool AddComponentDefinitions(SUComponentDefinition* comp);
+	bool AddMaterial(SUMaterial* mat);
+
 	static SUModel* LoadFromFile(std::string file_path);
+	
 };
 
 #endif // _MODEL_H

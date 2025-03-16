@@ -67,6 +67,144 @@ SUEntitiesWrapper::~SUEntitiesWrapper()
 // Target ---------------------------------------------------------
 
 extern "C" {
+static PyObject *Sbk_SUEntitiesFunc_AddEdge(PyObject *self, PyObject *pyArg)
+{
+    ::SUEntities *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUEntities *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITIES_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUEntities::AddEdge(SUEdge*)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUEDGE_IDX]), (pyArg)))) {
+        overloadId = 0; // AddEdge(SUEdge*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUEntitiesFunc_AddEdge_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::SUEdge *cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // AddEdge(SUEdge*)
+            bool cppResult = cppSelf->AddEdge(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUEntitiesFunc_AddEdge_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUEntities.AddEdge");
+        return {};
+}
+
+static PyObject *Sbk_SUEntitiesFunc_AddFace(PyObject *self, PyObject *pyArg)
+{
+    ::SUEntities *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUEntities *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITIES_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUEntities::AddFace(SUFace*)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUFACE_IDX]), (pyArg)))) {
+        overloadId = 0; // AddFace(SUFace*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUEntitiesFunc_AddFace_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::SUFace *cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // AddFace(SUFace*)
+            bool cppResult = cppSelf->AddFace(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUEntitiesFunc_AddFace_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUEntities.AddFace");
+        return {};
+}
+
+static PyObject *Sbk_SUEntitiesFunc_AddInstance(PyObject *self, PyObject *pyArg)
+{
+    ::SUEntities *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUEntities *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITIES_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUEntities::AddInstance(SUComponentInstance*)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppPointerConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUCOMPONENTINSTANCE_IDX]), (pyArg)))) {
+        overloadId = 0; // AddInstance(SUComponentInstance*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUEntitiesFunc_AddInstance_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::SUComponentInstance *cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // AddInstance(SUComponentInstance*)
+            bool cppResult = cppSelf->AddInstance(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUEntitiesFunc_AddInstance_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUEntities.AddInstance");
+        return {};
+}
+
 static PyObject *Sbk_SUEntitiesFunc_EnumEdges(PyObject *self)
 {
     ::SUEntities *cppSelf = nullptr;
@@ -361,6 +499,9 @@ Sbk_SUEntities_Init(PyObject *self, PyObject *args, PyObject *kwds)
 }
 
 static PyMethodDef Sbk_SUEntities_methods[] = {
+    {"AddEdge", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_AddEdge), METH_O},
+    {"AddFace", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_AddFace), METH_O},
+    {"AddInstance", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_AddInstance), METH_O},
     {"EnumEdges", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_EnumEdges), METH_NOARGS},
     {"EnumFaces", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_EnumFaces), METH_NOARGS},
     {"GetEdges", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_GetEdges), METH_NOARGS},
@@ -480,6 +621,9 @@ static PyObject *SUEntities_PTR_CppToPython_SUEntities(const void *cppIn) {
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *SUEntities_SignatureStrings[] = {
+    "suapi.SUEntities.AddEdge(edge:suapi.SUEdge)->bool",
+    "suapi.SUEntities.AddFace(face:suapi.SUFace)->bool",
+    "suapi.SUEntities.AddInstance(inst:suapi.SUComponentInstance)->bool",
     "suapi.SUEntities.EnumEdges()->suapi.SUEntityIterator",
     "suapi.SUEntities.EnumFaces()->suapi.SUEntityIterator",
     "suapi.SUEntities.GetEdges()->std.vector[suapi.SUEdge]",

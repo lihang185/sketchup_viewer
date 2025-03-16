@@ -67,6 +67,53 @@ SUComponentDefinitionWrapper::~SUComponentDefinitionWrapper()
 // Target ---------------------------------------------------------
 
 extern "C" {
+static PyObject *Sbk_SUComponentDefinitionFunc_Create(PyObject *self)
+{
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // Create()
+            SUComponentDefinition * cppResult = ::SUComponentDefinition::Create();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUCOMPONENTDEFINITION_IDX]), cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
+static PyObject *Sbk_SUComponentDefinitionFunc_CreateInstance(PyObject *self)
+{
+    ::SUComponentDefinition *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUComponentDefinition *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUCOMPONENTDEFINITION_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // CreateInstance()
+            SUComponentInstance * cppResult = cppSelf->CreateInstance();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUCOMPONENTINSTANCE_IDX]), cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static PyObject *Sbk_SUComponentDefinitionFunc_GetDescription(PyObject *self)
 {
     ::SUComponentDefinition *cppSelf = nullptr;
@@ -231,6 +278,8 @@ Sbk_SUComponentDefinition_Init(PyObject *self, PyObject *args, PyObject *kwds)
 }
 
 static PyMethodDef Sbk_SUComponentDefinition_methods[] = {
+    {"Create", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_Create), METH_NOARGS|METH_STATIC},
+    {"CreateInstance", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_CreateInstance), METH_NOARGS},
     {"GetDescription", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_GetDescription), METH_NOARGS},
     {"GetEntities", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_GetEntities), METH_NOARGS},
     {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_GetName), METH_NOARGS},
@@ -345,6 +394,8 @@ static PyObject *SUComponentDefinition_PTR_CppToPython_SUComponentDefinition(con
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *SUComponentDefinition_SignatureStrings[] = {
+    "suapi.SUComponentDefinition.Create()->suapi.SUComponentDefinition",
+    "suapi.SUComponentDefinition.CreateInstance()->suapi.SUComponentInstance",
     "suapi.SUComponentDefinition.GetDescription()->std.wstring",
     "suapi.SUComponentDefinition.GetEntities()->suapi.SUEntities",
     "suapi.SUComponentDefinition.GetName()->std.wstring",
