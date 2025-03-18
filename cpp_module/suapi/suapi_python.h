@@ -45,12 +45,13 @@ extern SbkConverter **SbksuapiTypeConverters;
 // Converter indices
 enum : int {
     SBK_STD_WSTRING_IDX                                      = 0,
-    SBK_SUAPI_STD_VECTOR_SUEDGEPTR_IDX                       = 1, // std::vector<SUEdge* >
-    SBK_SUAPI_STD_VECTOR_SUFACEPTR_IDX                       = 2, // std::vector<SUFace* >
-    SBK_SUAPI_STD_VECTOR_SUCOMPONENTINSTANCEPTR_IDX          = 3, // std::vector<SUComponentInstance* >
-    SBK_SUAPI_STD_VECTOR_SUCOMPONENTDEFINITIONPTR_IDX        = 4, // std::vector<SUComponentDefinition* >
-    SBK_SUAPI_STD_VECTOR_SUMATERIALPTR_IDX                   = 5, // std::vector<SUMaterial* >
-    SBK_suapi_CONVERTERS_IDX_COUNT                           = 6
+    SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX                     = 1, // std::vector<SUEntity* >
+    SBK_SUAPI_STD_VECTOR_SUEDGEPTR_IDX                       = 2, // std::vector<SUEdge* >
+    SBK_SUAPI_STD_VECTOR_SUFACEPTR_IDX                       = 3, // std::vector<SUFace* >
+    SBK_SUAPI_STD_VECTOR_SUCOMPONENTINSTANCEPTR_IDX          = 4, // std::vector<SUComponentInstance* >
+    SBK_SUAPI_STD_VECTOR_SUCOMPONENTDEFINITIONPTR_IDX        = 5, // std::vector<SUComponentDefinition* >
+    SBK_SUAPI_STD_VECTOR_SUMATERIALPTR_IDX                   = 6, // std::vector<SUMaterial* >
+    SBK_suapi_CONVERTERS_IDX_COUNT                           = 7
 };
 // Macros for type check
 

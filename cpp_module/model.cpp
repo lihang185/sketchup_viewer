@@ -256,6 +256,19 @@ int SUEntity::GetID()
 	return id;
 }
 
+SUModel* SUEntity::GetModel()
+{
+	SUModelRef model = SU_INVALID;
+	SUEntityGetModel(SUAPI(this), &model);
+	return (SUModel*)model.ptr;
+}
+
+SUEntities* SUEntity::GetParentEntities()
+{
+	SUEntitiesRef comp = SU_INVALID;
+	SUEntityGetParentEntities(SUAPI(this), &comp);
+	return (SUEntities*)comp.ptr;
+}
 
 bool SUDrawingElement::GetHidden()
 {
@@ -930,10 +943,20 @@ bool SUEntities::AddFace(SUFace* face)
 bool SUEntities::AddInstance(SUComponentInstance* inst)
 {
 	SUResult result;
+
+	result = SUEntitiesAddInstance(SUAPI(this), SUAPI(inst), 0);
+	if (result == SU_ERROR_NONE) {
+		return true;
+	}
+	return false;
+}
+
+bool SUEntities::Erase(std::vector<SUEntity*> elements)
+{
+	SUResult result;
 	SUStringRef name = SU_INVALID;
 
-	SUStringCreate(&name);
-	result = SUEntitiesAddInstance(SUAPI(this), SUAPI(inst), 0);
+	result = SUEntitiesErase(SUAPI(this), elements.size(), (SUEntityRef*)elements.data());
 	if (result == SU_ERROR_NONE) {
 		return true;
 	}

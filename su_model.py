@@ -340,10 +340,11 @@ class SketchupModel:
     # 
     ########################
     def insert_component(self, comp_model):
-        for mtl in comp_model.GetMaterialList():
-            ok = self.model.AddMaterial(mtl)
-            assert ok
-            self.load_material(mtl)
+        if False:
+            for mtl in comp_model.GetMaterialList():
+                ok = self.model.AddMaterial(mtl)
+                assert ok
+                self.load_material(mtl)
         
         comp_list = []
         for comp in comp_model.GetComponentDefinitionList():
@@ -376,10 +377,13 @@ class SketchupModel:
 
         comp = comp_def.GetEntities()        
         edges = orig_comp.GetEdges()
+        #orig_comp.Erase(edges)
         for e in edges:
             comp.AddEdge(e)
+        
             
         faces = orig_comp.GetFaces()
+        #orig_comp.Erase(faces)
         for e in faces:
             comp.AddFace(e)
             

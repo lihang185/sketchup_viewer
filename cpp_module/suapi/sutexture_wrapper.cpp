@@ -12,6 +12,7 @@
 // inner classes
 
 // Extra includes
+#include <model.h>
 
 
 #include <cctype>

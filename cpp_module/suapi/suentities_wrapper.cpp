@@ -257,6 +257,50 @@ static PyObject *Sbk_SUEntitiesFunc_EnumFaces(PyObject *self)
     return pyResult;
 }
 
+static PyObject *Sbk_SUEntitiesFunc_Erase(PyObject *self, PyObject *pyArg)
+{
+    ::SUEntities *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUEntities *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITIES_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUEntities::Erase(std::vector<SUEntity*>)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX], (pyArg)))) {
+        overloadId = 0; // Erase(std::vector<SUEntity*>)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUEntitiesFunc_Erase_TypeError;
+
+    // Call function/method
+    {
+        ::std::vector<SUEntity* > cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // Erase(std::vector<SUEntity*>)
+            bool cppResult = cppSelf->Erase(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUEntitiesFunc_Erase_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUEntities.Erase");
+        return {};
+}
+
 static PyObject *Sbk_SUEntitiesFunc_GetEdges(PyObject *self)
 {
     ::SUEntities *cppSelf = nullptr;
@@ -504,6 +548,7 @@ static PyMethodDef Sbk_SUEntities_methods[] = {
     {"AddInstance", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_AddInstance), METH_O},
     {"EnumEdges", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_EnumEdges), METH_NOARGS},
     {"EnumFaces", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_EnumFaces), METH_NOARGS},
+    {"Erase", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_Erase), METH_O},
     {"GetEdges", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_GetEdges), METH_NOARGS},
     {"GetFaces", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_GetFaces), METH_NOARGS},
     {"GetGroups", reinterpret_cast<PyCFunction>(Sbk_SUEntitiesFunc_GetGroups), METH_NOARGS},
@@ -626,6 +671,7 @@ static const char *SUEntities_SignatureStrings[] = {
     "suapi.SUEntities.AddInstance(inst:suapi.SUComponentInstance)->bool",
     "suapi.SUEntities.EnumEdges()->suapi.SUEntityIterator",
     "suapi.SUEntities.EnumFaces()->suapi.SUEntityIterator",
+    "suapi.SUEntities.Erase(elements:std.vector[suapi.SUEntity])->bool",
     "suapi.SUEntities.GetEdges()->std.vector[suapi.SUEdge]",
     "suapi.SUEntities.GetFaces()->std.vector[suapi.SUFace]",
     "suapi.SUEntities.GetGroups()->std.vector[suapi.SUComponentInstance]",

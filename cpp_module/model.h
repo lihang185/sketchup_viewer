@@ -74,6 +74,8 @@ struct CMatrix {
 
 class SUMaterial;
 class SUComponentInstance;
+class SUModel;
+class SUEntities;
 
 class SUEntity
 {
@@ -83,6 +85,8 @@ public:
 
 	int GetType();
 	int GetID();
+	SUModel* GetModel();
+	SUEntities* GetParentEntities();
 };
 
 class SUDrawingElement : public SUEntity
@@ -231,6 +235,8 @@ public:
 	bool AddEdge(SUEdge* edge);
 	bool AddFace(SUFace* face);
 	bool AddInstance(SUComponentInstance* inst);
+
+	bool Erase(std::vector<SUEntity*> elements);
 };
 
 class SUComponentDefinition : public SUEntities

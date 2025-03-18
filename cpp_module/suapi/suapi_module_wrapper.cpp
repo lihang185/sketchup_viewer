@@ -91,6 +91,48 @@ static PythonToCppFunc is_Py_None_PythonToCpp_std_wstring_Convertible(PyObject *
 
 // Container Type converters.
 
+// C++ to Python conversion for type 'std::vector<SUEntity* >'.
+static PyObject *std_vector_SUEntityPTR__CppToPython_std_vector_SUEntityPTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<SUEntity* > *>(const_cast<void *>(cppIn));
+
+            // TEMPLATE - cpplist_to_pylist_conversion - START
+        PyObject* pyOut = PyList_New((int) cppInRef.size());
+        ::std::vector<SUEntity* >::const_iterator it = cppInRef.begin();
+        for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::SUEntity* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUENTITY_IDX]), cppItem));
+        }
+        return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<SUEntity* > *>(cppOut);
+
+          // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    ::SUEntity* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUENTITY_IDX]), pyItem, &(cppItem));
+    cppOutRef.push_back(cppItem);
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is_std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUENTITY_IDX], pyIn))
+        return std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_;
+    return {};
+}
+
 // C++ to Python conversion for type 'std::vector<SUEdge* >'.
 static PyObject *std_vector_SUEdgePTR__CppToPython_std_vector_SUEdgePTR_(const void *cppIn) {
     auto &cppInRef = *reinterpret_cast<::std::vector<SUEdge* > *>(const_cast<void *>(cppIn));
@@ -378,6 +420,13 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(suapi)
         Py_None_PythonToCpp_std_wstring,
         is_Py_None_PythonToCpp_std_wstring_Convertible);
 
+
+    // Register converter for type 'std::vector<SUEntity*>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUEntityPTR__CppToPython_std_vector_SUEntityPTR_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX], "std::vector<SUEntity*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX],
+        std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_,
+        is_std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR__Convertible);
 
     // Register converter for type 'std::vector<SUEdge*>'.
     SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUEDGEPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUEdgePTR__CppToPython_std_vector_SUEdgePTR_);
