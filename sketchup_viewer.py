@@ -102,6 +102,25 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
         print("insert ok")
         self.view.repaint()
         print("repaint ok")
+        
+    @Slot()
+    def on_actionPaste_triggered(self):
+        clipboard = app.clipboard()
+        
+        minedata = clipboard.mimeData()
+        sketchup_format_name = 'application/x-qt-windows-mime;value="Sketchup_Data"'
+        
+        if minedata.hasFormat(sketchup_format_name):
+            data = minedata.data(sketchup_format_name)
+            
+            # write to file
+            f = open(os.path.join(work_dir, "dump_paste.skp"), "wb")
+            if f:
+                rawdata = data.data()[4:]
+                f.write(rawdata)
+                f.close()
+
+        print("Paste")
 
     #################
     # Toolbar Action
