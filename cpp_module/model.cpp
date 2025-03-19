@@ -236,9 +236,7 @@ int SUEntity::GetType()
 {
 	SURefType rtype;
 
-	SUEntityRef e;
-	e.ptr = this;
-	rtype = SUEntityGetType(e);
+	rtype = SUEntityGetType(SUAPI(this));
 	if (rtype == SURefType_Edge) {
 		return 16;
 	}
@@ -256,20 +254,73 @@ int SUEntity::GetID()
 	return id;
 }
 
-SUModel* SUEntity::GetModel()
+
+int SUEntity::GetNumAttributeDictionaries()
 {
-	SUModelRef model = SU_INVALID;
-	SUEntityGetModel(SUAPI(this), &model);
-	return (SUModel*)model.ptr;
+	size_t count = 0;
+	SUEntityGetNumAttributeDictionaries(SUAPI(this), &count);
+	return count;
 }
 
-SUEntities* SUEntity::GetParentEntities()
+std::vector<SUAttributeDictionary*> SUEntity::GetAttributeDictionaries()
 {
-	SUEntitiesRef comp = SU_INVALID;
-	SUEntityGetParentEntities(SUAPI(this), &comp);
-	return (SUEntities*)comp.ptr;
+	size_t count = 0;
+	SUEntityGetNumAttributeDictionaries(SUAPI(this), &count);
+
+	std::vector<SUAttributeDictionary*> dicts;
+
+	if (count > 0) {
+		dicts.resize(count);
+		size_t copy_number;
+		SUEntityGetAttributeDictionaries(SUAPI(this), count, (SUAttributeDictionaryRef*)dicts.data(), &copy_number);
+	}
+	return dicts;
 }
 
+
+//=====================
+//  SUAttributeDictionary
+//
+//=====================
+std::wstring SUAttributeDictionary::GetName()
+{
+	SUResult result;
+	SUStringRef name = SU_INVALID;
+
+	std::wstring out_str;
+
+	result = SUAttributeDictionaryGetName(SUAPI(this), &name);
+	if (result == SU_ERROR_NONE) {
+		out_str = SUStringToSTLString(name);
+	}
+	return out_str;
+}
+
+int SUAttributeDictionary::GetNumKeys()
+{
+	size_t count = 0;
+	SUAttributeDictionaryGetNumKeys(SUAPI(this), &count);
+	return count;
+}
+
+std::vector<std::wstring> SUAttributeDictionary::GetKeys()
+{
+	size_t count = 0;
+	SUAttributeDictionaryGetNumKeys(SUAPI(this), &count);
+	std::vector<std::wstring> keys;
+
+	if (count > 0) {
+		keys.resize(count);
+		size_t copy_number;
+		SUAttributeDictionaryGetKeys(SUAPI(this), count, (SUStringRef*)keys.data(), &copy_number);
+	}
+	return keys;
+}
+
+//=====================
+//  SUDrawingElement
+//
+//=====================
 bool SUDrawingElement::GetHidden()
 {
 	bool value;
@@ -283,19 +334,10 @@ bool SUDrawingElement::GetHidden()
 //=====================
 CVector3D SUVertex::GetPosition()
 {
-	SUResult result;
-
 	SUPoint3D pos;
-
-	SUVertexRef vertex;
-	vertex.ptr = this;
-	result = SUVertexGetPosition(vertex, &pos);
-	if (result == SU_ERROR_NONE) {
-		return CVector3D(pos.x,pos.y,pos.z);
-	}
-	return CVector3D(0,0,0);
+	SUVertexGetPosition(SUAPI(this), &pos);
+	return CVector3D(pos.x, pos.y, pos.z);
 }
-
 
 //=====================
 //  SUEdge
@@ -303,32 +345,16 @@ CVector3D SUVertex::GetPosition()
 //=====================
 SUVertex* SUEdge::GetStartVertex()
 {
-	SUResult result;
-
 	SUVertexRef vertex = SU_INVALID;
-
-	SUEdgeRef edge;
-	edge.ptr = this;
-	result = SUEdgeGetStartVertex(edge, &vertex);
-	if (result == SU_ERROR_NONE) {
-		return (SUVertex*)vertex.ptr;
-	}
-	return 0;
+	SUEdgeGetStartVertex(SUAPI(this), &vertex);
+	return cast_SUVertex(vertex);
 }
 
 SUVertex* SUEdge::GetEndVertex()
 {
-	SUResult result;
-
 	SUVertexRef vertex = SU_INVALID;
-
-	SUEdgeRef edge;
-	edge.ptr = this;
-	result = SUEdgeGetEndVertex(edge, &vertex);
-	if (result == SU_ERROR_NONE) {
-		return (SUVertex*)vertex.ptr;
-	}
-	return 0;
+	SUEdgeGetEndVertex(SUAPI(this), &vertex);
+	return cast_SUVertex(vertex);
 }
 
 bool SUEdge::GetSoft()
@@ -346,22 +372,201 @@ bool SUEdge::GetSmooth()
 }
 
 //=====================
+//  SUEdgeUse
+//
+//=====================
+SUEdge* SUEdgeUse::GetEdge()
+{
+	SUEdgeRef edge = SU_INVALID;
+	SUEdgeUseGetEdge(SUAPI(this),&edge);
+	return cast_SUEdge(edge);
+}
+
+SUVertex* SUEdgeUse::GetStartVertex()
+{
+	SUVertexRef vertex = SU_INVALID;
+	SUEdgeUseGetStartVertex(SUAPI(this), &vertex);
+	return cast_SUVertex(vertex);
+}
+
+CVector3D SUEdgeUse::GetStartVertexNormal()
+{
+	SUVector3D n;
+	SUEdgeUseGetStartVertexNormal(SUAPI(this), &n);
+	return CVector3D(n.x, n.y, n.z);
+}
+
+
+SUVertex* SUEdgeUse::GetEndVertex()
+{
+	SUVertexRef vertex = SU_INVALID;
+	SUEdgeUseGetEndVertex(SUAPI(this), &vertex);
+	return cast_SUVertex(vertex);
+}
+
+
+CVector3D SUEdgeUse::GetEndVertexNormal()
+{
+	SUVector3D n;
+	SUEdgeUseGetEndVertexNormal(SUAPI(this), &n);
+	return CVector3D(n.x, n.y, n.z);
+}
+
+bool SUEdgeUse::IsReversed()
+{
+	bool value = false;
+	SUEdgeUseIsReversed(SUAPI(this), &value);
+	return value;
+}
+
+
+SUFace* SUEdgeUse::GetFace()
+{
+	SUFaceRef face = SU_INVALID;
+	SUEdgeUseGetFace(SUAPI(this), &face);
+	return cast_SUFace(face);
+}
+
+SULoop* SUEdgeUse::GetLoop()
+{
+	SULoopRef loop = SU_INVALID;
+	SUEdgeUseGetLoop(SUAPI(this), &loop);
+	return cast_SULoop(loop);
+}
+
+//=====================
+//  SULoop
+//
+//=====================
+int SULoop::GetNumVertices()
+{
+	size_t count = 0;
+	SULoopGetNumVertices(SUAPI(this), &count);
+	return (int)count;
+}
+
+std::vector<SUVertex*> SULoop::GetVertices()
+{
+	SUResult result;
+
+	size_t count = 0;
+	SULoopGetNumVertices(SUAPI(this), &count);
+
+	std::vector<SUVertex*> vert_ls;
+	if (count > 0) {
+		vert_ls.resize(count);
+		size_t copy_number = 0;
+		result = SULoopGetVertices(SUAPI(this), count, (SUVertexRef*)vert_ls.data(), &copy_number);
+		if (result == SU_ERROR_NONE) {
+			return vert_ls;
+		}
+	}
+	return vert_ls;
+}
+
+std::vector<SUEdge*> SULoop::GetEdges()
+{
+	SUResult result;
+
+	size_t count = 0;
+	SULoopGetNumVertices(SUAPI(this), &count);
+
+	std::vector<SUEdge*> edge_ls;
+	if (count > 0) {
+		edge_ls.resize(count);
+		size_t copy_number = 0;
+		result = SULoopGetEdges(SUAPI(this), count, (SUEdgeRef*)edge_ls.data(), &copy_number);
+		if (result == SU_ERROR_NONE) {
+			return edge_ls;
+		}
+	}
+	return edge_ls;
+}
+
+std::vector<SUEdgeUse*> SULoop::GetEdgeUses()
+{
+	SUResult result;
+
+	size_t count = 0;
+	SULoopGetNumVertices(SUAPI(this), &count);
+
+	std::vector<SUEdgeUse*> edgeuse_ls;
+	if (count > 0) {
+		edgeuse_ls.resize(count);
+		size_t copy_number=0;
+		result = SULoopGetEdgeUses(SUAPI(this), count, (SUEdgeUseRef*)edgeuse_ls.data(),&copy_number);
+		if (result == SU_ERROR_NONE) {
+			return edgeuse_ls;
+		}
+	}
+	return edgeuse_ls;
+}
+
+bool SULoop::IsOuterLoop()
+{
+	bool value = false;
+	SULoopIsOuterLoop(SUAPI(this), &value);
+	return value;
+}
+
+bool SULoop::IsConvex()
+{
+	bool value = false;
+	SULoopIsConvex(SUAPI(this), &value);
+	return value;
+}
+
+SUFace* SULoop::GetFace()
+{
+	SUResult result;
+
+	SUFaceRef face = SU_INVALID;
+	result = SULoopGetFace(SUAPI(this), &face);
+	if (result == SU_ERROR_NONE) {
+		return cast_SUFace(face);
+	}
+	return 0;
+}
+
+
+//=====================
 //  SUFace
 //
 //=====================
+SULoop* SUFace::GetOuterLoop()
+{
+	SULoopRef loop = SU_INVALID;
+	SUFaceGetOuterLoop(SUAPI(this), &loop);
+	return cast_SULoop(loop);
+}
+
+std::vector<SULoop*> SUFace::GetInnerLoops()
+{
+	size_t count = 0;
+	SUFaceGetNumInnerLoops(SUAPI(this), &count);
+
+	std::vector<SULoop*> loops;
+	if (count > 0) {
+		loops.resize(count);
+		size_t copy_number;
+		SUFaceGetInnerLoops(SUAPI(this), count, (SULoopRef*)loops.data(), &copy_number);
+		assert(copy_number == count);
+	}
+	return loops;
+}
+
+CPlane SUFace::GetPlane()
+{
+	SUPlane3D plane;
+	SUFaceGetPlane(SUAPI(this), &plane);
+	return CPlane(plane.a, plane.b, plane.c, plane.d);
+}
+
 CVector3D SUFace::GetNormal()
 {
-	SUResult result;
 	SUVector3D normal;
-
-	SUFaceRef face;
-	face.ptr = this;
-	result = SUFaceGetNormal(face, &normal);
-	if (result == SU_ERROR_NONE) {
-		return CVector3D(normal.x, normal.y, normal.z);
-	}
-	return CVector3D();
-
+	SUFaceGetNormal(SUAPI(this), &normal);
+	return CVector3D(normal.x, normal.y, normal.z);
 }
 
 SUMaterial* SUFace::GetFrontMaterial()
@@ -369,9 +574,7 @@ SUMaterial* SUFace::GetFrontMaterial()
 	SUResult result;
 	SUMaterialRef material=SU_INVALID;
 
-	SUFaceRef face;
-	face.ptr = this;
-	result = SUFaceGetFrontMaterial(face,&material);
+	result = SUFaceGetFrontMaterial(SUAPI(this),&material);
 	if (result == SU_ERROR_NONE) {
 		return (SUMaterial*)material.ptr;
 	}
@@ -383,9 +586,7 @@ SUMaterial* SUFace::GetBackMaterial()
 	SUResult result;
 	SUMaterialRef material;
 
-	SUFaceRef face;
-	face.ptr = this;
-	result = SUFaceGetBackMaterial(face, &material);
+	result = SUFaceGetBackMaterial(SUAPI(this), &material);
 	if (result == SU_ERROR_NONE) {
 		return (SUMaterial*)material.ptr;
 	}
@@ -575,16 +776,12 @@ std::wstring SUMaterial::GetName()
 {
 	SUResult result;
 	SUStringRef name = SU_INVALID;
-	SUStringCreate(&name);
 
 	std::wstring out_str;
 
-	SUMaterialRef material;
-	material.ptr = this;
-	result = SUMaterialGetName(material, &name);
+	result = SUMaterialGetName(SUAPI(this), &name);
 	if (result == SU_ERROR_NONE) {
 		out_str = SUStringToSTLString(name);
-		return out_str;
 	}
 	return out_str;
 }
@@ -594,9 +791,7 @@ SUTexture* SUMaterial::GetTexture()
 	SUResult result;
 	SUTextureRef texture;
 
-	SUMaterialRef material;
-	material.ptr = this;
-	result = SUMaterialGetTexture(material, &texture);
+	result = SUMaterialGetTexture(SUAPI(this), &texture);
 	if (result == SU_ERROR_NONE) {
 		return (SUTexture*)texture.ptr;
 	}
@@ -608,9 +803,7 @@ CVector3D SUMaterial::GetColor()
 	SUResult result;
 	SUColor color;
 
-	SUMaterialRef material;
-	material.ptr = this;
-	result = SUMaterialGetColor(material, &color);
+	result = SUMaterialGetColor(SUAPI(this), &color);
 	if (result == SU_ERROR_NONE) {
 		CVector3D out;
 		out.x = (double)color.red / 255;
@@ -650,9 +843,7 @@ std::wstring SUTexture::GetFileName()
 
 	std::wstring out_str;
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureGetFileName(texture, &name);
+	result = SUTextureGetFileName(SUAPI(this), &name);
 	if (result == SU_ERROR_NONE) {
 		out_str = SUStringToSTLString(name);
 		return out_str;
@@ -666,9 +857,7 @@ double SUTexture::GetScaleU()
 	double u_scale, v_scale;
 	size_t width, height;
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureGetDimensions(texture, &width, &height, &u_scale, &v_scale);
+	result = SUTextureGetDimensions(SUAPI(this), &width, &height, &u_scale, &v_scale);
 	if (result == SU_ERROR_NONE) {
 		return u_scale;
 	}
@@ -681,9 +870,7 @@ double SUTexture::GetScaleV()
 	double u_scale, v_scale;
 	size_t width, height;
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureGetDimensions(texture, &width, &height, &u_scale, &v_scale);
+	result = SUTextureGetDimensions(SUAPI(this), &width, &height, &u_scale, &v_scale);
 	if (result == SU_ERROR_NONE) {
 		return v_scale;
 	}
@@ -694,9 +881,7 @@ bool SUTexture::WriteToFile(std::string filepath)
 {
 	SUResult result;
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureWriteToFile(texture, filepath.c_str());
+	result = SUTextureWriteToFile(SUAPI(this), filepath.c_str());
 	if (result == SU_ERROR_NONE) {
 		return true;
 	}
@@ -713,9 +898,7 @@ int SUTexture::GetImageDataSize()
 	SUImageRepRef image = SU_INVALID;
 	SUImageRepCreate(&image);
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureGetImageRep(texture, &image);
+	result = SUTextureGetImageRep(SUAPI(this), &image);
 
 	if (result == SU_ERROR_NONE) {
 		SUImageRepGetDataSize(image, &data_size, &bits_per_pixel);
@@ -736,9 +919,7 @@ std::vector<char> SUTexture::GetImageData()
 
 	SUImageRepCreate(&image);
 
-	SUTextureRef texture;
-	texture.ptr = this;
-	result = SUTextureGetImageRep(texture, &image);
+	result = SUTextureGetImageRep(SUAPI(this), &image);
 	if (result == SU_ERROR_NONE) {
 		SUImageRepGetDataSize(image, &data_size, &bits_per_pixel);
 		data.resize(data_size);
@@ -776,9 +957,7 @@ int SUEntities::GetNumEdges()
 	SUResult result;
 	size_t count;
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetNumEdges(entities, false, &count);
+	result = SUEntitiesGetNumEdges(SUAPI(this), false, &count);
 	if (result == SU_ERROR_NONE) {
 		return (int)count;
 	}
@@ -791,9 +970,7 @@ int SUEntities::GetNumFaces()
 	SUResult result;
 	size_t count;
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetNumFaces(entities, &count);
+	result = SUEntitiesGetNumFaces(SUAPI(this), &count);
 	if (result == SU_ERROR_NONE) {
 		return (int)count;
 	}
@@ -805,9 +982,7 @@ int SUEntities::GetNumGroups()
 	SUResult result;
 	size_t count;
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetNumGroups(entities, &count);
+	result = SUEntitiesGetNumGroups(SUAPI(this), &count);
 	if (result == SU_ERROR_NONE) {
 		return (int)count;
 	}
@@ -819,9 +994,7 @@ int SUEntities::GetNumInstances()
 	SUResult result;
 	size_t count;
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetNumInstances(entities, &count);
+	result = SUEntitiesGetNumInstances(SUAPI(this), &count);
 	if (result == SU_ERROR_NONE) {
 		return (int)count;
 	}
@@ -841,9 +1014,7 @@ std::vector<SUEdge*> SUEntities::GetEdges()
 	std::vector<SUEdge*> list1;
 	list1.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetEdges(entities, false, number, (SUEdgeRef*)list1.data(), &copy_number);
+	result = SUEntitiesGetEdges(SUAPI(this), false, number, (SUEdgeRef*)list1.data(), &copy_number);
 	if (result == SU_ERROR_NONE) {
 		return list1;
 	}
@@ -863,9 +1034,7 @@ std::vector<SUFace*> SUEntities::GetFaces()
 	std::vector<SUFace*> list1;
 	list1.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetFaces(entities, number, (SUFaceRef*)list1.data(), &copy_number);
+	result = SUEntitiesGetFaces(SUAPI(this), number, (SUFaceRef*)list1.data(), &copy_number);
 	if (result == SU_ERROR_NONE) {
 		return list1;
 	}
@@ -885,9 +1054,7 @@ std::vector<SUComponentInstance*> SUEntities::GetGroups()
 	std::vector<SUComponentInstance*> list1;
 	list1.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetGroups(entities, number, (SUGroupRef*)list1.data(), &copy_number);
+	result = SUEntitiesGetGroups(SUAPI(this), number, (SUGroupRef*)list1.data(), &copy_number);
 	if (result == SU_ERROR_NONE) {
 		return list1;
 	}
@@ -943,20 +1110,10 @@ bool SUEntities::AddFace(SUFace* face)
 bool SUEntities::AddInstance(SUComponentInstance* inst)
 {
 	SUResult result;
-
-	result = SUEntitiesAddInstance(SUAPI(this), SUAPI(inst), 0);
-	if (result == SU_ERROR_NONE) {
-		return true;
-	}
-	return false;
-}
-
-bool SUEntities::Erase(std::vector<SUEntity*> elements)
-{
-	SUResult result;
 	SUStringRef name = SU_INVALID;
 
-	result = SUEntitiesErase(SUAPI(this), elements.size(), (SUEntityRef*)elements.data());
+	SUStringCreate(&name);
+	result = SUEntitiesAddInstance(SUAPI(this), SUAPI(inst), 0);
 	if (result == SU_ERROR_NONE) {
 		return true;
 	}
@@ -975,9 +1132,7 @@ SUEntityIterator* SUEntities::EnumEdges()
 	SUEntityArrayIterator* iter = new SUEntityArrayIterator();
 	iter->seq.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetEdges(entities, false, number, (SUEdgeRef*)iter->seq.data(), &out_count);
+	result = SUEntitiesGetEdges(SUAPI(this), false, number, (SUEdgeRef*)iter->seq.data(), &out_count);
 	if (result == SU_ERROR_NONE) {
 		return (SUEntityIterator*)iter;
 	}
@@ -996,9 +1151,7 @@ SUEntityIterator* SUEntities::EnumFaces()
 	SUEntityArrayIterator* iter = new SUEntityArrayIterator();
 	iter->seq.resize(number);
 
-	SUEntitiesRef entities;
-	entities.ptr = this;
-	result = SUEntitiesGetFaces(entities, number, (SUFaceRef*)iter->seq.data(), &out_count);
+	result = SUEntitiesGetFaces(SUAPI(this), number, (SUFaceRef*)iter->seq.data(), &out_count);
 	if (result == SU_ERROR_NONE) {
 		return (SUEntityIterator*)iter;
 	}
@@ -1025,9 +1178,7 @@ SUEntities* SUComponentDefinition::GetEntities()
 
 	SUEntitiesRef entities = SU_INVALID;
 
-	SUComponentDefinitionRef comp_def;
-	comp_def.ptr = this;
-	result = SUComponentDefinitionGetEntities(comp_def, &entities);
+	result = SUComponentDefinitionGetEntities(SUAPI(this), &entities);
 	if (result == SU_ERROR_NONE) {
 		return (SUEntities*)entities.ptr;
 	}
@@ -1038,11 +1189,9 @@ std::wstring SUComponentDefinition::GetName()
 {
 	SUResult result;
 
-	SUStringRef name;
+	SUStringRef name = SU_INVALID;
 
-	SUComponentDefinitionRef comp_def;
-	comp_def.ptr = this;
-	result = SUComponentDefinitionGetName(comp_def, &name);
+	result = SUComponentDefinitionGetName(SUAPI(this), &name);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(name);
 	}
@@ -1053,11 +1202,9 @@ std::wstring SUComponentDefinition::GetDescription()
 {
 	SUResult result;
 
-	SUStringRef desc;
+	SUStringRef desc = SU_INVALID;
 
-	SUComponentDefinitionRef comp_def;
-	comp_def.ptr = this;
-	result = SUComponentDefinitionGetDescription(comp_def, &desc);
+	result = SUComponentDefinitionGetDescription(SUAPI(this), &desc);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(desc);
 	}
@@ -1083,9 +1230,7 @@ bool SUComponentDefinition::IsInternal()
 
 	bool is_internal;
 
-	SUComponentDefinitionRef comp_def;
-	comp_def.ptr = this;
-	result = SUComponentDefinitionIsInternal(comp_def, &is_internal);
+	result = SUComponentDefinitionIsInternal(SUAPI(this), &is_internal);
 	if (result == SU_ERROR_NONE) {
 		return is_internal;
 	}
@@ -1096,11 +1241,9 @@ std::wstring SUComponentDefinition::GetPath()
 {
 	SUResult result;
 
-	SUStringRef path;
+	SUStringRef path = SU_INVALID;
 
-	SUComponentDefinitionRef comp_def;
-	comp_def.ptr = this;
-	result = SUComponentDefinitionGetPath(comp_def, &path);
+	result = SUComponentDefinitionGetPath(SUAPI(this), &path);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(path);
 	}
@@ -1131,9 +1274,7 @@ CMatrix SUComponentInstance::GetTransform()
 
 	SUTransformation transform;
 
-	SUComponentInstanceRef instance;
-	instance.ptr = this;
-	result = SUComponentInstanceGetTransform(instance, &transform);
+	result = SUComponentInstanceGetTransform(SUAPI(this), &transform);
 	if (result == SU_ERROR_NONE) {
 		bool is_identity;
 		SUTransformationIsIdentity(&transform, &is_identity);
@@ -1188,9 +1329,7 @@ SUMaterial* SUComponentInstance::GetMaterial()
 
 	SUMaterialRef material;
 
-	SUComponentInstanceRef instance;
-	instance.ptr = this;
-	SUDrawingElementRef draw_ele = SUComponentInstanceToDrawingElement(instance);
+	SUDrawingElementRef draw_ele = SUComponentInstanceToDrawingElement(SUAPI(this));
 
 	result = SUDrawingElementGetMaterial(draw_ele, &material);
 	if (result == SU_ERROR_NONE) {
@@ -1243,9 +1382,7 @@ SUEntities* SUModel::GetEntities()
 
 	SUEntitiesRef entities = SU_INVALID;
 
-	SUModelRef model;
-	model.ptr = this;
-	result = SUModelGetEntities(model,&entities);
+	result = SUModelGetEntities(SUAPI(this),&entities);
 
 	if (result == SU_ERROR_NONE) {
 		return (SUEntities*)entities.ptr;
@@ -1262,16 +1399,13 @@ std::vector<SUMaterial*> SUModel::GetMaterialList()
 {
 	SUResult result;
 
-	SUModelRef model;
-	model.ptr = this;
-
 	size_t num_materials;
-	result = SUModelGetNumMaterials(model, &num_materials);
+	result = SUModelGetNumMaterials(SUAPI(this), &num_materials);
 
 	std::vector<SUMaterial*> material_list(num_materials);
 
 	size_t copy_count;
-	result = SUModelGetMaterials(model, num_materials, (SUMaterialRef*)material_list.data(), &copy_count);
+	result = SUModelGetMaterials(SUAPI(this), num_materials, (SUMaterialRef*)material_list.data(), &copy_count);
 
 	if (result == SU_ERROR_NONE) {
 		return material_list;
@@ -1283,16 +1417,13 @@ std::vector<SUComponentDefinition*> SUModel::GetComponentDefinitionList()
 {
 	SUResult result;
 
-	SUModelRef model;
-	model.ptr = this;
-
 	size_t number;
-	result = SUModelGetNumComponentDefinitions(model, &number);
+	result = SUModelGetNumComponentDefinitions(SUAPI(this), &number);
 
 	std::vector<SUComponentDefinition*> comp_list(number);
 
 	size_t copy_count;
-	result = SUModelGetComponentDefinitions(model, number, (SUComponentDefinitionRef*)comp_list.data(), &copy_count);
+	result = SUModelGetComponentDefinitions(SUAPI(this), number, (SUComponentDefinitionRef*)comp_list.data(), &copy_count);
 
 	if (result == SU_ERROR_NONE) {
 		return comp_list;
@@ -1305,16 +1436,13 @@ std::vector<SUComponentDefinition*> SUModel::GetGroupDefinitionList()
 {
 	SUResult result;
 
-	SUModelRef model;
-	model.ptr = this;
-
 	size_t number;
-	result = SUModelGetNumGroupDefinitions(model, &number);
+	result = SUModelGetNumGroupDefinitions(SUAPI(this), &number);
 
 	std::vector<SUComponentDefinition*> comp_list(number);
 
 	size_t copy_count;
-	result = SUModelGetGroupDefinitions(model, number, (SUComponentDefinitionRef*)comp_list.data(), &copy_count);
+	result = SUModelGetGroupDefinitions(SUAPI(this), number, (SUComponentDefinitionRef*)comp_list.data(), &copy_count);
 
 	if (result == SU_ERROR_NONE) {
 		return comp_list;

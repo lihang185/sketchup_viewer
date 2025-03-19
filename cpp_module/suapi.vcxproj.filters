@@ -87,6 +87,15 @@
     <ClCompile Include="suapi\cplane_wrapper.cpp">
       <Filter>autogen</Filter>
     </ClCompile>
+    <ClCompile Include="suapi\suedgeuse_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suloop_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\suattributedictionary_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model.h">
@@ -381,6 +390,15 @@
       <Filter>autogen</Filter>
     </ClInclude>
     <ClInclude Include="suapi\cplane_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suedgeuse_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suloop_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suattributedictionary_wrapper.h">
       <Filter>autogen</Filter>
     </ClInclude>
   </ItemGroup>

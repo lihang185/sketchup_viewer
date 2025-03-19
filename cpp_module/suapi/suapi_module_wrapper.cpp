@@ -26,15 +26,18 @@ void init_TriangleMesh(PyObject *module);
 void init_SUModel(PyObject *module);
 void init_SUEntityIterator(PyObject *module);
 void init_SUEntity(PyObject *module);
+void init_SUMaterial(PyObject *module);
+void init_SULoop(PyObject *module);
 void init_SUVertex(PyObject *module);
 void init_SUTexture(PyObject *module);
-void init_SUMaterial(PyObject *module);
+void init_SUEdgeUse(PyObject *module);
 void init_SUDrawingElement(PyObject *module);
 void init_SUFace(PyObject *module);
 void init_SUEntities(PyObject *module);
 void init_SUEdge(PyObject *module);
 void init_SUComponentInstance(PyObject *module);
 void init_SUComponentDefinition(PyObject *module);
+void init_SUAttributeDictionary(PyObject *module);
 void init_CVector3D(PyObject *module);
 void init_CVector2D(PyObject *module);
 void init_CPlane(PyObject *module);
@@ -91,23 +94,23 @@ static PythonToCppFunc is_Py_None_PythonToCpp_std_wstring_Convertible(PyObject *
 
 // Container Type converters.
 
-// C++ to Python conversion for type 'std::vector<SUEntity* >'.
-static PyObject *std_vector_SUEntityPTR__CppToPython_std_vector_SUEntityPTR_(const void *cppIn) {
-    auto &cppInRef = *reinterpret_cast<::std::vector<SUEntity* > *>(const_cast<void *>(cppIn));
+// C++ to Python conversion for type 'std::vector<std::wstring >'.
+static PyObject *std_vector_std_wstring__CppToPython_std_vector_std_wstring_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<std::wstring > *>(const_cast<void *>(cppIn));
 
             // TEMPLATE - cpplist_to_pylist_conversion - START
         PyObject* pyOut = PyList_New((int) cppInRef.size());
-        ::std::vector<SUEntity* >::const_iterator it = cppInRef.begin();
+        ::std::vector<std::wstring >::const_iterator it = cppInRef.begin();
         for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
-        ::SUEntity* cppItem(*it);
-        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUENTITY_IDX]), cppItem));
+        ::std::wstring cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_STD_WSTRING_IDX], &cppItem));
         }
         return pyOut;
     // TEMPLATE - cpplist_to_pylist_conversion - END
 
 }
-static void std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_(PyObject *pyIn, void *cppOut) {
-    auto &cppOutRef = *reinterpret_cast<::std::vector<SUEntity* > *>(cppOut);
+static void std_vector_std_wstring__PythonToCpp_std_vector_std_wstring_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<std::wstring > *>(cppOut);
 
           // TEMPLATE - pyseq_to_cpplist_conversion - START
     // PYSIDE-795: Turn all sequences into iterables.
@@ -120,16 +123,58 @@ static void std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_(PyObject
     PyErr_Clear();
     break;
     }
-    ::SUEntity* cppItem{nullptr};
-        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUENTITY_IDX]), pyItem, &(cppItem));
+    ::std::wstring cppItem;
+        Shiboken::Conversions::pythonToCppCopy(SbksuapiTypeConverters[SBK_STD_WSTRING_IDX], pyItem, &(cppItem));
     cppOutRef.push_back(cppItem);
     }
     // TEMPLATE - pyseq_to_cpplist_conversion - END
 
 }
-static PythonToCppFunc is_std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR__Convertible(PyObject *pyIn) {
-    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUENTITY_IDX], pyIn))
-        return std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_;
+static PythonToCppFunc is_std_vector_std_wstring__PythonToCpp_std_vector_std_wstring__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::convertibleSequenceTypes(SbksuapiTypeConverters[SBK_STD_WSTRING_IDX], pyIn))
+        return std_vector_std_wstring__PythonToCpp_std_vector_std_wstring_;
+    return {};
+}
+
+// C++ to Python conversion for type 'std::vector<SUAttributeDictionary* >'.
+static PyObject *std_vector_SUAttributeDictionaryPTR__CppToPython_std_vector_SUAttributeDictionaryPTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<SUAttributeDictionary* > *>(const_cast<void *>(cppIn));
+
+            // TEMPLATE - cpplist_to_pylist_conversion - START
+        PyObject* pyOut = PyList_New((int) cppInRef.size());
+        ::std::vector<SUAttributeDictionary* >::const_iterator it = cppInRef.begin();
+        for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::SUAttributeDictionary* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUATTRIBUTEDICTIONARY_IDX]), cppItem));
+        }
+        return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void std_vector_SUAttributeDictionaryPTR__PythonToCpp_std_vector_SUAttributeDictionaryPTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<SUAttributeDictionary* > *>(cppOut);
+
+          // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    ::SUAttributeDictionary* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUATTRIBUTEDICTIONARY_IDX]), pyItem, &(cppItem));
+    cppOutRef.push_back(cppItem);
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is_std_vector_SUAttributeDictionaryPTR__PythonToCpp_std_vector_SUAttributeDictionaryPTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUATTRIBUTEDICTIONARY_IDX], pyIn))
+        return std_vector_SUAttributeDictionaryPTR__PythonToCpp_std_vector_SUAttributeDictionaryPTR_;
     return {};
 }
 
@@ -256,6 +301,132 @@ static void std_vector_SUComponentInstancePTR__PythonToCpp_std_vector_SUComponen
 static PythonToCppFunc is_std_vector_SUComponentInstancePTR__PythonToCpp_std_vector_SUComponentInstancePTR__Convertible(PyObject *pyIn) {
     if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUCOMPONENTINSTANCE_IDX], pyIn))
         return std_vector_SUComponentInstancePTR__PythonToCpp_std_vector_SUComponentInstancePTR_;
+    return {};
+}
+
+// C++ to Python conversion for type 'std::vector<SULoop* >'.
+static PyObject *std_vector_SULoopPTR__CppToPython_std_vector_SULoopPTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<SULoop* > *>(const_cast<void *>(cppIn));
+
+            // TEMPLATE - cpplist_to_pylist_conversion - START
+        PyObject* pyOut = PyList_New((int) cppInRef.size());
+        ::std::vector<SULoop* >::const_iterator it = cppInRef.begin();
+        for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::SULoop* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SULOOP_IDX]), cppItem));
+        }
+        return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void std_vector_SULoopPTR__PythonToCpp_std_vector_SULoopPTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<SULoop* > *>(cppOut);
+
+          // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    ::SULoop* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SULOOP_IDX]), pyItem, &(cppItem));
+    cppOutRef.push_back(cppItem);
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is_std_vector_SULoopPTR__PythonToCpp_std_vector_SULoopPTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SULOOP_IDX], pyIn))
+        return std_vector_SULoopPTR__PythonToCpp_std_vector_SULoopPTR_;
+    return {};
+}
+
+// C++ to Python conversion for type 'std::vector<SUEdgeUse* >'.
+static PyObject *std_vector_SUEdgeUsePTR__CppToPython_std_vector_SUEdgeUsePTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<SUEdgeUse* > *>(const_cast<void *>(cppIn));
+
+            // TEMPLATE - cpplist_to_pylist_conversion - START
+        PyObject* pyOut = PyList_New((int) cppInRef.size());
+        ::std::vector<SUEdgeUse* >::const_iterator it = cppInRef.begin();
+        for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::SUEdgeUse* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUEDGEUSE_IDX]), cppItem));
+        }
+        return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void std_vector_SUEdgeUsePTR__PythonToCpp_std_vector_SUEdgeUsePTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<SUEdgeUse* > *>(cppOut);
+
+          // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    ::SUEdgeUse* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUEDGEUSE_IDX]), pyItem, &(cppItem));
+    cppOutRef.push_back(cppItem);
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is_std_vector_SUEdgeUsePTR__PythonToCpp_std_vector_SUEdgeUsePTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUEDGEUSE_IDX], pyIn))
+        return std_vector_SUEdgeUsePTR__PythonToCpp_std_vector_SUEdgeUsePTR_;
+    return {};
+}
+
+// C++ to Python conversion for type 'std::vector<SUVertex* >'.
+static PyObject *std_vector_SUVertexPTR__CppToPython_std_vector_SUVertexPTR_(const void *cppIn) {
+    auto &cppInRef = *reinterpret_cast<::std::vector<SUVertex* > *>(const_cast<void *>(cppIn));
+
+            // TEMPLATE - cpplist_to_pylist_conversion - START
+        PyObject* pyOut = PyList_New((int) cppInRef.size());
+        ::std::vector<SUVertex* >::const_iterator it = cppInRef.begin();
+        for (int idx = 0; it != cppInRef.end(); ++it, ++idx) {
+        ::SUVertex* cppItem(*it);
+        PyList_SET_ITEM(pyOut, idx, Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUVERTEX_IDX]), cppItem));
+        }
+        return pyOut;
+    // TEMPLATE - cpplist_to_pylist_conversion - END
+
+}
+static void std_vector_SUVertexPTR__PythonToCpp_std_vector_SUVertexPTR_(PyObject *pyIn, void *cppOut) {
+    auto &cppOutRef = *reinterpret_cast<::std::vector<SUVertex* > *>(cppOut);
+
+          // TEMPLATE - pyseq_to_cpplist_conversion - START
+    // PYSIDE-795: Turn all sequences into iterables.
+    Shiboken::AutoDecRef it(PyObject_GetIter(pyIn));
+    PyObject *(*iternext)(PyObject *) = *Py_TYPE(it)->tp_iternext;
+    for (;;) {
+    Shiboken::AutoDecRef pyItem(iternext(it));
+    if (pyItem.isNull()) {
+    if (PyErr_Occurred() && PyErr_ExceptionMatches(PyExc_StopIteration))
+    PyErr_Clear();
+    break;
+    }
+    ::SUVertex* cppItem{nullptr};
+        Shiboken::Conversions::pythonToCppPointer(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUVERTEX_IDX]), pyItem, &(cppItem));
+    cppOutRef.push_back(cppItem);
+    }
+    // TEMPLATE - pyseq_to_cpplist_conversion - END
+
+}
+static PythonToCppFunc is_std_vector_SUVertexPTR__PythonToCpp_std_vector_SUVertexPTR__Convertible(PyObject *pyIn) {
+    if (Shiboken::Conversions::checkSequenceTypes(SbksuapiTypes[SBK_SUVERTEX_IDX], pyIn))
+        return std_vector_SUVertexPTR__PythonToCpp_std_vector_SUVertexPTR_;
     return {};
 }
 
@@ -395,15 +566,18 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(suapi)
     init_SUModel(module);
     init_SUEntityIterator(module);
     init_SUEntity(module);
+    init_SUMaterial(module);
+    init_SULoop(module);
     init_SUVertex(module);
     init_SUTexture(module);
-    init_SUMaterial(module);
+    init_SUEdgeUse(module);
     init_SUDrawingElement(module);
     init_SUFace(module);
     init_SUEntities(module);
     init_SUEdge(module);
     init_SUComponentInstance(module);
     init_SUComponentDefinition(module);
+    init_SUAttributeDictionary(module);
     init_CVector3D(module);
     init_CVector2D(module);
     init_CPlane(module);
@@ -421,12 +595,19 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(suapi)
         is_Py_None_PythonToCpp_std_wstring_Convertible);
 
 
-    // Register converter for type 'std::vector<SUEntity*>'.
-    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUEntityPTR__CppToPython_std_vector_SUEntityPTR_);
-    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX], "std::vector<SUEntity*>");
-    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUENTITYPTR_IDX],
-        std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR_,
-        is_std_vector_SUEntityPTR__PythonToCpp_std_vector_SUEntityPTR__Convertible);
+    // Register converter for type 'std::vector<std::wstring>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_STD_WSTRING_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_std_wstring__CppToPython_std_vector_std_wstring_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_STD_WSTRING_IDX], "std::vector<std::wstring>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_STD_WSTRING_IDX],
+        std_vector_std_wstring__PythonToCpp_std_vector_std_wstring_,
+        is_std_vector_std_wstring__PythonToCpp_std_vector_std_wstring__Convertible);
+
+    // Register converter for type 'std::vector<SUAttributeDictionary*>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUATTRIBUTEDICTIONARYPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUAttributeDictionaryPTR__CppToPython_std_vector_SUAttributeDictionaryPTR_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUATTRIBUTEDICTIONARYPTR_IDX], "std::vector<SUAttributeDictionary*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUATTRIBUTEDICTIONARYPTR_IDX],
+        std_vector_SUAttributeDictionaryPTR__PythonToCpp_std_vector_SUAttributeDictionaryPTR_,
+        is_std_vector_SUAttributeDictionaryPTR__PythonToCpp_std_vector_SUAttributeDictionaryPTR__Convertible);
 
     // Register converter for type 'std::vector<SUEdge*>'.
     SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUEDGEPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUEdgePTR__CppToPython_std_vector_SUEdgePTR_);
@@ -448,6 +629,27 @@ SBK_MODULE_INIT_FUNCTION_BEGIN(suapi)
     Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUCOMPONENTINSTANCEPTR_IDX],
         std_vector_SUComponentInstancePTR__PythonToCpp_std_vector_SUComponentInstancePTR_,
         is_std_vector_SUComponentInstancePTR__PythonToCpp_std_vector_SUComponentInstancePTR__Convertible);
+
+    // Register converter for type 'std::vector<SULoop*>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SULOOPPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SULoopPTR__CppToPython_std_vector_SULoopPTR_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SULOOPPTR_IDX], "std::vector<SULoop*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SULOOPPTR_IDX],
+        std_vector_SULoopPTR__PythonToCpp_std_vector_SULoopPTR_,
+        is_std_vector_SULoopPTR__PythonToCpp_std_vector_SULoopPTR__Convertible);
+
+    // Register converter for type 'std::vector<SUEdgeUse*>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUEDGEUSEPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUEdgeUsePTR__CppToPython_std_vector_SUEdgeUsePTR_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUEDGEUSEPTR_IDX], "std::vector<SUEdgeUse*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUEDGEUSEPTR_IDX],
+        std_vector_SUEdgeUsePTR__PythonToCpp_std_vector_SUEdgeUsePTR_,
+        is_std_vector_SUEdgeUsePTR__PythonToCpp_std_vector_SUEdgeUsePTR__Convertible);
+
+    // Register converter for type 'std::vector<SUVertex*>'.
+    SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUVERTEXPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUVertexPTR__CppToPython_std_vector_SUVertexPTR_);
+    Shiboken::Conversions::registerConverterName(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUVERTEXPTR_IDX], "std::vector<SUVertex*>");
+    Shiboken::Conversions::addPythonToCppValueConversion(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUVERTEXPTR_IDX],
+        std_vector_SUVertexPTR__PythonToCpp_std_vector_SUVertexPTR_,
+        is_std_vector_SUVertexPTR__PythonToCpp_std_vector_SUVertexPTR__Convertible);
 
     // Register converter for type 'std::vector<SUComponentDefinition*>'.
     SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUCOMPONENTDEFINITIONPTR_IDX] = Shiboken::Conversions::createConverter(&PyList_Type, std_vector_SUComponentDefinitionPTR__CppToPython_std_vector_SUComponentDefinitionPTR_);

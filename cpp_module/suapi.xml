@@ -90,11 +90,17 @@
 
   <object-type name='SUEntity'>
   </object-type>
+  <object-type name='SUAttributeDictionary'>
+  </object-type>
   <object-type name='SUDrawingElement'>
   </object-type>
   <object-type name='SUVertex'>
   </object-type>
   <object-type name='SUEdge'>
+  </object-type>
+  <object-type name='SUEdgeUse'>
+  </object-type>
+  <object-type name='SULoop'>
   </object-type>
   <object-type name='SUFace'>
   </object-type>

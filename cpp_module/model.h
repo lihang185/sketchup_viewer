@@ -8,6 +8,11 @@
 #include <memory>
 
 #define SUAPI(ptr) {ptr}
+#define cast_SUVertex(ref) ((SUVertex*)ref.ptr)
+#define cast_SUEdge(ref) ((SUEdge*)ref.ptr)
+#define cast_SUEdgeUse(ref) ((SUEdgeUse*)ref.ptr)
+#define cast_SULoop(ref) ((SULoop*)ref.ptr)
+#define cast_SUFace(ref) ((SUFace*)ref.ptr)
 
 struct CVector2D {
 	CVector2D() : x(0), y(0) {}
@@ -72,10 +77,11 @@ struct CMatrix {
 	double m[4][3];
 };
 
+class SUAttributeDictionary;
+class SULoop;
+class SUFace;
 class SUMaterial;
 class SUComponentInstance;
-class SUModel;
-class SUEntities;
 
 class SUEntity
 {
@@ -85,8 +91,20 @@ public:
 
 	int GetType();
 	int GetID();
-	SUModel* GetModel();
-	SUEntities* GetParentEntities();
+
+	int GetNumAttributeDictionaries();
+	std::vector<SUAttributeDictionary*> GetAttributeDictionaries();
+};
+
+class SUAttributeDictionary
+{
+public:
+	SUAttributeDictionary() {}
+	~SUAttributeDictionary() {}
+
+	std::wstring GetName();
+	int GetNumKeys();
+	std::vector<std::wstring> GetKeys();
 };
 
 class SUDrawingElement : public SUEntity
@@ -121,6 +139,40 @@ public:
 	bool GetSmooth();
 };
 
+class SUEdgeUse : public SUEntity
+{
+public:
+	SUEdgeUse() {}
+	~SUEdgeUse() {}
+
+	SUEdge* GetEdge();
+	SUVertex* GetStartVertex();
+	CVector3D GetStartVertexNormal();
+	SUVertex* GetEndVertex();
+	CVector3D GetEndVertexNormal();
+	bool IsReversed();
+
+	SUFace* GetFace();
+	SULoop* GetLoop();
+};
+
+class SULoop : public SUEntity
+{
+public:
+	SULoop() {}
+	~SULoop() {}
+
+	int GetNumVertices();
+	std::vector<SUVertex*> GetVertices();
+	std::vector<SUEdge*> GetEdges();
+	std::vector<SUEdgeUse*> GetEdgeUses();
+	bool IsOuterLoop();
+	bool IsConvex();
+
+
+	SUFace* GetFace();
+};
+
 class SUMeshHelper;
 class TriangleMesh;
 
@@ -130,6 +182,10 @@ public:
 	SUFace() {}
 	~SUFace() {}
 
+	SULoop* GetOuterLoop();
+	std::vector<SULoop*> GetInnerLoops();
+
+	CPlane GetPlane();
 	CVector3D GetNormal();
 	SUMaterial* GetFrontMaterial();
 	SUMaterial* GetBackMaterial();
@@ -235,8 +291,6 @@ public:
 	bool AddEdge(SUEdge* edge);
 	bool AddFace(SUFace* face);
 	bool AddInstance(SUComponentInstance* inst);
-
-	bool Erase(std::vector<SUEntity*> elements);
 };
 
 class SUComponentDefinition : public SUEntities

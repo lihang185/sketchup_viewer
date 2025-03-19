@@ -13,6 +13,7 @@
 
 // Extra includes
 #include <model.h>
+#include <vector>
 
 
 #include <cctype>

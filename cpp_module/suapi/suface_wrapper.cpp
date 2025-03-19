@@ -13,6 +13,7 @@
 
 // Extra includes
 #include <model.h>
+#include <vector>
 
 
 #include <cctype>
@@ -182,6 +183,32 @@ static PyObject *Sbk_SUFaceFunc_GetFrontMaterial(PyObject *self)
     return pyResult;
 }
 
+static PyObject *Sbk_SUFaceFunc_GetInnerLoops(PyObject *self)
+{
+    ::SUFace *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUFace *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUFACE_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetInnerLoops()
+            std::vector<SULoop* > cppResult = cppSelf->GetInnerLoops();
+            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SULOOPPTR_IDX], &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static PyObject *Sbk_SUFaceFunc_GetNormal(PyObject *self)
 {
     ::SUFace *cppSelf = nullptr;
@@ -198,6 +225,58 @@ static PyObject *Sbk_SUFaceFunc_GetNormal(PyObject *self)
             // GetNormal()
             CVector3D cppResult = cppSelf->GetNormal();
             pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
+static PyObject *Sbk_SUFaceFunc_GetOuterLoop(PyObject *self)
+{
+    ::SUFace *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUFace *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUFACE_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetOuterLoop()
+            SULoop * cppResult = cppSelf->GetOuterLoop();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SULOOP_IDX]), cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
+static PyObject *Sbk_SUFaceFunc_GetPlane(PyObject *self)
+{
+    ::SUFace *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUFace *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUFACE_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetPlane()
+            CPlane cppResult = cppSelf->GetPlane();
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CPLANE_IDX]), &cppResult);
         }
     }
 
@@ -245,7 +324,10 @@ static PyMethodDef Sbk_SUFace_methods[] = {
     {"Draw", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_Draw), METH_VARARGS},
     {"GetBackMaterial", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetBackMaterial), METH_NOARGS},
     {"GetFrontMaterial", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetFrontMaterial), METH_NOARGS},
+    {"GetInnerLoops", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetInnerLoops), METH_NOARGS},
     {"GetNormal", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetNormal), METH_NOARGS},
+    {"GetOuterLoop", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetOuterLoop), METH_NOARGS},
+    {"GetPlane", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetPlane), METH_NOARGS},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -358,7 +440,10 @@ static const char *SUFace_SignatureStrings[] = {
     "suapi.SUFace.Draw(matrix:suapi.CMatrix,pm:suapi.SUComponentInstance,triMesh:suapi.TriangleMesh)",
     "suapi.SUFace.GetBackMaterial()->suapi.SUMaterial",
     "suapi.SUFace.GetFrontMaterial()->suapi.SUMaterial",
+    "suapi.SUFace.GetInnerLoops()->std.vector[suapi.SULoop]",
     "suapi.SUFace.GetNormal()->suapi.CVector3D",
+    "suapi.SUFace.GetOuterLoop()->suapi.SULoop",
+    "suapi.SUFace.GetPlane()->suapi.CPlane",
     "suapi.SUFace()",
     nullptr}; // Sentinel
 

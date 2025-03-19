@@ -13,6 +13,7 @@
 
 // Extra includes
 #include <model.h>
+#include <vector>
 
 
 #include <cctype>
@@ -66,6 +67,32 @@ SUEntityWrapper::~SUEntityWrapper()
 // Target ---------------------------------------------------------
 
 extern "C" {
+static PyObject *Sbk_SUEntityFunc_GetAttributeDictionaries(PyObject *self)
+{
+    ::SUEntity *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUEntity *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITY_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetAttributeDictionaries()
+            std::vector<SUAttributeDictionary* > cppResult = cppSelf->GetAttributeDictionaries();
+            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_SUATTRIBUTEDICTIONARYPTR_IDX], &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static PyObject *Sbk_SUEntityFunc_GetID(PyObject *self)
 {
     ::SUEntity *cppSelf = nullptr;
@@ -92,7 +119,7 @@ static PyObject *Sbk_SUEntityFunc_GetID(PyObject *self)
     return pyResult;
 }
 
-static PyObject *Sbk_SUEntityFunc_GetModel(PyObject *self)
+static PyObject *Sbk_SUEntityFunc_GetNumAttributeDictionaries(PyObject *self)
 {
     ::SUEntity *cppSelf = nullptr;
     SBK_UNUSED(cppSelf)
@@ -105,35 +132,9 @@ static PyObject *Sbk_SUEntityFunc_GetModel(PyObject *self)
     {
 
         if (!PyErr_Occurred()) {
-            // GetModel()
-            SUModel * cppResult = cppSelf->GetModel();
-            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUMODEL_IDX]), cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_SUEntityFunc_GetParentEntities(PyObject *self)
-{
-    ::SUEntity *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::SUEntity *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUENTITY_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // GetParentEntities()
-            SUEntities * cppResult = cppSelf->GetParentEntities();
-            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUENTITIES_IDX]), cppResult);
+            // GetNumAttributeDictionaries()
+            int cppResult = cppSelf->GetNumAttributeDictionaries();
+            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<int>(), &cppResult);
         }
     }
 
@@ -204,9 +205,9 @@ Sbk_SUEntity_Init(PyObject *self, PyObject *args, PyObject *kwds)
 }
 
 static PyMethodDef Sbk_SUEntity_methods[] = {
+    {"GetAttributeDictionaries", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetAttributeDictionaries), METH_NOARGS},
     {"GetID", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetID), METH_NOARGS},
-    {"GetModel", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetModel), METH_NOARGS},
-    {"GetParentEntities", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetParentEntities), METH_NOARGS},
+    {"GetNumAttributeDictionaries", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetNumAttributeDictionaries), METH_NOARGS},
     {"GetType", reinterpret_cast<PyCFunction>(Sbk_SUEntityFunc_GetType), METH_NOARGS},
 
     {nullptr, nullptr} // Sentinel
@@ -310,9 +311,9 @@ static PyObject *SUEntity_PTR_CppToPython_SUEntity(const void *cppIn) {
 // The signatures string for the functions.
 // Multiple signatures have their index "n:" in front.
 static const char *SUEntity_SignatureStrings[] = {
+    "suapi.SUEntity.GetAttributeDictionaries()->std.vector[suapi.SUAttributeDictionary]",
     "suapi.SUEntity.GetID()->int",
-    "suapi.SUEntity.GetModel()->suapi.SUModel",
-    "suapi.SUEntity.GetParentEntities()->suapi.SUEntities",
+    "suapi.SUEntity.GetNumAttributeDictionaries()->int",
     "suapi.SUEntity.GetType()->int",
     "suapi.SUEntity()",
     nullptr}; // Sentinel
