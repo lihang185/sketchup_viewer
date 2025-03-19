@@ -272,7 +272,10 @@ std::vector<SUAttributeDictionary*> SUEntity::GetAttributeDictionaries()
 	if (count > 0) {
 		dicts.resize(count);
 		size_t copy_number;
-		SUEntityGetAttributeDictionaries(SUAPI(this), count, (SUAttributeDictionaryRef*)dicts.data(), &copy_number);
+		SUResult result = SUEntityGetAttributeDictionaries(SUAPI(this), count, (SUAttributeDictionaryRef*)dicts.data(), &copy_number);
+		if (result == SU_ERROR_NONE and copy_number == count) {
+			return dicts;
+		}
 	}
 	return dicts;
 }

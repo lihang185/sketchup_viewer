@@ -603,7 +603,7 @@ class SketchupModel:
         
         for face in filter(lambda e:type(e) is su.SUFace, self.selection):
             #test
-            attr = face.GetAttributeDictionaries()
+            #attr = face.GetAttributeDictionaries()
             
             mtl = face.GetFrontMaterial()
             if mtl:
