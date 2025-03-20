@@ -579,7 +579,7 @@ SUMaterial* SUFace::GetFrontMaterial()
 
 	result = SUFaceGetFrontMaterial(SUAPI(this),&material);
 	if (result == SU_ERROR_NONE) {
-		return (SUMaterial*)material.ptr;
+		return cast_SUMaterial(material);
 	}
 	return 0;
 }
@@ -591,7 +591,7 @@ SUMaterial* SUFace::GetBackMaterial()
 
 	result = SUFaceGetBackMaterial(SUAPI(this), &material);
 	if (result == SU_ERROR_NONE) {
-		return (SUMaterial*)material.ptr;
+		return cast_SUMaterial(material);
 	}
 	return 0;
 }
@@ -770,7 +770,7 @@ SUMaterial* SUMaterial::Create()
 	result = SUMaterialCreate(&material);
 	if (result == SU_ERROR_NONE) {
 
-		return (SUMaterial*)material.ptr;
+		return cast_SUMaterial(material);
 	}
 	return 0;
 }
@@ -796,7 +796,7 @@ SUTexture* SUMaterial::GetTexture()
 
 	result = SUMaterialGetTexture(SUAPI(this), &texture);
 	if (result == SU_ERROR_NONE) {
-		return (SUTexture*)texture.ptr;
+		return cast_SUTexture(texture);
 	}
 	return 0;
 }
@@ -1170,7 +1170,7 @@ SUComponentDefinition* SUComponentDefinition::Create()
 	SUComponentDefinitionRef comp = SU_INVALID;
 	SUResult result = SUComponentDefinitionCreate(&comp);
 	if (result == SU_ERROR_NONE) {
-		return (SUComponentDefinition*)comp.ptr;
+		return cast_SUComponentDefinition(comp);
 	}
 	return 0;
 }
@@ -1183,7 +1183,7 @@ SUEntities* SUComponentDefinition::GetEntities()
 
 	result = SUComponentDefinitionGetEntities(SUAPI(this), &entities);
 	if (result == SU_ERROR_NONE) {
-		return (SUEntities*)entities.ptr;
+		return cast_SUEntities(entities);
 	}
 	return 0;
 }
@@ -1221,7 +1221,7 @@ SUComponentInstance* SUComponentDefinition::CreateInstance()
 
 	result = SUComponentDefinitionCreateInstance(SUAPI(this), &inst);
 	if (result == SU_ERROR_NONE) {
-		return (SUComponentInstance*)inst.ptr;
+		return cast_SUComponentInstance(inst);
 	}
 	return 0;
 }
@@ -1258,6 +1258,17 @@ std::wstring SUComponentDefinition::GetPath()
 // SUComponentInstance
 //
 //=====================
+
+std::wstring SUComponentInstance::GetName()
+{
+	SUStringRef name = SU_INVALID;
+	SUResult result = SUComponentDefinitionGetName(SUAPI(this), &name);
+	if (result == SU_ERROR_NONE) {
+		return SUStringToSTLString(name);
+	}
+	return std::wstring();
+}
+
 SUComponentDefinition* SUComponentInstance::GetDefinition()
 {
 	SUResult result;
@@ -1266,7 +1277,7 @@ SUComponentDefinition* SUComponentInstance::GetDefinition()
 
 	result = SUComponentInstanceGetDefinition(SUAPI(this), &comp_def);
 	if (result == SU_ERROR_NONE) {
-		return (SUComponentDefinition*)comp_def.ptr;
+		return cast_SUComponentDefinition(comp_def);
 	}
 	return 0;
 }
@@ -1336,7 +1347,7 @@ SUMaterial* SUComponentInstance::GetMaterial()
 
 	result = SUDrawingElementGetMaterial(draw_ele, &material);
 	if (result == SU_ERROR_NONE) {
-		return (SUMaterial*)material.ptr;
+		return cast_SUMaterial(material);
 	}
 	return 0;
 }
@@ -1388,7 +1399,7 @@ SUEntities* SUModel::GetEntities()
 	result = SUModelGetEntities(SUAPI(this),&entities);
 
 	if (result == SU_ERROR_NONE) {
-		return (SUEntities*)entities.ptr;
+		return cast_SUEntities(entities);
 	}
 	return 0;
 }

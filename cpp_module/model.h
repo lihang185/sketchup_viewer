@@ -8,11 +8,19 @@
 #include <memory>
 
 #define SUAPI(ptr) {ptr}
+#define cast_SUEntity(ref) ((SUEntity*)ref.ptr)
+#define cast_SUAttributeDictionary(ref) ((SUAttributeDictionary*)ref.ptr)
+#define cast_SUDrawingElement(ref) ((SUDrawingElement*)ref.ptr)
 #define cast_SUVertex(ref) ((SUVertex*)ref.ptr)
 #define cast_SUEdge(ref) ((SUEdge*)ref.ptr)
 #define cast_SUEdgeUse(ref) ((SUEdgeUse*)ref.ptr)
 #define cast_SULoop(ref) ((SULoop*)ref.ptr)
 #define cast_SUFace(ref) ((SUFace*)ref.ptr)
+#define cast_SUTexture(ref) ((SUTexture*)ref.ptr)
+#define cast_SUMaterial(ref) ((SUMaterial*)ref.ptr)
+#define cast_SUEntities(ref) ((SUEntities*)ref.ptr)
+#define cast_SUComponentInstance(ref) ((SUComponentInstance*)ref.ptr)
+#define cast_SUComponentDefinition(ref) ((SUComponentDefinition*)ref.ptr)
 
 struct CVector2D {
 	CVector2D() : x(0), y(0) {}
@@ -321,6 +329,8 @@ public:
 	CMatrix GetTransform();
 	void SetTransform(CMatrix& m);
 	SUMaterial* GetMaterial();
+
+	std::wstring GetName();
 
 };
 

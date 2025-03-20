@@ -119,6 +119,32 @@ static PyObject *Sbk_SUComponentInstanceFunc_GetMaterial(PyObject *self)
     return pyResult;
 }
 
+static PyObject *Sbk_SUComponentInstanceFunc_GetName(PyObject *self)
+{
+    ::SUComponentInstance *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUComponentInstance *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUCOMPONENTINSTANCE_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetName()
+            std::wstring cppResult = cppSelf->GetName();
+            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_STD_WSTRING_IDX], &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static PyObject *Sbk_SUComponentInstanceFunc_GetTransform(PyObject *self)
 {
     ::SUComponentInstance *cppSelf = nullptr;
@@ -229,6 +255,7 @@ static PyObject *Sbk_SUComponentInstanceFunc_SetTransform(PyObject *self, PyObje
 static PyMethodDef Sbk_SUComponentInstance_methods[] = {
     {"GetDefinition", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetDefinition), METH_NOARGS},
     {"GetMaterial", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetMaterial), METH_NOARGS},
+    {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetName), METH_NOARGS},
     {"GetTransform", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_GetTransform), METH_NOARGS},
     {"SetTransform", reinterpret_cast<PyCFunction>(Sbk_SUComponentInstanceFunc_SetTransform), METH_O},
 
@@ -342,6 +369,7 @@ static PyObject *SUComponentInstance_PTR_CppToPython_SUComponentInstance(const v
 static const char *SUComponentInstance_SignatureStrings[] = {
     "suapi.SUComponentInstance.GetDefinition()->suapi.SUComponentDefinition",
     "suapi.SUComponentInstance.GetMaterial()->suapi.SUMaterial",
+    "suapi.SUComponentInstance.GetName()->std.wstring",
     "suapi.SUComponentInstance.GetTransform()->suapi.CMatrix",
     "suapi.SUComponentInstance()",
     "suapi.SUComponentInstance.SetTransform(m:suapi.CMatrix)",
