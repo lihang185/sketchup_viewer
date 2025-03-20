@@ -603,7 +603,18 @@ class SketchupModel:
         
         for face in filter(lambda e:type(e) is su.SUFace, self.selection):
             #test
-            #attr = face.GetAttributeDictionaries()
+            if False:
+                uvHelper = face.GetUVHelper()
+                tm = uvHelper.GetFrontTextureMatrix()
+                mtl = face.GetFrontMaterial()
+                tex = mtl.GetTexture()
+                scale_u = tex.GetScaleU()
+                scale_v = tex.GetScaleV()
+                sm1 = su.CMatrix33()
+                sm1.fromScale(1.0/scale_u, 1.0/scale_v)
+                tm2 = tm.multiply(sm1)
+                tm3 = tm2.reversed()
+                tm3.get_data()
             
             mtl = face.GetFrontMaterial()
             if mtl:

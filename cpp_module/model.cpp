@@ -12,11 +12,12 @@
 
 #include <SketchUpAPI/sketchup.h>
 
+const double min_tol = 1e-10;
+
 //=====================
 //  wstring
 //
 //=====================
-
 std::wstring SUStringToSTLString(SUStringRef string)
 {
 	SUResult result;
@@ -115,6 +116,125 @@ double CPlane::IntersectWithRay(CVector3D& orig, CVector3D& dir)
 	s = (dot_orig + w) / -dot_dir;
 
 	return s;
+}
+
+//=====================
+//  CMatrix33
+//
+//=====================
+CMatrix33::CMatrix33()
+{
+	m[0][0] = 1.0;
+	m[0][1] = 0.0;
+	m[0][2] = 0.0;
+
+	m[1][0] = 0.0;
+	m[1][1] = 1.0;
+	m[1][2] = 0.0;
+
+	m[2][0] = 0.0;
+	m[2][1] = 0.0;
+	m[2][2] = 1.0;
+}
+
+std::vector<double> CMatrix33::get_data()
+{
+	std::vector<double> data(9);
+	data[0] = m[0][0];
+	data[1] = m[0][1];
+	data[2] = m[0][2];
+	data[3] = m[1][0];
+	data[4] = m[1][1];
+	data[5] = m[1][2];
+	data[6] = m[2][0];
+	data[7] = m[2][1];
+	data[8] = m[2][2];
+	return data;
+}
+
+CMatrix33& CMatrix33::fromScale(double u_scale, double v_scale)
+{
+	m[0][0] = u_scale;
+	m[0][1] = 0.0;
+	m[0][2] = 0.0;
+
+	m[1][0] = 0.0;
+	m[1][1] = v_scale;
+	m[1][2] = 0.0;
+
+	m[2][0] = 0.0;
+	m[2][1] = 0.0;
+	m[2][2] = 1.0;
+	return *this;
+}
+
+CMatrix33 CMatrix33::multiply(CMatrix33& R)
+{
+	CMatrix33 out;
+	out.m[0][0] = m[0][0] * R.m[0][0] + m[0][1] * R.m[1][0] + m[0][2] * R.m[2][0];
+	out.m[0][1] = m[0][0] * R.m[0][1] + m[0][1] * R.m[1][1] + m[0][2] * R.m[2][1];
+	out.m[0][2] = m[0][0] * R.m[0][2] + m[0][1] * R.m[1][2] + m[0][2] * R.m[2][2];
+
+	out.m[1][0] = m[1][0] * R.m[0][0] + m[1][1] * R.m[1][0] + m[1][2] * R.m[2][0];
+	out.m[1][1] = m[1][0] * R.m[0][1] + m[1][1] * R.m[1][1] + m[1][2] * R.m[2][1];
+	out.m[1][2] = m[1][0] * R.m[0][2] + m[1][1] * R.m[1][2] + m[1][2] * R.m[2][2];
+
+	out.m[2][0] = m[2][0] * R.m[0][0] + m[2][1] * R.m[1][0] + m[2][2] * R.m[2][0];
+	out.m[2][1] = m[2][0] * R.m[0][1] + m[2][1] * R.m[1][1] + m[2][2] * R.m[2][1];
+	out.m[2][2] = m[2][0] * R.m[0][2] + m[2][1] * R.m[1][2] + m[2][2] * R.m[2][2];
+
+	return out;
+}
+
+CMatrix33 CMatrix33::reversed()
+{
+	CMatrix33 out;
+	out.m[0][0] = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+	out.m[0][1] = m[2][1] * m[0][2] - m[0][1] * m[2][2];
+	out.m[0][2] = m[0][1] * m[1][2] - m[1][1] * m[0][2];
+
+	out.m[1][0] = m[2][0] * m[1][2] - m[1][0] * m[2][2];
+	out.m[1][1] = m[0][0] * m[2][2] - m[2][0] * m[0][2];
+	out.m[1][2] = m[1][0] * m[0][2] - m[0][0] * m[1][2];
+
+	out.m[2][0] = m[1][0] * m[2][1] - m[2][0] * m[1][1];
+	out.m[2][1] = m[2][0] * m[0][1] - m[0][0] * m[2][1];
+	out.m[2][2] = m[0][0] * m[1][1] - m[1][0] * m[0][1];
+
+	double r = m[0][0] * out.m[0][0] + m[0][1] * out.m[0][1] + m[0][2] * out.m[0][2];
+	if (fabs(r) >= min_tol) {
+		out.m[0][0] /= r;
+		out.m[0][1] /= r;
+		out.m[0][2] /= r;
+		out.m[1][0] /= r;
+		out.m[1][1] /= r;
+		out.m[1][2] /= r;
+		out.m[2][0] /= r;
+		out.m[2][1] /= r;
+		out.m[2][2] /= r;
+	}
+	out.normalize();
+	return out;
+}
+
+bool CMatrix33::normalize()
+{
+	if (fabs(m[2][2] < min_tol))
+		return false;
+	if (fabs(m[2][2] - 1.0) > min_tol)
+	{
+		double s = 1.0 / m[2][2];
+		m[0][0] *= s;
+		m[0][1] *= s;
+		m[0][2] *= s;
+		m[1][0] *= s;
+		m[1][1] *= s;
+		m[1][2] *= s;
+		m[2][0] *= s;
+		m[2][1] *= s;
+		m[2][2] *= s;
+	}
+	return true;
 }
 
 //=====================
@@ -259,7 +379,7 @@ int SUEntity::GetNumAttributeDictionaries()
 {
 	size_t count = 0;
 	SUEntityGetNumAttributeDictionaries(SUAPI(this), &count);
-	return count;
+	return (int)count;
 }
 
 std::vector<SUAttributeDictionary*> SUEntity::GetAttributeDictionaries()
@@ -303,7 +423,7 @@ int SUAttributeDictionary::GetNumKeys()
 {
 	size_t count = 0;
 	SUAttributeDictionaryGetNumKeys(SUAPI(this), &count);
-	return count;
+	return (int)count;
 }
 
 std::vector<std::wstring> SUAttributeDictionary::GetKeys()
@@ -631,6 +751,32 @@ void SUFace::Draw(CMatrix* matrix, SUComponentInstance* pm, TriangleMesh* triMes
 	}
 
 	glEnd();
+}
+
+SUUVHelper* SUFace::GetUVHelper()
+{
+	SUUVHelper * uvHelper;
+	SUResult result = SUFaceGetUVHelper(SUAPI(this), true, false, SU_INVALID, (SUUVHelperRef*)&uvHelper);
+	if (result == SU_ERROR_NONE) {
+		return uvHelper;
+	}
+	return 0;
+}
+
+void SUUVHelper::Release()
+{
+	SUUVHelperRef uvHelper = SUAPI(this);
+	SUUVHelperRelease(&uvHelper);
+}
+
+CMatrix33 SUUVHelper::GetFrontTextureMatrix()
+{
+	return tm1;
+}
+
+CMatrix33 SUUVHelper::GetBackTextureMatrix()
+{
+	return tm2;
 }
 
 bool TriangleMesh::Build(SUFace* face, SUComponentInstance* inst)

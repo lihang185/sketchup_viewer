@@ -65,6 +65,20 @@ public:
 	double w;
 };
 
+class CMatrix33 {
+public:
+	CMatrix33();
+	double get(int i, int j) { return m[i][j]; }
+	std::vector<double> get_data();
+	CMatrix33& fromScale(double u_scale, double v_scale);
+	CMatrix33 multiply(CMatrix33& R);
+
+	CMatrix33 reversed();
+	bool normalize();
+
+private:
+	double m[3][3];
+};
 
 struct CMatrix {
 	CMatrix();
@@ -79,10 +93,10 @@ struct CMatrix {
 	CMatrix multiply(CMatrix& R);
 	void gl_multiply_matrix();
 
+	double m[4][3];
 	double scale;
 	bool isIdentity;
 	bool flags;
-	double m[4][3];
 };
 
 class SUAttributeDictionary;
@@ -183,6 +197,7 @@ public:
 
 class SUMeshHelper;
 class TriangleMesh;
+class SUUVHelper;
 
 class SUFace : public SUDrawingElement
 {
@@ -198,6 +213,28 @@ public:
 	SUMaterial* GetFrontMaterial();
 	SUMaterial* GetBackMaterial();
 	void Draw(CMatrix* matrix, SUComponentInstance* pm, TriangleMesh* triMesh);
+
+	SUUVHelper* GetUVHelper();
+};
+
+class SUUVHelper
+{
+public:
+	SUUVHelper() {}
+	~SUUVHelper() {}
+
+	void Release();
+
+	CMatrix33 GetFrontTextureMatrix();
+	CMatrix33 GetBackTextureMatrix();
+
+private:
+	CMatrix m1;
+	CMatrix m2;
+	CMatrix33 tm1;
+	CMatrix33 tm2;
+	CPlane unknow1;
+	CPlane unknow2;
 };
 
 class TriangleMesh

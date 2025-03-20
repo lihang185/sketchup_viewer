@@ -20,6 +20,7 @@ EPS2 = EPS*EPS
 CVector2D = suapi.CVector2D
 CVector3D = suapi.CVector3D
 CPlane = suapi.CPlane
+CMatrix33 = suapi.CMatrix33
 CMatrix = suapi.CMatrix
 
 SUEntity = suapi.SUEntity

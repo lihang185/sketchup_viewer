@@ -23,6 +23,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="model.cpp" />
+    <ClCompile Include="suapi\cmatrix33_wrapper.cpp" />
     <ClCompile Include="suapi\cmatrix_wrapper.cpp" />
     <ClCompile Include="suapi\cplane_wrapper.cpp" />
     <ClCompile Include="suapi\cvector2d_wrapper.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="suapi\sumaterial_wrapper.cpp" />
     <ClCompile Include="suapi\sumodel_wrapper.cpp" />
     <ClCompile Include="suapi\sutexture_wrapper.cpp" />
+    <ClCompile Include="suapi\suuvhelper_wrapper.cpp" />
     <ClCompile Include="suapi\suvertex_wrapper.cpp" />
     <ClCompile Include="suapi\trianglemesh_wrapper.cpp" />
   </ItemGroup>
@@ -126,6 +128,7 @@
     <ClInclude Include="SketchUpAPI\SketchUpAPI\model\typed_value.h" />
     <ClInclude Include="SketchUpAPI\SketchUpAPI\model\uv_helper.h" />
     <ClInclude Include="SketchUpAPI\SketchUpAPI\model\vertex.h" />
+    <ClInclude Include="suapi\cmatrix33_wrapper.h" />
     <ClInclude Include="suapi\cmatrix_wrapper.h" />
     <ClInclude Include="suapi\cplane_wrapper.h" />
     <ClInclude Include="suapi\cvector2d_wrapper.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="suapi\sumaterial_wrapper.h" />
     <ClInclude Include="suapi\sumodel_wrapper.h" />
     <ClInclude Include="suapi\sutexture_wrapper.h" />
+    <ClInclude Include="suapi\suuvhelper_wrapper.h" />
     <ClInclude Include="suapi\suvertex_wrapper.h" />
     <ClInclude Include="suapi\trianglemesh_wrapper.h" />
   </ItemGroup>

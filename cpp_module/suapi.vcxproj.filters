@@ -96,6 +96,12 @@
     <ClCompile Include="suapi\suattributedictionary_wrapper.cpp">
       <Filter>autogen</Filter>
     </ClCompile>
+    <ClCompile Include="suapi\suuvhelper_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
+    <ClCompile Include="suapi\cmatrix33_wrapper.cpp">
+      <Filter>autogen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model.h">
@@ -399,6 +405,12 @@
       <Filter>autogen</Filter>
     </ClInclude>
     <ClInclude Include="suapi\suattributedictionary_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\suuvhelper_wrapper.h">
+      <Filter>autogen</Filter>
+    </ClInclude>
+    <ClInclude Include="suapi\cmatrix33_wrapper.h">
       <Filter>autogen</Filter>
     </ClInclude>
   </ItemGroup>

@@ -287,6 +287,32 @@ static PyObject *Sbk_SUFaceFunc_GetPlane(PyObject *self)
     return pyResult;
 }
 
+static PyObject *Sbk_SUFaceFunc_GetUVHelper(PyObject *self)
+{
+    ::SUFace *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUFace *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUFACE_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetUVHelper()
+            SUUVHelper * cppResult = cppSelf->GetUVHelper();
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUUVHELPER_IDX]), cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
 static int
 Sbk_SUFace_Init(PyObject *self, PyObject *args, PyObject *kwds)
 {
@@ -328,6 +354,7 @@ static PyMethodDef Sbk_SUFace_methods[] = {
     {"GetNormal", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetNormal), METH_NOARGS},
     {"GetOuterLoop", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetOuterLoop), METH_NOARGS},
     {"GetPlane", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetPlane), METH_NOARGS},
+    {"GetUVHelper", reinterpret_cast<PyCFunction>(Sbk_SUFaceFunc_GetUVHelper), METH_NOARGS},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -444,6 +471,7 @@ static const char *SUFace_SignatureStrings[] = {
     "suapi.SUFace.GetNormal()->suapi.CVector3D",
     "suapi.SUFace.GetOuterLoop()->suapi.SULoop",
     "suapi.SUFace.GetPlane()->suapi.CPlane",
+    "suapi.SUFace.GetUVHelper()->suapi.SUUVHelper",
     "suapi.SUFace()",
     nullptr}; // Sentinel
 
