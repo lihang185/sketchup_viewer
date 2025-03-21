@@ -411,7 +411,7 @@ class SketchupModel:
         for inst2 in comp.d.instances:
             # test boundingbox
             matrix = inst2.GetTransform()
-            m2 = m.multiply(matrix)
+            m2 = m.Multiply(matrix)
             if inst_path is None:
                 inst_path2 = [inst2]
             else:
@@ -603,19 +603,7 @@ class SketchupModel:
         
         for face in filter(lambda e:type(e) is su.SUFace, self.selection):
             #test
-            if False:
-                uvHelper = face.GetUVHelper()
-                tm = uvHelper.GetFrontTextureMatrix()
-                mtl = face.GetFrontMaterial()
-                tex = mtl.GetTexture()
-                scale_u = tex.GetScaleU()
-                scale_v = tex.GetScaleV()
-                sm1 = su.CMatrix33()
-                sm1.fromScale(1.0/scale_u, 1.0/scale_v)
-                tm2 = tm.multiply(sm1)
-                tm3 = tm2.reversed()
-                tm3.get_data()
-            
+           
             mtl = face.GetFrontMaterial()
             if mtl:
                 mtl.d.Bind(gl)
@@ -698,7 +686,7 @@ class SketchupModel:
         #
         for inst in comp.d.instances:
             # test boundingbox
-            m2 = m.multiply(inst.GetTransform())
+            m2 = m.Multiply(inst.GetTransform())
             comp2 = inst.GetDefinition()
             #b = comp2.GetBoundingBox()
             #bbox = m2.transform(b)

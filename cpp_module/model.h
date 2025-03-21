@@ -69,34 +69,38 @@ class CMatrix33 {
 public:
 	CMatrix33();
 	double get(int i, int j) { return m[i][j]; }
-	std::vector<double> get_data();
-	CMatrix33& fromScale(double u_scale, double v_scale);
-	CMatrix33 multiply(CMatrix33& R);
-
-	CMatrix33 reversed();
-	bool normalize();
-
+	std::vector<double> GetData();
 private:
 	double m[3][3];
+};
+
+struct CMatrix43 {
+	CMatrix43();
+	~CMatrix43() {}
+
+	double m[4][3];
+	double scale;
+	bool is_identity;
+	bool flags;
 };
 
 struct CMatrix {
 	CMatrix();
 	~CMatrix() {}
 
-	CVector3D GetAxis(int axis);
-	void SetAxis(int axis, CVector3D v);
-	CVector3D GetRow(int row);
-	void SetRow(int row, CVector3D v);
-	void SetScale(double scale);
-	CVector3D ProjectPoint(CVector3D& point);
-	CMatrix multiply(CMatrix& R);
+	CVector3D TransformPoint(CVector3D& point);
+	CMatrix Multiply(CMatrix& R);
+	CMatrix Multiply2(CMatrix& R);
 	void gl_multiply_matrix();
 
-	double m[4][3];
-	double scale;
-	bool isIdentity;
-	bool flags;
+	std::vector<double> GetData();
+	static CMatrix NewFromData(std::vector<double>& data);
+
+	static CMatrix NewFromTranslate(CVector3D& translate);
+	static CMatrix NewFromRotate(CVector3D& rotate);
+	static CMatrix NewFromScale(CVector3D& scale);
+
+	double m[4][4];
 };
 
 class SUAttributeDictionary;
@@ -229,8 +233,8 @@ public:
 	CMatrix33 GetBackTextureMatrix();
 
 private:
-	CMatrix m1;
-	CMatrix m2;
+	CMatrix43 m1;
+	CMatrix43 m2;
 	CMatrix33 tm1;
 	CMatrix33 tm2;
 	CPlane unknow1;

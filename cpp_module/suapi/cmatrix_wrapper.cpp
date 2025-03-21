@@ -13,6 +13,7 @@
 
 // Extra includes
 #include <model.h>
+#include <vector>
 
 
 #include <cctype>
@@ -134,7 +135,33 @@ Sbk_CMatrix_Init(PyObject *self, PyObject *args, PyObject *kwds)
         return -1;
 }
 
-static PyObject *Sbk_CMatrixFunc_GetAxis(PyObject *self, PyObject *pyArg)
+static PyObject *Sbk_CMatrixFunc_GetData(PyObject *self)
+{
+    ::CMatrix *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // GetData()
+            std::vector<double > cppResult = cppSelf->GetData();
+            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_DOUBLE_IDX], &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+}
+
+static PyObject *Sbk_CMatrixFunc_Multiply(PyObject *self, PyObject *pyArg)
 {
     ::CMatrix *cppSelf = nullptr;
     SBK_UNUSED(cppSelf)
@@ -147,23 +174,30 @@ static PyObject *Sbk_CMatrixFunc_GetAxis(PyObject *self, PyObject *pyArg)
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: CMatrix::GetAxis(int)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
-        overloadId = 0; // GetAxis(int)
+    // 0: CMatrix::Multiply(CMatrix&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), (pyArg)))) {
+        overloadId = 0; // Multiply(CMatrix&)
     }
 
     // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_GetAxis_TypeError;
+    if (overloadId == -1) goto Sbk_CMatrixFunc_Multiply_TypeError;
 
     // Call function/method
     {
-        int cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CMatrix cppArg0_local;
+        ::CMatrix *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
 
         if (!PyErr_Occurred()) {
-            // GetAxis(int)
-            CVector3D cppResult = cppSelf->GetAxis(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
+            // Multiply(CMatrix&)
+            CMatrix cppResult = cppSelf->Multiply(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
         }
     }
 
@@ -173,12 +207,12 @@ static PyObject *Sbk_CMatrixFunc_GetAxis(PyObject *self, PyObject *pyArg)
     }
     return pyResult;
 
-    Sbk_CMatrixFunc_GetAxis_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.GetAxis");
+    Sbk_CMatrixFunc_Multiply_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.Multiply");
         return {};
 }
 
-static PyObject *Sbk_CMatrixFunc_GetRow(PyObject *self, PyObject *pyArg)
+static PyObject *Sbk_CMatrixFunc_Multiply2(PyObject *self, PyObject *pyArg)
 {
     ::CMatrix *cppSelf = nullptr;
     SBK_UNUSED(cppSelf)
@@ -191,23 +225,30 @@ static PyObject *Sbk_CMatrixFunc_GetRow(PyObject *self, PyObject *pyArg)
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: CMatrix::GetRow(int)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArg)))) {
-        overloadId = 0; // GetRow(int)
+    // 0: CMatrix::Multiply2(CMatrix&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), (pyArg)))) {
+        overloadId = 0; // Multiply2(CMatrix&)
     }
 
     // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_GetRow_TypeError;
+    if (overloadId == -1) goto Sbk_CMatrixFunc_Multiply2_TypeError;
 
     // Call function/method
     {
-        int cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CMatrix cppArg0_local;
+        ::CMatrix *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
 
         if (!PyErr_Occurred()) {
-            // GetRow(int)
-            CVector3D cppResult = cppSelf->GetRow(cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
+            // Multiply2(CMatrix&)
+            CMatrix cppResult = cppSelf->Multiply2(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
         }
     }
 
@@ -217,31 +258,65 @@ static PyObject *Sbk_CMatrixFunc_GetRow(PyObject *self, PyObject *pyArg)
     }
     return pyResult;
 
-    Sbk_CMatrixFunc_GetRow_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.GetRow");
+    Sbk_CMatrixFunc_Multiply2_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.Multiply2");
         return {};
 }
 
-static PyObject *Sbk_CMatrixFunc_ProjectPoint(PyObject *self, PyObject *pyArg)
+static PyObject *Sbk_CMatrixFunc_NewFromData(PyObject *self, PyObject *pyArg)
 {
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
     PyObject *pyResult{};
     int overloadId = -1;
     PythonToCppFunc pythonToCpp{};
     SBK_UNUSED(pythonToCpp)
 
     // Overloaded function decisor
-    // 0: CMatrix::ProjectPoint(CVector3D&)
+    // 0: static CMatrix::NewFromData(std::vector<double>&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_DOUBLE_IDX], (pyArg)))) {
+        overloadId = 0; // NewFromData(std::vector<double>&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_NewFromData_TypeError;
+
+    // Call function/method
+    {
+        ::std::vector<double > cppArg0;
+        pythonToCpp(pyArg, &cppArg0);
+
+        if (!PyErr_Occurred()) {
+            // NewFromData(std::vector<double>&)
+            CMatrix cppResult = ::CMatrix::NewFromData(cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_NewFromData_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.NewFromData");
+        return {};
+}
+
+static PyObject *Sbk_CMatrixFunc_NewFromRotate(PyObject *self, PyObject *pyArg)
+{
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: static CMatrix::NewFromRotate(CVector3D&)
     if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
-        overloadId = 0; // ProjectPoint(CVector3D&)
+        overloadId = 0; // NewFromRotate(CVector3D&)
     }
 
     // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_ProjectPoint_TypeError;
+    if (overloadId == -1) goto Sbk_CMatrixFunc_NewFromRotate_TypeError;
 
     // Call function/method
     {
@@ -256,8 +331,151 @@ static PyObject *Sbk_CMatrixFunc_ProjectPoint(PyObject *self, PyObject *pyArg)
 
 
         if (!PyErr_Occurred()) {
-            // ProjectPoint(CVector3D&)
-            CVector3D cppResult = cppSelf->ProjectPoint(*cppArg0);
+            // NewFromRotate(CVector3D&)
+            CMatrix cppResult = ::CMatrix::NewFromRotate(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_NewFromRotate_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.NewFromRotate");
+        return {};
+}
+
+static PyObject *Sbk_CMatrixFunc_NewFromScale(PyObject *self, PyObject *pyArg)
+{
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: static CMatrix::NewFromScale(CVector3D&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
+        overloadId = 0; // NewFromScale(CVector3D&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_NewFromScale_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CVector3D cppArg0_local;
+        ::CVector3D *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
+
+        if (!PyErr_Occurred()) {
+            // NewFromScale(CVector3D&)
+            CMatrix cppResult = ::CMatrix::NewFromScale(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_NewFromScale_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.NewFromScale");
+        return {};
+}
+
+static PyObject *Sbk_CMatrixFunc_NewFromTranslate(PyObject *self, PyObject *pyArg)
+{
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: static CMatrix::NewFromTranslate(CVector3D&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
+        overloadId = 0; // NewFromTranslate(CVector3D&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_NewFromTranslate_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CVector3D cppArg0_local;
+        ::CVector3D *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
+
+        if (!PyErr_Occurred()) {
+            // NewFromTranslate(CVector3D&)
+            CMatrix cppResult = ::CMatrix::NewFromTranslate(*cppArg0);
+            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_CMatrixFunc_NewFromTranslate_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.NewFromTranslate");
+        return {};
+}
+
+static PyObject *Sbk_CMatrixFunc_TransformPoint(PyObject *self, PyObject *pyArg)
+{
+    ::CMatrix *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: CMatrix::TransformPoint(CVector3D&)
+    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArg)))) {
+        overloadId = 0; // TransformPoint(CVector3D&)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_CMatrixFunc_TransformPoint_TypeError;
+
+    // Call function/method
+    {
+        if (!Shiboken::Object::isValid(pyArg))
+            return {};
+        ::CVector3D cppArg0_local;
+        ::CVector3D *cppArg0 = &cppArg0_local;
+        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), pythonToCpp))
+            pythonToCpp(pyArg, &cppArg0_local);
+        else
+            pythonToCpp(pyArg, &cppArg0);
+
+
+        if (!PyErr_Occurred()) {
+            // TransformPoint(CVector3D&)
+            CVector3D cppResult = cppSelf->TransformPoint(*cppArg0);
             pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), &cppResult);
         }
     }
@@ -268,163 +486,8 @@ static PyObject *Sbk_CMatrixFunc_ProjectPoint(PyObject *self, PyObject *pyArg)
     }
     return pyResult;
 
-    Sbk_CMatrixFunc_ProjectPoint_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.ProjectPoint");
-        return {};
-}
-
-static PyObject *Sbk_CMatrixFunc_SetAxis(PyObject *self, PyObject *args)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    int numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "SetAxis", 2, 2, &(pyArgs[0]), &(pyArgs[1])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: CMatrix::SetAxis(int,CVector3D)
-    if (numArgs == 2
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppValueConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArgs[1])))) {
-        overloadId = 0; // SetAxis(int,CVector3D)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_SetAxis_TypeError;
-
-    // Call function/method
-    {
-        int cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        if (!Shiboken::Object::isValid(pyArgs[1]))
-            return {};
-        ::CVector3D cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
-
-        if (!PyErr_Occurred()) {
-            // SetAxis(int,CVector3D)
-            cppSelf->SetAxis(cppArg0, cppArg1);
-        }
-    }
-
-    if (PyErr_Occurred()) {
-        return {};
-    }
-    Py_RETURN_NONE;
-
-    Sbk_CMatrixFunc_SetAxis_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "suapi.CMatrix.SetAxis");
-        return {};
-}
-
-static PyObject *Sbk_CMatrixFunc_SetRow(PyObject *self, PyObject *args)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    int numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "SetRow", 2, 2, &(pyArgs[0]), &(pyArgs[1])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: CMatrix::SetRow(int,CVector3D)
-    if (numArgs == 2
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<int>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppValueConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CVECTOR3D_IDX]), (pyArgs[1])))) {
-        overloadId = 0; // SetRow(int,CVector3D)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_SetRow_TypeError;
-
-    // Call function/method
-    {
-        int cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        if (!Shiboken::Object::isValid(pyArgs[1]))
-            return {};
-        ::CVector3D cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
-
-        if (!PyErr_Occurred()) {
-            // SetRow(int,CVector3D)
-            cppSelf->SetRow(cppArg0, cppArg1);
-        }
-    }
-
-    if (PyErr_Occurred()) {
-        return {};
-    }
-    Py_RETURN_NONE;
-
-    Sbk_CMatrixFunc_SetRow_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "suapi.CMatrix.SetRow");
-        return {};
-}
-
-static PyObject *Sbk_CMatrixFunc_SetScale(PyObject *self, PyObject *pyArg)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: CMatrix::SetScale(double)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArg)))) {
-        overloadId = 0; // SetScale(double)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_SetScale_TypeError;
-
-    // Call function/method
-    {
-        double cppArg0;
-        pythonToCpp(pyArg, &cppArg0);
-
-        if (!PyErr_Occurred()) {
-            // SetScale(double)
-            cppSelf->SetScale(cppArg0);
-        }
-    }
-
-    if (PyErr_Occurred()) {
-        return {};
-    }
-    Py_RETURN_NONE;
-
-    Sbk_CMatrixFunc_SetScale_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.SetScale");
+    Sbk_CMatrixFunc_TransformPoint_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.TransformPoint");
         return {};
 }
 
@@ -451,57 +514,6 @@ static PyObject *Sbk_CMatrixFunc_gl_multiply_matrix(PyObject *self)
     Py_RETURN_NONE;
 }
 
-static PyObject *Sbk_CMatrixFunc_multiply(PyObject *self, PyObject *pyArg)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: CMatrix::multiply(CMatrix&)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), (pyArg)))) {
-        overloadId = 0; // multiply(CMatrix&)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrixFunc_multiply_TypeError;
-
-    // Call function/method
-    {
-        if (!Shiboken::Object::isValid(pyArg))
-            return {};
-        ::CMatrix cppArg0_local;
-        ::CMatrix *cppArg0 = &cppArg0_local;
-        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), pythonToCpp))
-            pythonToCpp(pyArg, &cppArg0_local);
-        else
-            pythonToCpp(pyArg, &cppArg0);
-
-
-        if (!PyErr_Occurred()) {
-            // multiply(CMatrix&)
-            CMatrix cppResult = cppSelf->multiply(*cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX_IDX]), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_CMatrixFunc_multiply_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix.multiply");
-        return {};
-}
-
 static PyObject *Sbk_CMatrix___copy__(PyObject *self)
 {
     if (!Shiboken::Object::isValid(self))
@@ -516,131 +528,18 @@ static PyObject *Sbk_CMatrix___copy__(PyObject *self)
 }
 
 static PyMethodDef Sbk_CMatrix_methods[] = {
-    {"GetAxis", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_GetAxis), METH_O},
-    {"GetRow", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_GetRow), METH_O},
-    {"ProjectPoint", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_ProjectPoint), METH_O},
-    {"SetAxis", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_SetAxis), METH_VARARGS},
-    {"SetRow", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_SetRow), METH_VARARGS},
-    {"SetScale", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_SetScale), METH_O},
+    {"GetData", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_GetData), METH_NOARGS},
+    {"Multiply", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_Multiply), METH_O},
+    {"Multiply2", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_Multiply2), METH_O},
+    {"NewFromData", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_NewFromData), METH_O|METH_STATIC},
+    {"NewFromRotate", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_NewFromRotate), METH_O|METH_STATIC},
+    {"NewFromScale", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_NewFromScale), METH_O|METH_STATIC},
+    {"NewFromTranslate", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_NewFromTranslate), METH_O|METH_STATIC},
+    {"TransformPoint", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_TransformPoint), METH_O},
     {"gl_multiply_matrix", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_gl_multiply_matrix), METH_NOARGS},
-    {"multiply", reinterpret_cast<PyCFunction>(Sbk_CMatrixFunc_multiply), METH_O},
 
     {"__copy__", reinterpret_cast<PyCFunction>(Sbk_CMatrix___copy__), METH_NOARGS},
     {nullptr, nullptr} // Sentinel
-};
-
-static PyObject *Sbk_CMatrix_get_scale(PyObject *self, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return nullptr;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyOut = {};
-    pyOut = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<double>(), &cppSelf->scale);
-    return pyOut;
-}
-static int Sbk_CMatrix_set_scale(PyObject *self, PyObject *pyIn, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return 0;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    if (pyIn == nullptr) {
-        PyErr_SetString(PyExc_TypeError, "'scale' may not be deleted");
-        return -1;
-    }
-    PythonToCppFunc pythonToCpp{nullptr};
-    if (!(pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyIn)))) {
-        PyErr_SetString(PyExc_TypeError, "wrong type attributed to 'scale', 'double' or convertible type expected");
-        return -1;
-    }
-
-    double& cppOut_ptr = cppSelf->scale;
-    pythonToCpp(pyIn, &cppOut_ptr);
-
-    return 0;
-}
-
-static PyObject *Sbk_CMatrix_get_isIdentity(PyObject *self, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return nullptr;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    bool cppOut_local = cppSelf->isIdentity;
-    PyObject *pyOut = {};
-    pyOut = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppOut_local);
-    return pyOut;
-}
-static int Sbk_CMatrix_set_isIdentity(PyObject *self, PyObject *pyIn, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return 0;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    if (pyIn == nullptr) {
-        PyErr_SetString(PyExc_TypeError, "'isIdentity' may not be deleted");
-        return -1;
-    }
-    PythonToCppFunc pythonToCpp{nullptr};
-    if (!(pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyIn)))) {
-        PyErr_SetString(PyExc_TypeError, "wrong type attributed to 'isIdentity', 'bool' or convertible type expected");
-        return -1;
-    }
-
-    bool cppOut_local = cppSelf->isIdentity;
-    pythonToCpp(pyIn, &cppOut_local);
-    cppSelf->isIdentity = cppOut_local;
-
-    return 0;
-}
-
-static PyObject *Sbk_CMatrix_get_flags(PyObject *self, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return nullptr;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    bool cppOut_local = cppSelf->flags;
-    PyObject *pyOut = {};
-    pyOut = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppOut_local);
-    return pyOut;
-}
-static int Sbk_CMatrix_set_flags(PyObject *self, PyObject *pyIn, void *)
-{
-    ::CMatrix *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return 0;
-    cppSelf = reinterpret_cast< ::CMatrix *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX_IDX], reinterpret_cast<SbkObject *>(self)));
-    if (pyIn == nullptr) {
-        PyErr_SetString(PyExc_TypeError, "'flags' may not be deleted");
-        return -1;
-    }
-    PythonToCppFunc pythonToCpp{nullptr};
-    if (!(pythonToCpp = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), (pyIn)))) {
-        PyErr_SetString(PyExc_TypeError, "wrong type attributed to 'flags', 'bool' or convertible type expected");
-        return -1;
-    }
-
-    bool cppOut_local = cppSelf->flags;
-    pythonToCpp(pyIn, &cppOut_local);
-    cppSelf->flags = cppOut_local;
-
-    return 0;
-}
-
-// Getters and Setters for CMatrix
-static PyGetSetDef Sbk_CMatrix_getsetlist[] = {
-    {const_cast<char *>("scale"), Sbk_CMatrix_get_scale, Sbk_CMatrix_set_scale},
-    {const_cast<char *>("isIdentity"), Sbk_CMatrix_get_isIdentity, Sbk_CMatrix_set_isIdentity},
-    {const_cast<char *>("flags"), Sbk_CMatrix_get_flags, Sbk_CMatrix_set_flags},
-    {nullptr} // Sentinel
 };
 
 } // extern "C"
@@ -676,7 +575,7 @@ static PyType_Slot Sbk_CMatrix_slots[] = {
     {Py_tp_iter,        nullptr},
     {Py_tp_iternext,    nullptr},
     {Py_tp_methods,     reinterpret_cast<void *>(Sbk_CMatrix_methods)},
-    {Py_tp_getset,      reinterpret_cast<void *>(Sbk_CMatrix_getsetlist)},
+    {Py_tp_getset,      nullptr},
     {Py_tp_init,        reinterpret_cast<void *>(Sbk_CMatrix_Init)},
     {Py_tp_new,         reinterpret_cast<void *>(SbkObjectTpNew)},
     {0, nullptr}
@@ -747,14 +646,15 @@ static PythonToCppFunc is_CMatrix_PythonToCpp_CMatrix_COPY_Convertible(PyObject 
 static const char *CMatrix_SignatureStrings[] = {
     "1:suapi.CMatrix()",
     "0:suapi.CMatrix(CMatrix:suapi.CMatrix)",
-    "suapi.CMatrix.GetAxis(axis:int)->suapi.CVector3D",
-    "suapi.CMatrix.GetRow(row:int)->suapi.CVector3D",
-    "suapi.CMatrix.ProjectPoint(point:suapi.CVector3D)->suapi.CVector3D",
-    "suapi.CMatrix.SetAxis(axis:int,v:suapi.CVector3D)",
-    "suapi.CMatrix.SetRow(row:int,v:suapi.CVector3D)",
-    "suapi.CMatrix.SetScale(scale:double)",
+    "suapi.CMatrix.GetData()->std.vector[double]",
+    "suapi.CMatrix.Multiply(R:suapi.CMatrix)->suapi.CMatrix",
+    "suapi.CMatrix.Multiply2(R:suapi.CMatrix)->suapi.CMatrix",
+    "suapi.CMatrix.NewFromData(data:std.vector[double])->suapi.CMatrix",
+    "suapi.CMatrix.NewFromRotate(rotate:suapi.CVector3D)->suapi.CMatrix",
+    "suapi.CMatrix.NewFromScale(scale:suapi.CVector3D)->suapi.CMatrix",
+    "suapi.CMatrix.NewFromTranslate(translate:suapi.CVector3D)->suapi.CMatrix",
+    "suapi.CMatrix.TransformPoint(point:suapi.CVector3D)->suapi.CVector3D",
     "suapi.CMatrix.gl_multiply_matrix()",
-    "suapi.CMatrix.multiply(R:suapi.CMatrix)->suapi.CMatrix",
     "suapi.CMatrix.__copy__()",
     nullptr}; // Sentinel
 

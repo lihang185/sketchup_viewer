@@ -118,13 +118,12 @@ class MoveTool(BaseTool):
         diff = self.end_point - self.start_point
         trans = diff - self.prev_diff
         self.prev_diff = diff
-        matrix = su.CMatrix()
-        matrix.SetRow(3, trans);
+        matrix = su.CMatrix.NewFromTranslate(trans)
         
         for e in self.move_list:
             if type(e) is su.SUComponentInstance:
                 m1 = e.GetTransform()
-                m2 = matrix.multiply(m1)
+                m2 = matrix.Multiply(m1)
                 e.SetTransform(m2)
             elif type(e) is su.CVertex:
                 e.p = matrix.map(e.p)

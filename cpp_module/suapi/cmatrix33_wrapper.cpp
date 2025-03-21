@@ -12,7 +12,6 @@
 // inner classes
 
 // Extra includes
-#include <model.h>
 #include <vector>
 
 
@@ -135,7 +134,7 @@ Sbk_CMatrix33_Init(PyObject *self, PyObject *args, PyObject *kwds)
         return -1;
 }
 
-static PyObject *Sbk_CMatrix33Func_fromScale(PyObject *self, PyObject *args)
+static PyObject *Sbk_CMatrix33Func_GetData(PyObject *self)
 {
     ::CMatrix33 *cppSelf = nullptr;
     SBK_UNUSED(cppSelf)
@@ -143,42 +142,14 @@ static PyObject *Sbk_CMatrix33Func_fromScale(PyObject *self, PyObject *args)
         return {};
     cppSelf = reinterpret_cast< ::CMatrix33 *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX33_IDX], reinterpret_cast<SbkObject *>(self)));
     PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp[] = { nullptr, nullptr };
-    SBK_UNUSED(pythonToCpp)
-    int numArgs = PyTuple_GET_SIZE(args);
-    SBK_UNUSED(numArgs)
-    PyObject *pyArgs[] = {0, 0};
-
-    // invalid argument lengths
-
-
-    if (!PyArg_UnpackTuple(args, "fromScale", 2, 2, &(pyArgs[0]), &(pyArgs[1])))
-        return {};
-
-
-    // Overloaded function decisor
-    // 0: CMatrix33::fromScale(double,double)
-    if (numArgs == 2
-        && (pythonToCpp[0] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[0])))
-        && (pythonToCpp[1] = Shiboken::Conversions::isPythonToCppConvertible(Shiboken::Conversions::PrimitiveTypeConverter<double>(), (pyArgs[1])))) {
-        overloadId = 0; // fromScale(double,double)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrix33Func_fromScale_TypeError;
 
     // Call function/method
     {
-        double cppArg0;
-        pythonToCpp[0](pyArgs[0], &cppArg0);
-        double cppArg1;
-        pythonToCpp[1](pyArgs[1], &cppArg1);
 
         if (!PyErr_Occurred()) {
-            // fromScale(double,double)
-            CMatrix33 & cppResult = cppSelf->fromScale(cppArg0, cppArg1);
-            pyResult = Shiboken::Conversions::referenceToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX33_IDX]), &cppResult);
+            // GetData()
+            std::vector<double > cppResult = cppSelf->GetData();
+            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_DOUBLE_IDX], &cppResult);
         }
     }
 
@@ -187,10 +158,6 @@ static PyObject *Sbk_CMatrix33Func_fromScale(PyObject *self, PyObject *args)
         return {};
     }
     return pyResult;
-
-    Sbk_CMatrix33Func_fromScale_TypeError:
-        Shiboken::setErrorAboutWrongArguments(args, "suapi.CMatrix33.fromScale");
-        return {};
 }
 
 static PyObject *Sbk_CMatrix33Func_get(PyObject *self, PyObject *args)
@@ -251,135 +218,6 @@ static PyObject *Sbk_CMatrix33Func_get(PyObject *self, PyObject *args)
         return {};
 }
 
-static PyObject *Sbk_CMatrix33Func_get_data(PyObject *self)
-{
-    ::CMatrix33 *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix33 *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX33_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // get_data()
-            std::vector<double > cppResult = cppSelf->get_data();
-            pyResult = Shiboken::Conversions::copyToPython(SbksuapiTypeConverters[SBK_SUAPI_STD_VECTOR_DOUBLE_IDX], &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_CMatrix33Func_multiply(PyObject *self, PyObject *pyArg)
-{
-    ::CMatrix33 *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix33 *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX33_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-    int overloadId = -1;
-    PythonToCppFunc pythonToCpp{};
-    SBK_UNUSED(pythonToCpp)
-
-    // Overloaded function decisor
-    // 0: CMatrix33::multiply(CMatrix33&)
-    if ((pythonToCpp = Shiboken::Conversions::isPythonToCppReferenceConvertible(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX33_IDX]), (pyArg)))) {
-        overloadId = 0; // multiply(CMatrix33&)
-    }
-
-    // Function signature not found.
-    if (overloadId == -1) goto Sbk_CMatrix33Func_multiply_TypeError;
-
-    // Call function/method
-    {
-        if (!Shiboken::Object::isValid(pyArg))
-            return {};
-        ::CMatrix33 cppArg0_local;
-        ::CMatrix33 *cppArg0 = &cppArg0_local;
-        if (Shiboken::Conversions::isImplicitConversion(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX33_IDX]), pythonToCpp))
-            pythonToCpp(pyArg, &cppArg0_local);
-        else
-            pythonToCpp(pyArg, &cppArg0);
-
-
-        if (!PyErr_Occurred()) {
-            // multiply(CMatrix33&)
-            CMatrix33 cppResult = cppSelf->multiply(*cppArg0);
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX33_IDX]), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-
-    Sbk_CMatrix33Func_multiply_TypeError:
-        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.CMatrix33.multiply");
-        return {};
-}
-
-static PyObject *Sbk_CMatrix33Func_normalize(PyObject *self)
-{
-    ::CMatrix33 *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix33 *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX33_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // normalize()
-            bool cppResult = cppSelf->normalize();
-            pyResult = Shiboken::Conversions::copyToPython(Shiboken::Conversions::PrimitiveTypeConverter<bool>(), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
-static PyObject *Sbk_CMatrix33Func_reversed(PyObject *self)
-{
-    ::CMatrix33 *cppSelf = nullptr;
-    SBK_UNUSED(cppSelf)
-    if (!Shiboken::Object::isValid(self))
-        return {};
-    cppSelf = reinterpret_cast< ::CMatrix33 *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_CMATRIX33_IDX], reinterpret_cast<SbkObject *>(self)));
-    PyObject *pyResult{};
-
-    // Call function/method
-    {
-
-        if (!PyErr_Occurred()) {
-            // reversed()
-            CMatrix33 cppResult = cppSelf->reversed();
-            pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_CMATRIX33_IDX]), &cppResult);
-        }
-    }
-
-    if (PyErr_Occurred() || !pyResult) {
-        Py_XDECREF(pyResult);
-        return {};
-    }
-    return pyResult;
-}
-
 static PyObject *Sbk_CMatrix33___copy__(PyObject *self)
 {
     if (!Shiboken::Object::isValid(self))
@@ -394,12 +232,8 @@ static PyObject *Sbk_CMatrix33___copy__(PyObject *self)
 }
 
 static PyMethodDef Sbk_CMatrix33_methods[] = {
-    {"fromScale", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_fromScale), METH_VARARGS},
+    {"GetData", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_GetData), METH_NOARGS},
     {"get", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_get), METH_VARARGS},
-    {"get_data", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_get_data), METH_NOARGS},
-    {"multiply", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_multiply), METH_O},
-    {"normalize", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_normalize), METH_NOARGS},
-    {"reversed", reinterpret_cast<PyCFunction>(Sbk_CMatrix33Func_reversed), METH_NOARGS},
 
     {"__copy__", reinterpret_cast<PyCFunction>(Sbk_CMatrix33___copy__), METH_NOARGS},
     {nullptr, nullptr} // Sentinel
@@ -509,12 +343,8 @@ static PythonToCppFunc is_CMatrix33_PythonToCpp_CMatrix33_COPY_Convertible(PyObj
 static const char *CMatrix33_SignatureStrings[] = {
     "1:suapi.CMatrix33()",
     "0:suapi.CMatrix33(CMatrix33:suapi.CMatrix33)",
-    "suapi.CMatrix33.fromScale(u_scale:double,v_scale:double)->suapi.CMatrix33",
+    "suapi.CMatrix33.GetData()->std.vector[double]",
     "suapi.CMatrix33.get(i:int,j:int)->double",
-    "suapi.CMatrix33.get_data()->std.vector[double]",
-    "suapi.CMatrix33.multiply(R:suapi.CMatrix33)->suapi.CMatrix33",
-    "suapi.CMatrix33.normalize()->bool",
-    "suapi.CMatrix33.reversed()->suapi.CMatrix33",
     "suapi.CMatrix33.__copy__()",
     nullptr}; // Sentinel
 

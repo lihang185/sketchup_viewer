@@ -137,7 +137,7 @@ CMatrix33::CMatrix33()
 	m[2][2] = 1.0;
 }
 
-std::vector<double> CMatrix33::get_data()
+std::vector<double> CMatrix33::GetData()
 {
 	std::vector<double> data(9);
 	data[0] = m[0][0];
@@ -152,96 +152,11 @@ std::vector<double> CMatrix33::get_data()
 	return data;
 }
 
-CMatrix33& CMatrix33::fromScale(double u_scale, double v_scale)
-{
-	m[0][0] = u_scale;
-	m[0][1] = 0.0;
-	m[0][2] = 0.0;
-
-	m[1][0] = 0.0;
-	m[1][1] = v_scale;
-	m[1][2] = 0.0;
-
-	m[2][0] = 0.0;
-	m[2][1] = 0.0;
-	m[2][2] = 1.0;
-	return *this;
-}
-
-CMatrix33 CMatrix33::multiply(CMatrix33& R)
-{
-	CMatrix33 out;
-	out.m[0][0] = m[0][0] * R.m[0][0] + m[0][1] * R.m[1][0] + m[0][2] * R.m[2][0];
-	out.m[0][1] = m[0][0] * R.m[0][1] + m[0][1] * R.m[1][1] + m[0][2] * R.m[2][1];
-	out.m[0][2] = m[0][0] * R.m[0][2] + m[0][1] * R.m[1][2] + m[0][2] * R.m[2][2];
-
-	out.m[1][0] = m[1][0] * R.m[0][0] + m[1][1] * R.m[1][0] + m[1][2] * R.m[2][0];
-	out.m[1][1] = m[1][0] * R.m[0][1] + m[1][1] * R.m[1][1] + m[1][2] * R.m[2][1];
-	out.m[1][2] = m[1][0] * R.m[0][2] + m[1][1] * R.m[1][2] + m[1][2] * R.m[2][2];
-
-	out.m[2][0] = m[2][0] * R.m[0][0] + m[2][1] * R.m[1][0] + m[2][2] * R.m[2][0];
-	out.m[2][1] = m[2][0] * R.m[0][1] + m[2][1] * R.m[1][1] + m[2][2] * R.m[2][1];
-	out.m[2][2] = m[2][0] * R.m[0][2] + m[2][1] * R.m[1][2] + m[2][2] * R.m[2][2];
-
-	return out;
-}
-
-CMatrix33 CMatrix33::reversed()
-{
-	CMatrix33 out;
-	out.m[0][0] = m[1][1] * m[2][2] - m[2][1] * m[1][2];
-	out.m[0][1] = m[2][1] * m[0][2] - m[0][1] * m[2][2];
-	out.m[0][2] = m[0][1] * m[1][2] - m[1][1] * m[0][2];
-
-	out.m[1][0] = m[2][0] * m[1][2] - m[1][0] * m[2][2];
-	out.m[1][1] = m[0][0] * m[2][2] - m[2][0] * m[0][2];
-	out.m[1][2] = m[1][0] * m[0][2] - m[0][0] * m[1][2];
-
-	out.m[2][0] = m[1][0] * m[2][1] - m[2][0] * m[1][1];
-	out.m[2][1] = m[2][0] * m[0][1] - m[0][0] * m[2][1];
-	out.m[2][2] = m[0][0] * m[1][1] - m[1][0] * m[0][1];
-
-	double r = m[0][0] * out.m[0][0] + m[0][1] * out.m[0][1] + m[0][2] * out.m[0][2];
-	if (fabs(r) >= min_tol) {
-		out.m[0][0] /= r;
-		out.m[0][1] /= r;
-		out.m[0][2] /= r;
-		out.m[1][0] /= r;
-		out.m[1][1] /= r;
-		out.m[1][2] /= r;
-		out.m[2][0] /= r;
-		out.m[2][1] /= r;
-		out.m[2][2] /= r;
-	}
-	out.normalize();
-	return out;
-}
-
-bool CMatrix33::normalize()
-{
-	if (fabs(m[2][2] < min_tol))
-		return false;
-	if (fabs(m[2][2] - 1.0) > min_tol)
-	{
-		double s = 1.0 / m[2][2];
-		m[0][0] *= s;
-		m[0][1] *= s;
-		m[0][2] *= s;
-		m[1][0] *= s;
-		m[1][1] *= s;
-		m[1][2] *= s;
-		m[2][0] *= s;
-		m[2][1] *= s;
-		m[2][2] *= s;
-	}
-	return true;
-}
-
 //=====================
-//  CMatrix
+//  CMatrix43
 //
 //=====================
-CMatrix::CMatrix()
+CMatrix43::CMatrix43()
 {
 	m[0][0] = 1.0;
 	m[0][1] = 0.0;
@@ -260,92 +175,171 @@ CMatrix::CMatrix()
 	m[3][2] = 0.0;
 
 	scale = 1.0;
-	isIdentity = true;
+	is_identity = true;
 	flags = true;
 }
 
 
-CVector3D CMatrix::GetAxis(int axis)
+//=====================
+//  CMatrix
+//
+//=====================
+CMatrix::CMatrix()
+{
+	m[0][0] = 1.0;
+	m[0][1] = 0.0;
+	m[0][2] = 0.0;
+	m[0][3] = 0.0;
+
+	m[1][0] = 0.0;
+	m[1][1] = 1.0;
+	m[1][2] = 0.0;
+	m[1][3] = 0.0;
+
+	m[2][0] = 0.0;
+	m[2][1] = 0.0;
+	m[2][2] = 1.0;
+	m[2][3] = 0.0;
+
+	m[3][0] = 0.0;
+	m[3][1] = 0.0;
+	m[3][2] = 0.0;
+	m[3][3] = 1.0;
+}
+
+CVector3D CMatrix::TransformPoint(CVector3D& R)
 {
 	CVector3D out;
-	out.x = m[0][axis];
-	out.y = m[1][axis];
-	out.z = m[2][axis];
+	out.x = m[0][0] * R.x + m[1][0] * R.y + m[2][0] * R.z + m[3][0];
+	out.y = m[0][1] * R.x + m[1][1] * R.y + m[2][1] * R.z + m[3][1];
+	out.z = m[0][2] * R.x + m[1][2] * R.y + m[2][2] * R.z + m[3][2];
 	return out;
 }
 
-void CMatrix::SetAxis(int axis, CVector3D v)
-{
-	m[0][axis] = v.x;
-	m[1][axis] = v.y;
-	m[2][axis] = v.z;
-}
-
-CVector3D CMatrix::GetRow(int row)
-{
-	CVector3D out;
-	out.x = m[row][0];
-	out.y = m[row][1];
-	out.z = m[row][2];
-	return out;
-}
-
-
-void CMatrix::SetRow(int row, CVector3D v)
-{
-	m[row][0] = v.x;
-	m[row][1] = v.y;
-	m[row][2] = v.z;
-}
-
-void CMatrix::SetScale(double _scale)
-{
-	scale = _scale;
-}
-
-CVector3D CMatrix::ProjectPoint(CVector3D& v)
-{
-	CVector3D out;
-	out.x = v.x * m[0][0] + v.y * m[0][1] + v.z * m[0][2] + m[3][0];
-	out.y = v.x * m[1][0] + v.y * m[1][1] + v.z * m[1][2] + m[3][1];
-	out.z = v.x * m[2][0] + v.y * m[2][1] + v.z * m[2][2] + m[3][2];
-	return out;
-}
-
-
-CMatrix CMatrix::multiply(CMatrix& R)
+CMatrix CMatrix::Multiply2(CMatrix& R)
 {
 	CMatrix out;
-	out.m[0][0] = m[0][0] * R.m[0][0] + m[0][1] * R.m[1][0] + m[0][2] * R.m[2][0];
-	out.m[0][1] = m[0][0] * R.m[0][1] + m[0][1] * R.m[1][1] + m[0][2] * R.m[2][1];
-	out.m[0][2] = m[0][0] * R.m[0][2] + m[0][1] * R.m[1][2] + m[0][2] * R.m[2][2];
+	out.m[0][0] = m[0][0] * R.m[0][0] + m[1][0] * R.m[0][1] + m[2][0] * R.m[0][2];
+	out.m[0][1] = m[0][1] * R.m[0][0] + m[1][1] * R.m[0][1] + m[2][1] * R.m[0][2];
+	out.m[0][2] = m[0][2] * R.m[0][0] + m[1][2] * R.m[0][1] + m[2][2] * R.m[0][2];
+	out.m[0][3] = 0.0;
 
-	out.m[1][0] = m[1][0] * R.m[0][0] + m[1][1] * R.m[1][0] + m[1][2] * R.m[2][0];
-	out.m[1][1] = m[1][0] * R.m[0][1] + m[1][1] * R.m[1][1] + m[1][2] * R.m[2][1];
-	out.m[1][2] = m[1][0] * R.m[0][2] + m[1][1] * R.m[1][2] + m[1][2] * R.m[2][2];
+	out.m[1][0] = m[0][0] * R.m[1][0] + m[1][0] * R.m[1][1] + m[2][0] * R.m[1][2];
+	out.m[1][1] = m[0][1] * R.m[1][0] + m[1][1] * R.m[1][1] + m[2][1] * R.m[1][2];
+	out.m[1][2] = m[0][2] * R.m[1][0] + m[1][2] * R.m[1][1] + m[2][2] * R.m[1][2];
+	out.m[1][3] = 0.0;
 
-	out.m[2][0] = m[2][0] * R.m[0][0] + m[2][1] * R.m[1][0] + m[2][2] * R.m[2][0];
-	out.m[2][1] = m[2][0] * R.m[0][1] + m[2][1] * R.m[1][1] + m[2][2] * R.m[2][1];
-	out.m[2][2] = m[2][0] * R.m[0][2] + m[2][1] * R.m[1][2] + m[2][2] * R.m[2][2];
+	out.m[2][0] = m[0][0] * R.m[2][0] + m[1][0] * R.m[2][1] + m[2][0] * R.m[2][2];
+	out.m[2][1] = m[0][1] * R.m[2][0] + m[1][1] * R.m[2][1] + m[2][1] * R.m[2][2];
+	out.m[2][2] = m[0][2] * R.m[2][0] + m[1][2] * R.m[2][1] + m[2][2] * R.m[2][2];
+	out.m[2][3] = 0.0;
 
-	out.m[3][0] = R.m[3][0] * m[0][0] + R.m[3][1] * m[0][1] + R.m[3][2] * m[0][2] + m[3][0] / R.scale;
-	out.m[3][1] = R.m[3][0] * m[1][0] + R.m[3][1] * m[1][1] + R.m[3][2] * m[1][2] + m[3][1] / R.scale;
-	out.m[3][2] = R.m[3][0] * m[2][0] + R.m[3][1] * m[2][1] + R.m[3][2] * m[2][2] + m[3][2] / R.scale;
-	out.scale = scale * R.scale;
-	out.isIdentity = false;
+	out.m[3][0] = m[0][0] * R.m[3][0] + m[1][0] * R.m[3][1] + m[2][0] * R.m[3][2] + m[3][0];
+	out.m[3][1] = m[0][1] * R.m[3][0] + m[1][1] * R.m[3][1] + m[2][1] * R.m[3][2] + m[3][1];
+	out.m[3][2] = m[0][2] * R.m[3][0] + m[1][2] * R.m[3][1] + m[2][2] * R.m[3][2] + m[3][2];
+	out.m[3][3] = 1.0;
+	return out;
+}
+
+CMatrix CMatrix::Multiply(CMatrix& R)
+{
+	CMatrix out;
+	out.m[0][0] = m[0][0] * R.m[0][0] + m[1][0] * R.m[0][1] + m[2][0] * R.m[0][2] + m[3][0] * R.m[0][3];
+	out.m[0][1] = m[0][1] * R.m[0][0] + m[1][1] * R.m[0][1] + m[2][1] * R.m[0][2] + m[3][1] * R.m[0][3];
+	out.m[0][2] = m[0][2] * R.m[0][0] + m[1][2] * R.m[0][1] + m[2][2] * R.m[0][2] + m[3][2] * R.m[0][3];
+	out.m[0][3] = m[0][3] * R.m[0][0] + m[1][3] * R.m[0][1] + m[2][3] * R.m[0][2] + m[3][3] * R.m[0][3];
+
+	out.m[1][0] = m[0][0] * R.m[1][0] + m[1][0] * R.m[1][1] + m[2][0] * R.m[1][2] + m[3][0] * R.m[1][3];
+	out.m[1][1] = m[0][1] * R.m[1][0] + m[1][1] * R.m[1][1] + m[2][1] * R.m[1][2] + m[3][1] * R.m[1][3];
+	out.m[1][2] = m[0][2] * R.m[1][0] + m[1][2] * R.m[1][1] + m[2][2] * R.m[1][2] + m[3][2] * R.m[1][3];
+	out.m[1][3] = m[0][3] * R.m[1][0] + m[1][3] * R.m[1][1] + m[2][3] * R.m[1][2] + m[3][3] * R.m[1][3];
+
+	out.m[2][0] = m[0][0] * R.m[2][0] + m[1][0] * R.m[2][1] + m[2][0] * R.m[2][2] + m[3][0] * R.m[2][3];
+	out.m[2][1] = m[0][1] * R.m[2][0] + m[1][1] * R.m[2][1] + m[2][1] * R.m[2][2] + m[3][1] * R.m[2][3];
+	out.m[2][2] = m[0][2] * R.m[2][0] + m[1][2] * R.m[2][1] + m[2][2] * R.m[2][2] + m[3][2] * R.m[2][3];
+	out.m[2][3] = m[0][3] * R.m[2][0] + m[1][3] * R.m[2][1] + m[2][3] * R.m[2][2] + m[3][3] * R.m[2][3];
+
+	out.m[3][0] = m[0][0] * R.m[3][0] + m[1][0] * R.m[3][1] + m[2][0] * R.m[3][2] + m[3][0] * R.m[3][3];
+	out.m[3][1] = m[0][1] * R.m[3][0] + m[1][1] * R.m[3][1] + m[2][1] * R.m[3][2] + m[3][1] * R.m[3][3];
+	out.m[3][2] = m[0][2] * R.m[3][0] + m[1][2] * R.m[3][1] + m[2][2] * R.m[3][2] + m[3][2] * R.m[3][3];
+	out.m[3][3] = m[0][3] * R.m[3][0] + m[1][3] * R.m[3][1] + m[2][3] * R.m[3][2] + m[3][3] * R.m[3][3];
 	return out;
 }
 
 void CMatrix::gl_multiply_matrix()
 {
-	double data[16];
-
-	data[0] = m[0][0]; data[1] = m[1][0]; data[2] = m[2][0]; data[3] = 0;
-	data[4] = m[0][1]; data[5] = m[1][1]; data[6] = m[2][1]; data[7] = 0;
-	data[8] = m[0][2]; data[9] = m[1][2]; data[10] = m[2][2]; data[11] = 0;
-	data[12] = m[3][0]; data[13] = m[3][1]; data[14] = m[3][2]; data[15] = scale;
-
+	double* data = (double*)this;
 	glMultMatrixd(data);
+}
+
+std::vector<double> CMatrix::GetData()
+{
+	std::vector<double> data(16);
+	data[0] = m[0][0];
+	data[1] = m[0][1];
+	data[2] = m[0][2];
+	data[3] = m[0][3];
+
+	data[4] = m[1][0];
+	data[5] = m[1][1];
+	data[6] = m[1][2];
+	data[7] = m[1][3];
+
+	data[8] = m[2][0];
+	data[9] = m[2][1];
+	data[10] = m[2][2];
+	data[11] = m[2][3];
+
+	data[12] = m[3][0];
+	data[13] = m[3][1];
+	data[14] = m[3][2];
+	data[15] = m[3][3];
+	return data;
+}
+CMatrix CMatrix::NewFromData(std::vector<double>& data)
+{
+	CMatrix out;
+	out.m[0][0] = data[0];
+	out.m[0][1] = data[1];
+	out.m[0][2] = data[2];
+	out.m[0][3] = data[3];
+
+	out.m[1][0] = data[4];
+	out.m[1][1] = data[5];
+	out.m[1][2] = data[6];
+	out.m[1][3] = data[7];
+
+	out.m[2][0] = data[8];
+	out.m[2][1] = data[9];
+	out.m[2][2] = data[10];
+	out.m[2][3] = data[11];
+
+	out.m[3][0] = data[12];
+	out.m[3][1] = data[13];
+	out.m[3][2] = data[14];
+	out.m[3][3] = data[15];
+	return out;
+}
+
+CMatrix CMatrix::NewFromTranslate(CVector3D& translate)
+{
+	CMatrix out;
+	out.m[3][0] = translate.x;
+	out.m[3][1] = translate.y;
+	out.m[3][2] = translate.z;
+	return out;
+}
+
+CMatrix CMatrix::NewFromRotate(CVector3D& rotate)
+{
+	CMatrix out;
+	return out;
+}
+
+CMatrix CMatrix::NewFromScale(CVector3D& scale)
+{
+	CMatrix out;
+	return out;
 }
 
 //=====================
@@ -732,11 +726,11 @@ void SUFace::Draw(CMatrix* matrix, SUComponentInstance* pm, TriangleMesh* triMes
 		id3 = triMesh->GetVertexIndex(i*3 + 2);
 
 		p1 = triMesh->GetPoint(id1);
-		p1 = matrix->ProjectPoint(p1);
+		p1 = matrix->TransformPoint(p1);
 		p2 = triMesh->GetPoint(id2);
-		p2 = matrix->ProjectPoint(p2);
+		p2 = matrix->TransformPoint(p2);
 		p3 = triMesh->GetPoint(id3);
-		p3 = matrix->ProjectPoint(p3);
+		p3 = matrix->TransformPoint(p3);
 
 		tv1 = triMesh->GetUV(id1);
 		tv2 = triMesh->GetUV(id2);
@@ -1441,11 +1435,25 @@ CMatrix SUComponentInstance::GetTransform()
 		if(is_identity)
 			return CMatrix();
 		CMatrix m;
-		m.SetAxis(0, CVector3D(transform.values[0], transform.values[1], transform.values[2]));
-		m.SetAxis(1, CVector3D(transform.values[4], transform.values[5], transform.values[6]));
-		m.SetAxis(2, CVector3D(transform.values[8], transform.values[9], transform.values[10]));
-		m.SetRow(3, CVector3D(transform.values[12], transform.values[13], transform.values[14]));
-		m.SetScale(transform.values[15]);
+		m.m[0][0] = transform.values[0];
+		m.m[0][1] = transform.values[1];
+		m.m[0][2] = transform.values[2];
+		m.m[0][3] = transform.values[3];
+
+		m.m[1][0] = transform.values[4];
+		m.m[1][1] = transform.values[5];
+		m.m[1][2] = transform.values[6];
+		m.m[1][3] = transform.values[7];
+
+		m.m[2][0] = transform.values[8];
+		m.m[2][1] = transform.values[9];
+		m.m[2][2] = transform.values[10];
+		m.m[2][3] = transform.values[11];
+
+		m.m[3][0] = transform.values[12];
+		m.m[3][1] = transform.values[13];
+		m.m[3][2] = transform.values[14];
+		m.m[3][3] = transform.values[15];
 		return m;
 	}
 	return CMatrix();
@@ -1456,29 +1464,25 @@ void SUComponentInstance::SetTransform(CMatrix& m)
 	SUResult result;
 
 	SUTransformation transform;
+	transform.values[0] = m.m[0][0];
+	transform.values[1] = m.m[0][1];
+	transform.values[2] = m.m[0][2];
+	transform.values[3] = m.m[0][3];
 
-	CVector3D xaxis, yaxis, zaxis, orig;
-	xaxis = m.GetAxis(0);
-	yaxis = m.GetAxis(1);
-	zaxis = m.GetAxis(2);
-	orig = m.GetRow(3);
+	transform.values[4] = m.m[1][0];
+	transform.values[5] = m.m[1][1];
+	transform.values[6] = m.m[1][2];
+	transform.values[7] = m.m[1][3];
 
-	transform.values[0] = xaxis.x;
-	transform.values[1] = xaxis.y;
-	transform.values[2] = xaxis.z;
-	transform.values[3] = 0;
-	transform.values[4] = yaxis.x;
-	transform.values[5] = yaxis.y;
-	transform.values[6] = yaxis.z;
-	transform.values[7] = 0;
-	transform.values[8] = zaxis.x;
-	transform.values[9] = zaxis.y;
-	transform.values[10] = zaxis.z;
-	transform.values[11] = 0;
-	transform.values[12] = orig.x;
-	transform.values[13] = orig.y;
-	transform.values[14] = orig.z;
-	transform.values[15] = m.scale;
+	transform.values[8] = m.m[2][0];
+	transform.values[9] = m.m[2][1];
+	transform.values[10] = m.m[2][2];
+	transform.values[11] = m.m[2][3];
+
+	transform.values[12] = m.m[3][0];
+	transform.values[13] = m.m[3][1];
+	transform.values[14] = m.m[3][2];
+	transform.values[15] = m.m[3][3];
 
 	result = SUComponentInstanceSetTransform(SUAPI(this), &transform);
 }

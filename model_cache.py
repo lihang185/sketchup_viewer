@@ -58,8 +58,8 @@ class DrawListCache:
                 if not edge.GetSoft():
                     start = edge.GetStartVertex().GetPosition()
                     end = edge.GetEndVertex().GetPosition()
-                    p1 = m.ProjectPoint(start)
-                    p2 = m.ProjectPoint(end)
+                    p1 = m.TransformPoint(start)
+                    p2 = m.TransformPoint(end)
                     self.draw_line(p1, p2, gl)
 
     def draw_line(self, p1, p2, gl):
@@ -90,11 +90,11 @@ class DrawListCache:
             v3 = triMesh.GetVertexIndex(j*3+2)
             
             p1 = triMesh.GetPoint(v1)
-            p1 = matrix.ProjectPoint(p1)
+            p1 = matrix.TransformPoint(p1)
             p2 = triMesh.GetPoint(v2)
-            p2 = matrix.ProjectPoint(p2)
+            p2 = matrix.TransformPoint(p2)
             p3 = triMesh.GetPoint(v3)
-            p3 = matrix.ProjectPoint(p3)
+            p3 = matrix.TransformPoint(p3)
             
             tv1 = triMesh.GetUV(v1)
             tv2 = triMesh.GetUV(v2)
@@ -150,13 +150,13 @@ class VBOCache:
             for e in edge_ls:
                 if not e.GetSoft():
                     p1 = e.GetStartVertex().GetPosition()
-                    p1 = m.ProjectPoint(p1)
+                    p1 = m.TransformPoint(p1)
                     data.append(p1.x)
                     data.append(p1.y)
                     data.append(p1.z)
                     
                     p2 = e.GetEndVertex().GetPosition()
-                    p2 = m.ProjectPoint(p2)
+                    p2 = m.TransformPoint(p2)
                     data.append(p2.x)
                     data.append(p2.y)
                     data.append(p2.z)
@@ -216,7 +216,7 @@ class VBOCache:
         
         for i in range(num_verts):
             p = triMesh.GetPoint(i)
-            p = matrix.ProjectPoint(p)
+            p = matrix.TransformPoint(p)
             add_point(p)
             tc = triMesh.GetUV(i)
             add_uv(tc)
