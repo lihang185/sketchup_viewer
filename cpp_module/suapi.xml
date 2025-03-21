@@ -156,6 +156,18 @@
   </object-type>
 
   <object-type name='SUModel'>
+    <add-function signature="LoadFromBuffer(PyObject*)" return-type="SUModel*">
+      <inject-code class="target" position="beginning">
+        size_t buffer_size = PyByteArray_Size(%PYARG_1);
+        unsigned char* pbuf = (unsigned char*)malloc(buffer_size);
+        void* data = PyByteArray_AsString(%PYARG_1);
+        memcpy(pbuf, data, buffer_size);
+        SUModel* model = SUModel::cLoadFromBuffer(pbuf,buffer_size);
+        %PYARG_0 = %CONVERTTOPYTHON[%RETURN_TYPE](model);
+      </inject-code>
+    </add-function>
   </object-type>
+  <rejection class="SUModel" function-name="cLoadFromBuffer"/>
+
 
 </typesystem>

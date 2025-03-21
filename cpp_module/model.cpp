@@ -1521,6 +1521,19 @@ SUModel* SUModel::LoadFromFile(std::string file_path)
 	return 0;
 }
 
+SUModel* SUModel::cLoadFromBuffer(const unsigned char* buffer, size_t buffer_size)
+{
+	SUResult result;
+
+	SUModelRef model = SU_INVALID;
+
+	result = SUModelCreateFromBuffer(&model, buffer, buffer_size);
+
+	if (result == SU_ERROR_NONE) {
+		return (SUModel*)model.ptr;
+	}
+	return 0;
+}
 
 bool SUModel::SaveToFile(std::string& filepath)
 {

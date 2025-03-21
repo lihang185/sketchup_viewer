@@ -271,6 +271,58 @@ static PyObject *Sbk_SUModelFunc_GetName(PyObject *self)
     return pyResult;
 }
 
+static PyObject *Sbk_SUModelFunc_LoadFromBuffer(PyObject *self, PyObject *pyArg)
+{
+    ::SUModel *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUModel *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUMODEL_IDX], reinterpret_cast<SbkObject *>(self)));
+    PyObject *pyResult{};
+    int overloadId = -1;
+    PythonToCppFunc pythonToCpp{};
+    SBK_UNUSED(pythonToCpp)
+
+    // Overloaded function decisor
+    // 0: SUModel::LoadFromBuffer(PyObject*)
+    if (PyObject_Check(pyArg)) {
+        overloadId = 0; // LoadFromBuffer(PyObject*)
+    }
+
+    // Function signature not found.
+    if (overloadId == -1) goto Sbk_SUModelFunc_LoadFromBuffer_TypeError;
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // LoadFromBuffer(PyObject*)
+            // Begin code injection
+
+            size_t buffer_size = PyByteArray_Size(pyArg);
+            unsigned char* pbuf = (unsigned char*)malloc(buffer_size);
+            void* data = PyByteArray_AsString(pyArg);
+            memcpy(pbuf, data, buffer_size);
+            SUModel* model = SUModel::cLoadFromBuffer(pbuf,buffer_size);
+            pyResult = Shiboken::Conversions::pointerToPython(reinterpret_cast<SbkObjectType *>(SbksuapiTypes[SBK_SUMODEL_IDX]), model);
+
+            // End of code injection
+
+
+        }
+    }
+
+    if (PyErr_Occurred() || !pyResult) {
+        Py_XDECREF(pyResult);
+        return {};
+    }
+    return pyResult;
+
+    Sbk_SUModelFunc_LoadFromBuffer_TypeError:
+        Shiboken::setErrorAboutWrongArguments(pyArg, "suapi.SUModel.LoadFromBuffer");
+        return {};
+}
+
 static PyObject *Sbk_SUModelFunc_LoadFromFile(PyObject *self, PyObject *pyArg)
 {
     PyObject *pyResult{};
@@ -417,6 +469,7 @@ static PyMethodDef Sbk_SUModel_methods[] = {
     {"GetGroupDefinitionList", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetGroupDefinitionList), METH_NOARGS},
     {"GetMaterialList", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetMaterialList), METH_NOARGS},
     {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_GetName), METH_NOARGS},
+    {"LoadFromBuffer", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_LoadFromBuffer), METH_O},
     {"LoadFromFile", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_LoadFromFile), METH_O|METH_STATIC},
     {"Release", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_Release), METH_NOARGS},
     {"SaveToFile", reinterpret_cast<PyCFunction>(Sbk_SUModelFunc_SaveToFile), METH_O},
@@ -518,6 +571,7 @@ static const char *SUModel_SignatureStrings[] = {
     "suapi.SUModel.GetGroupDefinitionList()->std.vector[suapi.SUComponentDefinition]",
     "suapi.SUModel.GetMaterialList()->std.vector[suapi.SUMaterial]",
     "suapi.SUModel.GetName()->std.string",
+    "suapi.SUModel.LoadFromBuffer(arg__1:PyObject)->suapi.SUModel",
     "suapi.SUModel.LoadFromFile(file_path:std.string)->suapi.SUModel",
     "suapi.SUModel.Release()",
     "suapi.SUModel()",

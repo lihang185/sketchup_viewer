@@ -113,12 +113,19 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
         if minedata.hasFormat(sketchup_format_name):
             data = minedata.data(sketchup_format_name)
             
-            # write to file
-            f = open(os.path.join(work_dir, "dump_paste.skp"), "wb")
-            if f:
-                rawdata = data.data()[4:]
-                f.write(rawdata)
-                f.close()
+            rawdata = data.data()[4:]
+            dummy = su.SUModel()
+            comp_model = dummy.LoadFromBuffer(bytearray(rawdata))
+            if comp_model:
+                self.model.insert_component(comp_model)
+                self.insert_model.append(comp_model)
+                
+            if False:
+                # write to file
+                f = open(os.path.join(work_dir, "dump_paste.skp"), "wb")
+                if f:
+                    f.write(rawdata)
+                    f.close()
 
         print("Paste")
 

@@ -395,6 +395,7 @@ public:
 	bool AddMaterial(SUMaterial* mat);
 
 	static SUModel* LoadFromFile(std::string file_path);
+	static SUModel* cLoadFromBuffer(const unsigned char* buffer, size_t buffer_size);
 	
 };
 
