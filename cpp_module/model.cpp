@@ -403,6 +403,7 @@ std::wstring SUAttributeDictionary::GetName()
 {
 	SUResult result;
 	SUStringRef name = SU_INVALID;
+	SUStringCreate(&name);
 
 	std::wstring out_str;
 
@@ -919,6 +920,7 @@ std::wstring SUMaterial::GetName()
 {
 	SUResult result;
 	SUStringRef name = SU_INVALID;
+	SUStringCreate(&name);
 
 	std::wstring out_str;
 
@@ -1333,12 +1335,15 @@ std::wstring SUComponentDefinition::GetName()
 	SUResult result;
 
 	SUStringRef name = SU_INVALID;
+	SUStringCreate(&name);
 
 	result = SUComponentDefinitionGetName(SUAPI(this), &name);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(name);
 	}
-	return std::wstring();
+	else {
+		return std::wstring();
+	}
 }
 
 std::wstring SUComponentDefinition::GetDescription()
@@ -1346,12 +1351,20 @@ std::wstring SUComponentDefinition::GetDescription()
 	SUResult result;
 
 	SUStringRef desc = SU_INVALID;
+	SUStringCreate(&desc);
 
 	result = SUComponentDefinitionGetDescription(SUAPI(this), &desc);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(desc);
 	}
-	return std::wstring();
+	else {
+		return std::wstring();
+	}
+}
+
+void SUComponentDefinition::debug_hook()
+{
+	printf("hook\n");
 }
 
 SUComponentInstance* SUComponentDefinition::CreateInstance()
@@ -1385,6 +1398,7 @@ std::wstring SUComponentDefinition::GetPath()
 	SUResult result;
 
 	SUStringRef path = SU_INVALID;
+	SUStringCreate(&path);
 
 	result = SUComponentDefinitionGetPath(SUAPI(this), &path);
 	if (result == SU_ERROR_NONE) {
@@ -1401,10 +1415,16 @@ std::wstring SUComponentDefinition::GetPath()
 
 std::wstring SUComponentInstance::GetName()
 {
+	return std::wstring();
 	SUStringRef name = SU_INVALID;
+	SUStringCreate(&name);
+
 	SUResult result = SUComponentDefinitionGetName(SUAPI(this), &name);
 	if (result == SU_ERROR_NONE) {
 		return SUStringToSTLString(name);
+	}
+	else {
+		return std::wstring();
 	}
 	return std::wstring();
 }
@@ -1549,8 +1569,6 @@ void SUModel::Release()
 {
 	SUModelRef model = SUAPI(this);
 	SUModelRelease(&model);
-
-	
 }
 
 SUEntities* SUModel::GetEntities()

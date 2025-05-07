@@ -277,6 +277,29 @@ Sbk_SUComponentDefinition_Init(PyObject *self, PyObject *args, PyObject *kwds)
     return 1;
 }
 
+static PyObject *Sbk_SUComponentDefinitionFunc_debug_hook(PyObject *self)
+{
+    ::SUComponentDefinition *cppSelf = nullptr;
+    SBK_UNUSED(cppSelf)
+    if (!Shiboken::Object::isValid(self))
+        return {};
+    cppSelf = reinterpret_cast< ::SUComponentDefinition *>(Shiboken::Conversions::cppPointer(SbksuapiTypes[SBK_SUCOMPONENTDEFINITION_IDX], reinterpret_cast<SbkObject *>(self)));
+
+    // Call function/method
+    {
+
+        if (!PyErr_Occurred()) {
+            // debug_hook()
+            cppSelf->debug_hook();
+        }
+    }
+
+    if (PyErr_Occurred()) {
+        return {};
+    }
+    Py_RETURN_NONE;
+}
+
 static PyMethodDef Sbk_SUComponentDefinition_methods[] = {
     {"Create", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_Create), METH_NOARGS|METH_STATIC},
     {"CreateInstance", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_CreateInstance), METH_NOARGS},
@@ -285,6 +308,7 @@ static PyMethodDef Sbk_SUComponentDefinition_methods[] = {
     {"GetName", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_GetName), METH_NOARGS},
     {"GetPath", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_GetPath), METH_NOARGS},
     {"IsInternal", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_IsInternal), METH_NOARGS},
+    {"debug_hook", reinterpret_cast<PyCFunction>(Sbk_SUComponentDefinitionFunc_debug_hook), METH_NOARGS},
 
     {nullptr, nullptr} // Sentinel
 };
@@ -402,6 +426,7 @@ static const char *SUComponentDefinition_SignatureStrings[] = {
     "suapi.SUComponentDefinition.GetPath()->std.wstring",
     "suapi.SUComponentDefinition.IsInternal()->bool",
     "suapi.SUComponentDefinition()",
+    "suapi.SUComponentDefinition.debug_hook()",
     nullptr}; // Sentinel
 
 void init_SUComponentDefinition(PyObject *module)

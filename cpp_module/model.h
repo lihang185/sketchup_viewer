@@ -351,6 +351,7 @@ public:
 	SUEntities* GetEntities();
 	std::wstring GetName();
 	std::wstring GetDescription();
+	void debug_hook();
 
 	SUComponentInstance* CreateInstance();
 
