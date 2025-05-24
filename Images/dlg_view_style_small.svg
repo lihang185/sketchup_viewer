@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_view_style_small</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1-Icons-24x24" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_view_style_small" sketch:type="MSArtboardGroup" transform="translate(0.000000, 0.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(3.000000, 6.000000)" stroke="#000000" fill="#FFFFFF">
+                <rect id="Rectangle-34" sketch:type="MSShapeGroup" x="0.5" y="0.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-9" sketch:type="MSShapeGroup" x="5.5" y="0.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-10" sketch:type="MSShapeGroup" x="10.5" y="0.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-13" sketch:type="MSShapeGroup" x="0.5" y="5.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-11" sketch:type="MSShapeGroup" x="5.5" y="5.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-12" sketch:type="MSShapeGroup" x="10.5" y="5.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-16" sketch:type="MSShapeGroup" x="0.5" y="10.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-14" sketch:type="MSShapeGroup" x="5.5" y="10.5" width="3" height="3"></rect>
+                <rect id="Rectangle-34-Copy-15" sketch:type="MSShapeGroup" x="10.5" y="10.5" width="3" height="3"></rect>
+            </g>
+            <path d="M18,12.0038867 L20.3710725,14.671875 L22.78125,12 L18,12.0038867 Z" id="Path-2004" fill="#000000" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

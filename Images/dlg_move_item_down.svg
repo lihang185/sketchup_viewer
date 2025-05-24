@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="513px" height="513px" viewBox="0 0 513 513" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>MoveItemDown</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="MoveItemDown" sketch:type="MSArtboardGroup" transform="translate(1.000000, 0.500000)" fill="#000000">
+            <path d="M340.162869,122 L341,175.513067 L301.396161,175.513067 C301.396161,175.513067 295.648035,175.513067 288.641612,181.837338 C281.635189,188.16161 283.32375,199.002473 283.32375,199.002473 L283.32375,311.295137 L321.392415,311.271661 L254.931488,391 L188,313.251501 L226.211653,312.907181 L226.060866,196.996548 C226.060866,196.996548 223.188102,165.517353 242.555207,143.838235 C261.922312,122.159118 288.641612,122 288.641612,122 L340.162869,122 Z" id="Path-2027" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

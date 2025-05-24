@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>persistent_active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="persistent_active" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(4.000000, 4.000000)">
+                <circle id="Oval-30" stroke="#000000" stroke-width="1.40625" sketch:type="MSShapeGroup" cx="8" cy="8" r="7.96875"></circle>
+                <circle id="Oval-30-Copy" fill="#000000" sketch:type="MSShapeGroup" cx="8.046875" cy="3.921875" r="1.265625"></circle>
+                <path d="M8.05516052,5.75892639 L6.91020203,5.75892639 C6.91020203,5.75892639 6.5313797,5.76906586 6.23007965,6.02003479 C5.9287796,6.27100372 5.92564392,6.63142395 5.92564392,6.63142395 L5.92523193,8.95672607 L6.91020203,8.95672607 L6.91020203,13.3720856 L9.09281921,13.3659973 L9.09281921,8.96318054 L10.1094666,8.96318054 L10.0991669,6.6431427 C10.0991669,6.6431427 10.1371155,6.3080368 9.83890533,6.02003479 C9.54069519,5.73203278 9.09281921,5.75892639 9.09281921,5.75892639 L8.05516052,5.75892639 Z" id="Path" fill="#000000" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

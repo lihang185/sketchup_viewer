@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg12"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs16" />
+  <rect
+     x="8.9998798"
+     y="6"
+     width="15"
+     height="18"
+     fill="#dcedf9"
+     stroke="#009ad9"
+     id="rect2" />
+  <circle
+     cx="8.9998798"
+     cy="24"
+     r="2.5"
+     fill="#0e416c"
+     stroke="#ffffff"
+     id="circle4" />
+  <path
+     d="m 23.9998,23.9999 c 0,-1.5072 -0.2969,-2.9996 -0.8737,-4.3921 C 22.5494,18.2154 21.704,16.9502 20.6382,15.8845 19.5725,14.8187 18.3073,13.97335 16.9149,13.39658 15.5224,12.81981 14.03,12.52295 12.52283,12.52295"
+     stroke="#0e416c"
+     id="path6" />
+  <circle
+     cx="8.9998798"
+     cy="12.52295"
+     r="3.5"
+     fill="#ff0404"
+     stroke="#ffffff"
+     id="circle8" />
+  <circle
+     cx="23.999901"
+     cy="24"
+     r="2.5"
+     fill="#0e416c"
+     stroke="#ffffff"
+     id="circle10" />
+</svg>

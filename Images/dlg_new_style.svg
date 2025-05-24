@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_new_style</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#171597" offset="0%"></stop>
+            <stop stop-color="#4F4DC9" offset="68.9178467%"></stop>
+            <stop stop-color="#171597" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_new_style" sketch:type="MSArtboardGroup">
+            <path d="M9,8 L9.05097837,10.585024 L13,14 L13,9.23430372 L9,8 Z" id="Path-2656" stroke="#000000" stroke-width="0.5" fill="#CFCFA4" sketch:type="MSShapeGroup"></path>
+            <path d="M12,9.01867676 L12,14 L16.8777585,8.29370842 L17.0244141,4.96740723 L12,9.01867676 Z" id="Path-2657" stroke="#000000" stroke-width="0.5" fill="#D5D5AB" sketch:type="MSShapeGroup"></path>
+            <path d="M19.9935715,14.2071247 C19.9977944,14.1849065 20,14.1619844 20,14.1385515 L20,8.3684908 C20,8.16084913 19.8317429,8 19.6241874,8 L15.3758126,8 C15.1663589,8 15,8.16497895 15,8.3684908 L15,14.1385515 C15,14.1621829 15.0021793,14.1852084 15.0063479,14.2074596 C15.0021399,14.2249989 15,14.2427072 15,14.2605634 C15,14.6689429 16.1192881,15 17.5,15 C18.8807119,15 20,14.6689429 20,14.2605634 C20,14.2425936 19.9978328,14.2247735 19.9935715,14.2071247 Z" id="Rectangle-252" stroke="#000000" stroke-width="0.5" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
+            <ellipse id="Oval-96" stroke="#000000" stroke-width="0.5" fill="#171597" sketch:type="MSShapeGroup" cx="17.5" cy="8.5" rx="2.5" ry="0.5"></ellipse>
+            <g id="PlusIcon" sketch:type="MSLayerGroup" transform="translate(4.000000, 11.000000)">
+                <path d="M0,4.49992208 C0,2.01702912 2.01698613,0 4.5,0 C6.98309179,0 9,2.01702912 9,4.49992208 C9,6.98297088 6.98309179,9 4.5,9 C2.01698613,9 0,6.98297088 0,4.49992208 L0,4.49992208 Z" id="Stroke-30736" stroke="#000000" stroke-width="1.11375" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <path d="M5.01114228,3.88618797 L5.01114228,1.6362503 L3.88623968,1.6362503 L3.88623968,3.8862503 L1.63627863,3.88618797 L1.63627863,5.01117239 L3.88623968,5.01117239 L3.88623968,7.26116459 L5.01114228,7.26116459 L5.01114228,5.01117239 L7.26125916,5.01117239 L7.26125916,3.88618797 L5.01114228,3.88618797 L5.01114228,3.88618797 Z" id="Fill-30737" fill="#000000" sketch:type="MSShapeGroup"></path>
+                <path d="M5.01114228,3.88617239 L5.01114228,1.6362503 L3.88623968,1.6362503 L3.88623968,3.8862503 L1.63627863,3.88617239 L1.63627863,5.01113343 L3.88623968,5.01113343 L3.88623968,7.26113343 L5.01114228,7.26113343 L5.01114228,5.01113343 L7.26125916,5.01113343 L7.26125916,3.88617239 L5.01114228,3.88617239 L5.01114228,3.88617239 Z" id="Stroke-30738" stroke="#000000" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+            </g>
+            <path d="M12.2433472,8.7713623 L9.20819092,7.62976074 L13.5269775,4.0380249 L16.7609253,4.590271 L12.2433472,8.7713623 Z" id="Path-2655" stroke="#000000" stroke-width="0.5" fill="#8E8F6F" sketch:type="MSShapeGroup"></path>
+            <path d="M9.32080078,7.77789307 L12.1732788,8.57556152 L16.8239746,4.769104 L13.5493164,4.25646973 L9.32080078,7.77789307 Z" id="Path-2658" fill="#ADAD88" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

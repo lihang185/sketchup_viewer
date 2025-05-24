@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>SOI_GB_Plane</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="SOI_GB_Plane" sketch:type="MSArtboardGroup">
+            <path d="M243.168442,79.7264799 L243.16844,255.999994 L98.7127687,338.817133 L92.7781814,132.320427 L243.168442,79.7264799 Z" id="Path-2470" stroke="#000000" stroke-width="10" sketch:type="MSShapeGroup"></path>
+            <path d="M248.0039,262.759766 L399.886062,347.048498 L255.815678,434.120284 L102.18786,347.048498 L248.0039,262.759766 Z" id="Path-2471" stroke="#000000" stroke-width="10" sketch:type="MSShapeGroup"></path>
+            <path d="M251.027609,255.999998 L251.027609,79.3954298 L410.94912,125.947888 L404.815006,338.90878 L251.027609,255.999998 Z" id="Path-2472" stroke="#000000" stroke-width="10" fill="#1919F8" sketch:type="MSShapeGroup"></path>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(255.000000, 100.000000)" fill="#00FF00">
+                <path d="M47.5328468,0.247845177 L97.9966493,14.5082489 L97.9966493,73.9537178 L47.5328468,53.6413629 L47.5328468,0.247845177 Z" id="Path-2477" sketch:type="MSShapeGroup"></path>
+                <path d="M99.4499036,77.0720413 L148.790395,97.4564043 L146.753596,170.36598 L99.4499036,146.732334 L99.4499036,77.0720413 Z" id="Path-2477-Copy" sketch:type="MSShapeGroup"></path>
+                <path d="M0.815678149,37.0823119 L44.9781351,55.0576775 L44.9781351,117.411524 L0.815678149,94.1426302 L0.815678149,37.0823119 Z" id="Path-2479" sketch:type="MSShapeGroup"></path>
+                <path d="M45.6254883,120.248047 L96.2592773,146.895508 L96.2592773,204.557129 L46.2270508,177.558105 L45.6254883,120.248047 Z" id="Path-2480" sketch:type="MSShapeGroup"></path>
+            </g>
+            <path d="M299.5,94.7172512 L299.5,283.499997" id="Path-2475" stroke="#000000" stroke-width="3" sketch:type="MSShapeGroup"></path>
+            <path d="M352.5,110.039073 L352.5,313.499995" id="Path-2476" stroke="#000000" stroke-width="3" sketch:type="MSShapeGroup"></path>
+            <path d="M249.112381,133.021805 L409.926979,198.588427" id="Path-2473" stroke="#000000" stroke-width="3" sketch:type="MSShapeGroup"></path>
+            <path d="M247.197154,191.436249 L406.161051,273.791039" id="Path-2474" stroke="#000000" stroke-width="3" sketch:type="MSShapeGroup"></path>
+            <path d="M248.06125,73.7675781 L415.437935,122.183187 L409.083977,345.050781 L256.399224,439 L94.1472699,347.757356 L87.8647995,129.529881 L248.06125,73.7675781 Z" id="Path-2481" stroke="#000000" stroke-width="8" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

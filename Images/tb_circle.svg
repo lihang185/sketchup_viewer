@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg10"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <circle
+     cx="16"
+     cy="16"
+     r="9.4061403"
+     fill="#dcedf9"
+     stroke="#009ad9"
+     stroke-width="1.18772"
+     id="circle2" />
+  <line
+     x1="16.019901"
+     y1="16.102001"
+     x2="22.513201"
+     y2="9.4078503"
+     stroke="#0e416c"
+     stroke-width="0.75"
+     id="line4" />
+  <circle
+     cx="23.0352"
+     cy="9"
+     r="3"
+     fill="#ff0404"
+     stroke="#ffffff"
+     id="circle6" />
+  <circle
+     cx="16"
+     cy="16"
+     r="2.5"
+     fill="#0e416c"
+     stroke="#ffffff"
+     id="circle8" />
+</svg>

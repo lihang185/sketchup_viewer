@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="513px" height="513px" viewBox="0 0 513 513" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>SOIAddCameraGuide</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="SOIAddCameraGuide" sketch:type="MSArtboardGroup" transform="translate(1.000000, 0.500000)">
+            <rect id="Rectangle-60-Copy-2" fill="#000000" sketch:type="MSShapeGroup" x="106" y="247" width="297" height="17" rx="8"></rect>
+            <rect id="Rectangle-60-Copy-3" fill="#000000" sketch:type="MSShapeGroup" transform="translate(254.500000, 253.500000) rotate(-90.000000) translate(-254.500000, -253.500000) " x="107" y="245" width="295" height="17" rx="8"></rect>
+            <circle id="Oval-24" stroke="#000000" stroke-width="16" sketch:type="MSShapeGroup" cx="254" cy="255" r="102"></circle>
+        </g>
+    </g>
+</svg>

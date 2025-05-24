@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>flash_blue</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-202.000000, -529.000000)" fill-rule="nonzero">
+            <g id="flash_blue" transform="translate(202.000000, 529.000000)">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                <polygon id="Path" stroke="#363545" fill="#005F9E" points="14.2 3 8.6 3 7 12.6 10.2 12.6 9 21 17 9 12.6 9"></polygon>
+                <polygon id="Path-2" fill="#FFFFFF" points="9.04312134 3.49655151 7.59780884 12.0931091 10.7918701 12.0931091 9.80392456 18.8937683 10.4705963 17.8943329 11.5827789 11.4350128 8.55982971 11.4350128 10.014679 3.49655151"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

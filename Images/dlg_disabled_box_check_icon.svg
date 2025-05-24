@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_disabled_box_check_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_disabled_box_check_icon" sketch:type="MSArtboardGroup" transform="translate(1.000000, 0.000000)">
+            <rect id="Rectangle-307" stroke="#737373" sketch:type="MSShapeGroup" x="4" y="4" width="16" height="16"></rect>
+            <g id="Path-2004-+-Stroke-635-+-Stroke-637" sketch:type="MSLayerGroup" transform="translate(6.000000, 7.000000)" fill="#737373">
+                <path d="M11.3572516,0.161002023 L12.3963462,1.34608677 L4.54162276,9.6874564 L0.11087518,5.39951869 L1.45064826,4.02452741 L4.56768156,7.07872663 L11.3572516,0.161002023 Z" id="Path-2004" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

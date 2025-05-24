@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_fast_style</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_fast_style" sketch:type="MSArtboardGroup" transform="translate(0.000000, 0.000000)">
+            <rect id="Rectangle-493" fill-opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(6.000000, 3.000000)">
+                <ellipse id="Oval-26" stroke="#4B8533" stroke-width="1.4" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="6.4859375" cy="10.5685096" rx="6.1359375" ry="6.06850962"></ellipse>
+                <rect id="Rectangle-67" fill="#4B8533" sketch:type="MSShapeGroup" x="5.6" y="0.346153846" width="1.575" height="3.63461538"></rect>
+                <rect id="Rectangle-67-Copy" fill="#4B8533" sketch:type="MSShapeGroup" transform="translate(12.162500, 4.662260) rotate(43.000000) translate(-12.162500, -4.662260) " x="11.375" y="2.94230769" width="1.575" height="3.43990385"></rect>
+                <path d="M5.6,6.57692308 L7.1451969,6.57692308 L7.1451969,10.6395302 L8.92402362,8.57864702 L10.0625,9.69230769 L7.23404444,12.7756688 L5.64519117,12.8076923 L5.6,6.57692308 Z" id="Path-2036" fill="#4B8533" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

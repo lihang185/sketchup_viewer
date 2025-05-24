@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>SOIGridStyleOutside</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="SOIGridStyleOutside" sketch:type="MSArtboardGroup">
+            <path d="M64,64 L448,64 L448,448 L64,448 L64,64 L64,64 Z" id="Stroke-635" stroke-opacity="0.498" stroke="#3094FF" stroke-width="2.66666667" stroke-dasharray="12,6" sketch:type="MSShapeGroup"></path>
+            <path d="M0,0 L512,0 L512,512 L0,512 L0,0 L0,0 Z" id="Stroke-637" stroke-opacity="0.498" stroke="#3094FF" stroke-width="2.66666667" stroke-dasharray="12,6" sketch:type="MSShapeGroup"></path>
+            <path d="M367.304962,97.8356583 L363.527039,208.841606 L440.746094,293.105469 L208.929688,428.253906 L70.0351562,231.761719 L181.085938,182.058594 L177.611107,77.7062752 L247.616135,146.403236 L367.304962,97.8356583 Z" id="Path-2540" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M114.21875,213.988281 L253.402344,400.875" id="Path-2541" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M151.792969,198.519531 L291.460938,378.441406" id="Path-2542" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M379.421875,229.105469 L155.429688,348.460938" id="Path-2543" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M407.746094,258.949219 L178.859375,383.269531" id="Path-2544" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M366.769531,332.238281 L286.962891,243.224609 L286.962891,134.289062" id="Path-2547" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M408.240234,310.402344 L325.693359,224.517578 L324.693359,119.193359" id="Path-2548" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M114.001953,289.998047 L226.126953,232.990234 L225.369141,128.761719" id="Path-2549" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M90.1679688,260.015625 L201.792969,204.527344 L200.164062,102.945312" id="Path-2550" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M178.722543,108.689866 L256,188.315369 L369.585388,137.614838" id="Path-2551" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M180.443054,147.288068 L256,226.246945 L368.554291,172.477072" id="Path-2552" stroke="#000000" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M180.617188,181.605469 L330.617905,354.91481" id="green" stroke="#28A228" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M366.918899,204.478582 L132.387436,318.668976" id="red" stroke="#A04545" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <path d="M250.523438,150 L250.523438,264.242188 L250.523438,150 Z" id="blue" stroke="#3434B6" stroke-width="15" sketch:type="MSShapeGroup"></path>
+            <circle id="Oval-78-Copy-4" fill="#3434B6" sketch:type="MSShapeGroup" cx="251" cy="149" r="10"></circle>
+            <circle id="Oval-78-Copy-6" fill="#28A228" sketch:type="MSShapeGroup" cx="330" cy="356" r="10"></circle>
+            <circle id="Oval-78-Copy-9" fill="#28A228" sketch:type="MSShapeGroup" cx="179" cy="181" r="10"></circle>
+            <circle id="Oval-78-Copy-7" fill="#A04545" sketch:type="MSShapeGroup" cx="131" cy="319" r="10"></circle>
+            <circle id="Oval-78-Copy-8" fill="#A04545" sketch:type="MSShapeGroup" cx="366" cy="206" r="10"></circle>
+            <circle id="Oval-78-Copy-5" fill="#3434B6" sketch:type="MSShapeGroup" cx="251" cy="261" r="10"></circle>
+        </g>
+    </g>
+</svg>

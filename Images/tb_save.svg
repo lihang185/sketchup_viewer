@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg12"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs16" />
+  <path
+     d="M 24.7619,25.5 H 7.16191 c -0.38659,0 -0.7,-0.3134 -0.7,-0.7 V 10.40978 c 0,-0.20838 0.09284,-0.40593 0.25327,-0.53891 L 10.5873,6.66108 C 10.71289,6.55697 10.8709,6.5 11.03403,6.5 H 24.7619 c 0.3866,0 0.7,0.3134 0.7,0.7 v 17.6 c 0,0.3866 -0.3134,0.7 -0.7,0.7 z"
+     stroke="#0e416c"
+     stroke-linecap="round"
+     id="path2" />
+  <path
+     d="m 21.9619,6.5 h 0.5002 l -2e-4,0.50022 -0.0035,7.99998 -3e-4,0.4998 h -0.4998 l -9.99286,-4e-4 H 11.46569 L 11.46546,14.9998 11.46191,7.00022 11.46169,6.5 h 0.50022 z"
+     stroke="#0e416c"
+     id="path4" />
+  <rect
+     x="10.96191"
+     y="18"
+     width="12"
+     height="1"
+     rx="0.2"
+     fill="#0e416c"
+     id="rect6" />
+  <rect
+     x="10.96191"
+     y="20"
+     width="12"
+     height="1"
+     rx="0.2"
+     fill="#0e416c"
+     id="rect8" />
+  <rect
+     x="10.96191"
+     y="22"
+     width="12"
+     height="1"
+     rx="0.2"
+     fill="#0e416c"
+     id="rect10" />
+</svg>

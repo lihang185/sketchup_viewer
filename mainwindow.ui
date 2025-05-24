@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>870</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="View3D" name="view" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1440</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_9">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menu_1">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>视图</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>摄像机</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>绘制</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>工具</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>窗口</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_7">
+    <property name="title">
+     <string>调试</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_8">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+   </widget>
+   <addaction name="menu_9"/>
+   <addaction name="menu_1"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_6"/>
+   <addaction name="menu_7"/>
+   <addaction name="menu_8"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>260</width>
+     <height>432</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle">
+    <string>默认面板</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QToolBox" name="toolBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolBox {
+    /* 可选：可以在这里添加其他样式 */
+}
+
+QToolBox QScrollBar:vertical {
+    /* width: 6px; /* 设置滚动条宽度 */
+}
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="tabSpacing">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page_01">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>260</width>
+          <height>523</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <attribute name="label">
+         <string>图元信息</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_02">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <attribute name="label">
+         <string>材质</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_03">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>组件</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_04">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>样式</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_05">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>环境</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_06">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>标记</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_07">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>阴影</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_08">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>场景</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_09">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>工具向导</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_10">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>雾化</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_11">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>照片匹配</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_12">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>柔化边线</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_13">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>覆盖</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="page_14">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <attribute name="label">
+         <string>管理目录</string>
+        </attribute>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="action">
+   <property name="text">
+    <string>文件</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>View3D</class>
+   <extends>QWidget</extends>
+   <header>view3d</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg8"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <path
+     d="M 13.60925,19.0476 15.4686,17.1882"
+     stroke="#0e416c"
+     stroke-width="1.25"
+     stroke-linecap="square"
+     id="path2" />
+  <path
+     d="m 7.72644,24.9312 5.88355,-5.8836"
+     stroke="#0e416c"
+     stroke-width="2.5"
+     stroke-linecap="round"
+     id="path4" />
+  <circle
+     cx="19.476799"
+     cy="12.5238"
+     r="5.8987999"
+     stroke="#0e416c"
+     stroke-width="1.25"
+     id="circle6" />
+</svg>

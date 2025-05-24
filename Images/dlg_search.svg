@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_search</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_search" sketch:type="MSArtboardGroup" stroke="#000000">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(6.000000, 6.000000)">
+                <circle id="Oval-23" stroke-width="1.30994152" sketch:type="MSShapeGroup" cx="8.5078125" cy="4.1484375" r="3.6328125"></circle>
+                <rect id="Rectangle-26" stroke-width="0.5" fill="#000000" sketch:type="MSShapeGroup" transform="translate(3.133272, 9.687040) rotate(-45.000000) translate(-3.133272, -9.687040) " x="-0.499540043" y="9.07766504" width="7.265625" height="1.21875"></rect>
+            </g>
+            <path d="M0.5,0 L0.5,23.5" id="Line" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

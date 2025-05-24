@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g fill="#D0021B" fill-rule="evenodd">
+    <path d="M6 6L11 6 11 11 6 11 6 6zM7 7L7 10 10 10 10 7 7 7zM6 12L11 12 11 17 6 17 6 12zM7 13L7 16 10 16 10 13 7 13zM12 12L17 12 17 17 12 17 12 12zM13 13L13 16 16 16 16 13 13 13zM12 6L17 6 17 11 12 11 12 6zM13 7L13 10 16 10 16 7 13 7z"/>
+    <rect width="1" height="1" x="18" y="4"/>
+    <rect width="1" height="1" x="18" y="6"/>
+    <rect width="1" height="1" x="16" y="4"/>
+    <rect width="1" height="1" x="14" y="4"/>
+    <rect width="1" height="1" x="12" y="4"/>
+    <rect width="1" height="1" x="10" y="4"/>
+    <rect width="1" height="1" x="8" y="4"/>
+    <rect width="1" height="1" x="16" y="18"/>
+    <rect width="1" height="1" x="18" y="18"/>
+    <rect width="1" height="1" x="14" y="18"/>
+    <rect width="1" height="1" x="12" y="18"/>
+    <rect width="1" height="1" x="10" y="18"/>
+    <rect width="1" height="1" x="8" y="18"/>
+    <rect width="1" height="1" x="4" y="4"/>
+    <rect width="1" height="1" x="6" y="4"/>
+    <rect width="1" height="1" x="4" y="6"/>
+    <rect width="1" height="1" x="4" y="8"/>
+    <rect width="1" height="1" x="4" y="10"/>
+    <rect width="1" height="1" x="4" y="12"/>
+    <rect width="1" height="1" x="4" y="14"/>
+    <rect width="1" height="1" x="4" y="16"/>
+    <rect width="1" height="1" x="18" y="8"/>
+    <rect width="1" height="1" x="18" y="10"/>
+    <rect width="1" height="1" x="18" y="12"/>
+    <rect width="1" height="1" x="18" y="14"/>
+    <rect width="1" height="1" x="18" y="16"/>
+    <rect width="1" height="1" x="4" y="18"/>
+    <rect width="1" height="1" x="6" y="18"/>
+  </g>
+</svg>

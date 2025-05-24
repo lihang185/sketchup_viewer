@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="33"
+   viewBox="0 0 32 33"
+   fill="none"
+   version="1.1"
+   id="svg8"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="M 15.4114,25.6763 V 7.67627 h 0.5 V 25.6763 Z"
+     fill="#0e416c"
+     id="path2" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="M 7.5,25.0461 V 8.30614 h 16.4113 v 2.62 h 1.5 v 3.99996 h -1.5 v 10.12 z M 25.4113,6.80614 H 6 V 26.5461 h 19.4113 v -10.12 h 1.5 V 9.42614 h -1.5 z"
+     fill="#0e416c"
+     id="path4" />
+  <path
+     fill-rule="evenodd"
+     clip-rule="evenodd"
+     d="m 21.9114,10.92627 h 4 v 4.00003 h -4 z m 4.5,4.50003 v -5.00003 h -5 v 5.00003 z"
+     fill="#0e416c"
+     id="path6" />
+</svg>

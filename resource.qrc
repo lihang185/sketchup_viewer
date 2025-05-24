@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/">
+        <file>toolbar/3D文字.svg</file>
+        <file>toolbar/比例.svg</file>
+        <file>toolbar/参考线.svg</file>
+        <file>toolbar/撤销以返回上一个相机视野.svg</file>
+        <file>toolbar/尺寸.svg</file>
+        <file>toolbar/创建组件.svg</file>
+        <file>toolbar/定位相机.svg</file>
+        <file>toolbar/多边形.svg</file>
+        <file>toolbar/观察.svg</file>
+        <file>toolbar/环绕观察.svg</file>
+        <file>toolbar/镜像.svg</file>
+        <file>toolbar/矩形.svg</file>
+        <file>toolbar/量角器.svg</file>
+        <file>toolbar/路径跟随.svg</file>
+        <file>toolbar/偏移.svg</file>
+        <file>toolbar/平移.svg</file>
+        <file>toolbar/剖切面.svg</file>
+        <file>toolbar/清理费线-备用.svg</file>
+        <file>toolbar/删除.svg</file>
+        <file>toolbar/视野.svg</file>
+        <file>toolbar/手绘线.svg</file>
+        <file>toolbar/缩放.svg</file>
+        <file>toolbar/缩放窗口.svg</file>
+        <file>toolbar/缩放范围.svg</file>
+        <file>toolbar/套索选择.svg</file>
+        <file>toolbar/图层标签.svg</file>
+        <file>toolbar/推拉.svg</file>
+        <file>toolbar/文本.svg</file>
+        <file>toolbar/行走.svg</file>
+        <file>toolbar/旋转.svg</file>
+        <file>toolbar/旋转长方形.svg</file>
+        <file>toolbar/选择.svg</file>
+        <file>toolbar/颜料桶.svg</file>
+        <file>toolbar/移动.svg</file>
+        <file>toolbar/圆.svg</file>
+        <file>toolbar/直线.svg</file>
+        <file>toolbar/轴.svg</file>
+        <file>Images/u_notvisible.svg</file>
+        <file>Images/u_visible.svg</file>
+    </qresource>
+</RCC>

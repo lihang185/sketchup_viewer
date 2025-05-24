@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   fill="none"
+   version="1.1"
+   id="svg21"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <g
+     clip-path="url(#clip0_24829_15878)"
+     id="g14"
+     transform="translate(4,4)">
+    <path
+       d="m 4.61978,14.8065 c 0.45779,1.7084 1.41192,3.2428 2.74174,4.409 1.32982,1.1663 2.97558,1.912 4.72928,2.1428 1.7536,0.2309 3.5363,-0.0634 5.1226,-0.8457 1.5864,-0.7823 2.9051,-2.0175 3.7895,-3.5493 0.8844,-1.5318 1.2947,-3.2914 1.179,-5.0564 C 22.0662,10.142 21.4298,8.45094 20.353,7.04769 19.2762,5.64444 17.8076,4.592 16.1327,4.02345 14.4578,3.4549 12.6519,3.39578 10.9434,3.85357"
+       stroke="#009ad9"
+       stroke-width="1.16292"
+       id="path2" />
+    <line
+       x1="9.6135101"
+       y1="4.2844701"
+       x2="19.6968"
+       y2="18.6409"
+       stroke="#0e416c"
+       stroke-width="0.75"
+       id="line4" />
+    <line
+       x1="4.67693"
+       y1="14.7593"
+       x2="19.702299"
+       y2="18.689501"
+       stroke="#0e416c"
+       stroke-width="0.75"
+       id="line6" />
+    <circle
+       cx="10.1094"
+       cy="4.0899701"
+       r="3"
+       fill="#ff0404"
+       stroke="#ffffff"
+       id="circle8" />
+    <circle
+       cx="4.6992202"
+       cy="14.7889"
+       r="2.5"
+       fill="#0e416c"
+       stroke="#ffffff"
+       id="circle10" />
+    <circle
+       cx="19.625"
+       cy="18.458401"
+       r="2.5"
+       fill="#0e416c"
+       stroke="#ffffff"
+       id="circle12" />
+  </g>
+  <defs
+     id="defs19">
+    <clipPath
+       id="clip0_24829_15878">
+      <rect
+         width="24"
+         height="24"
+         fill="#ffffff"
+         id="rect16"
+         x="0"
+         y="0" />
+    </clipPath>
+  </defs>
+</svg>

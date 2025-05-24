@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>dlg_infinity</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dlg_infinity" sketch:type="MSArtboardGroup" stroke="#000000" stroke-width="0.8">
+            <path d="M12.4869385,12.0000001 C12.4869385,12.0000001 15.0605469,8.97546387 17.0791016,8.97546387 C19.0976562,8.97546387 20.9307861,9.82836914 20.9307861,12.3260498 C20.9307861,14.8237305 19.1407471,15.9264528 17.0791016,15.9264526 C15.0174561,15.9264525 12.824707,13.5255868 12.0510254,12.4588144 C11.2773438,11.3920419 9.67523193,8.97546387 7.42102051,8.97546387 C5.21746826,8.97546387 3.3380127,9.87658692 3.3380127,12.6104736 C3.3380127,15.3443603 5.52935791,16.0592041 7.42102051,15.9264526 C9.26202393,16.0592041 12.4869385,12.0000001 12.4869385,12.0000001 Z" id="Path-3148" sketch:type="MSShapeGroup"></path>
+            <path d="M7.31921387,15.9207764 C8.96032715,15.9207764 10.5756836,15.1655274 12.5013428,13.0858154 C14.427002,11.0061035 14.9754228,8.965115 17.2045898,8.99157715" id="Path-3149" sketch:type="MSShapeGroup"></path>
+            <path d="M7.31921387,15.9207764 C8.9473877,15.4600829 9.75671387,14.0797119 11.682373,12 C13.6080322,9.92028809 14.1960449,8.95825195 17.2416992,8.95825195" id="Path-3149-Copy" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

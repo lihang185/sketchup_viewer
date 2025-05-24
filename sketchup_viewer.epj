@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project sketchup_viewer",
     "copyright": "Copyright (C) 2025 , ",
-    "saved": "2025-03-18, 16:54:35"
+    "saved": "2025-05-24, 18:09:02"
   },
   "project": {
     "AUTHOR": "",
@@ -35,7 +35,9 @@
       "makefile": "OTHERS"
     },
     "FORMS": [
-      "sketchup_viewer.ui"
+      "sketchup_viewer.ui",
+      "entityinfo.ui",
+      "mainwindow.ui"
     ],
     "HASH": "ed75e6b1254b1b7d1eebcef77104e8035558d802",
     "IDLPARAMS": {
@@ -61,7 +63,7 @@
     "OTHERTOOLSPARMS": {},
     "PACKAGERSPARMS": {},
     "PROGLANGUAGE": "Python3",
-    "PROJECTTYPE": "PyQt5",
+    "PROJECTTYPE": "PySide2",
     "PROJECTTYPESPECIFICDATA": {},
     "PROTOCOLS": [],
     "RCCPARAMS": {
@@ -71,7 +73,8 @@
       "PathPrefix": ""
     },
     "RESOURCES": [
-      "res.qrc"
+      "res.qrc",
+      "resource.qrc"
     ],
     "SOURCES": [
       "perf_counter_view.py",
@@ -88,7 +91,11 @@
       "su.py",
       "tool_select.py",
       "tool_move.py",
-      "input_point.py"
+      "input_point.py",
+      "resource_rc.py",
+      "Ui_mainwindow.py",
+      "Ui_entityinfo.py",
+      "entity_info.py"
     ],
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",

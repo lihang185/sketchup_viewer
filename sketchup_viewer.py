@@ -1,6 +1,8 @@
 from PySide2.QtCore import Slot
 from PySide2 import QtWidgets
-from Ui_sketchup_viewer import Ui_MainWindow
+from Ui_mainwindow import Ui_MainWindow
+from entity_info import EntityInfo
+
 from importlib import import_module
 import os
 
@@ -8,7 +10,7 @@ import su
 from su_model import SketchupModel
 
 START_FILE = "ren"
-START_FILE_optional = "ren", "test1_triangle"
+#START_FILE_optional = "ren", "test1_triangle"
 START_FILE_NAME = START_FILE + ".skp"
 
 
@@ -22,7 +24,21 @@ class SketchupViewer(QtWidgets.QMainWindow, Ui_MainWindow):
     """
     def __init__(self):
         super().__init__()
+        
+        #=======================
+        # 2D 界面
+        #=======================
         self.setupUi(self)
+        
+        self.entity_info = EntityInfo(self)
+        layout_entityinfo = QtWidgets.QVBoxLayout()
+        layout_entityinfo.setContentsMargins(0, 0, 0, 0)
+        layout_entityinfo.addWidget(self.entity_info)
+        self.page_01.setLayout(layout_entityinfo)
+        
+        #=======================
+        # 3D 模型
+        #=======================
         self.view.mainWindow = self
         
         self.model = None
